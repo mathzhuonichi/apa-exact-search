@@ -46,6 +46,9 @@ pub struct Metrics {
     pub probe_wall_time: f64,
     pub prime_chain_steps: u64,
     pub proof_events: usize,
+    pub root_strengthen_rounds: usize,
+    pub root_cover_sums: Vec<usize>,
+    pub root_forced_absences: Vec<usize>,
 }
 #[derive(Clone, Debug)]
 enum Event {
@@ -577,6 +580,14 @@ impl Engine {
         self.propagate(s, &mut budget)
     }
     pub fn propagate(&mut self, s: &mut State, budget: &mut usize) -> Propagation {
+        self.propagate_to(s, budget, usize::MAX)
+    }
+    fn propagate_to(
+        &mut self,
+        s: &mut State,
+        budget: &mut usize,
+        member_limit: usize,
+    ) -> Propagation {
         loop {
             if self.limits.stopped() {
                 return Propagation::Paused;
@@ -584,7 +595,7 @@ impl Engine {
             if s.quiet() {
                 return Propagation::Quiet;
             }
-            if *budget == 0 {
+            if *budget == 0 || s.members.len() >= member_limit {
                 return Propagation::Paused;
             }
             *budget -= 1;
@@ -683,7 +694,12 @@ impl Engine {
         let mut left = budget.min(self.probe_remaining);
         let before = left;
         if conflict.is_none() {
-            match self.propagate(s, &mut left) {
+            let limit = if self.cfg.probe_members == 0 {
+                usize::MAX
+            } else {
+                s.members.len().saturating_add(self.cfg.probe_members)
+            };
+            match self.propagate_to(s, &mut left, limit) {
                 Propagation::Conflict(id) => conflict = Some(id),
                 Propagation::Paused => self.metrics.probe_pauses += 1,
                 Propagation::Quiet => {}
@@ -842,6 +858,100 @@ impl Engine {
         let result = self.strengthen_inner(s, initial);
         self.metrics.probe_wall_time += started.elapsed().as_secs_f64();
         result
+    }
+    pub fn strengthen_root(&mut self, s: &mut State) -> Propagation {
+        let start = Instant::now();
+        let result = self.strengthen_root_inner(s);
+        self.metrics.probe_wall_time += start.elapsed().as_secs_f64();
+        result
+    }
+    fn strengthen_root_inner(&mut self, s: &mut State) -> Propagation {
+        let mut last_chains_members = s.members.len();
+        loop {
+            if self.limits.stopped() {
+                return Propagation::Paused;
+            }
+            if self.probe_remaining == 0 {
+                return self.quiesce(s);
+            }
+            self.metrics.root_strengthen_rounds += 1;
+            let revision = s.revision;
+            let mut sums = s
+                .unresolved
+                .iter()
+                .copied()
+                .filter(|&sum| (2..=self.cfg.root_probe_width).contains(&s.live_count[sum]))
+                .collect::<Vec<_>>();
+            sums.sort_unstable();
+            for sum in sums {
+                if self.probe_remaining == 0 {
+                    break;
+                }
+                if s.product_count[sum] > 0
+                    || !(2..=self.cfg.root_probe_width).contains(&s.live_count[sum])
+                {
+                    continue;
+                }
+                let before = s.revision;
+                let (cases, context) = self.cover_context(s, sum);
+                let total = self
+                    .cfg
+                    .probe_case_events
+                    .saturating_mul(cases.len())
+                    .min(self.probe_remaining);
+                if let Err(id) = self.cover(s, Cover::Factor(sum), cases, context, total) {
+                    return Propagation::Conflict(id);
+                }
+                let r = self.quiesce(s);
+                if r != Propagation::Quiet {
+                    return r;
+                }
+                if s.revision != before {
+                    self.metrics.root_cover_sums.push(sum);
+                }
+                if s.members.len() > last_chains_members {
+                    let r = self.prime_chains(s);
+                    if r != Propagation::Quiet {
+                        return r;
+                    }
+                    last_chains_members = s.members.len();
+                    break;
+                }
+            }
+            // Revisit absence only after the root has acquired the conclusions
+            // and prime-chain exclusions needed to make it informative.
+            for v in std::iter::once(4).chain(GROUPS.iter().flat_map(|g| g.iter().copied())) {
+                if v > self.p.n
+                    || s.member[v].is_some()
+                    || s.banned[v].is_some()
+                    || self.probe_remaining == 0
+                {
+                    continue;
+                }
+                let r = self.probe(s, vec![Fact::Ban(v)], self.cfg.probe_case_events);
+                if let Some(id) = r.conflict {
+                    let proof = s.node(Fact::Member(v), Rule::Discharge(r.scope), vec![id]);
+                    if let Err(id) = self.force(s, v, proof) {
+                        return Propagation::Conflict(id);
+                    }
+                    self.metrics.root_forced_absences.push(v);
+                }
+                let r = self.quiesce(s);
+                if r != Propagation::Quiet {
+                    return r;
+                }
+            }
+            if s.members.len() > last_chains_members {
+                let r = self.prime_chains(s);
+                if r != Propagation::Quiet {
+                    return r;
+                }
+                last_chains_members = s.members.len();
+            }
+            if s.revision == revision {
+                return Propagation::Quiet;
+            }
+        }
     }
     fn strengthen_inner(&mut self, s: &mut State, initial: usize) -> Propagation {
         let budget = self.cfg.probe_node_events.min(initial);

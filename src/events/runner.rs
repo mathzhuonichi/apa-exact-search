@@ -17,7 +17,7 @@ pub struct Config {
     #[arg(long, default_value_t = 30.0)]
     pub seconds: f64,
     /// Root preparation deadline, including table construction; zero is unlimited.
-    #[arg(long, default_value_t = 30.0)]
+    #[arg(long, default_value_t = 120.0)]
     pub root_seconds: f64,
     /// Zero uses all logical processors.
     #[arg(long, default_value_t = 0)]
@@ -36,22 +36,31 @@ pub struct Config {
     pub even_bound: bool,
     #[arg(long)]
     pub probes: bool,
+    /// Saturate the shared root with all short-domain covers and renewed chains.
+    #[arg(long)]
+    pub root_strengthen: bool,
+    /// Additional members allowed in a propagation-only probe; zero is unlimited.
+    #[arg(long, default_value_t = 2000)]
+    pub probe_members: usize,
+    /// Largest complete factor cover examined during shared-root strengthening.
+    #[arg(long, default_value_t = 8)]
+    pub root_probe_width: usize,
     /// Probe all six overlapping seed alternatives; requires U and prime clauses.
     #[arg(long)]
     pub seed_probe: bool,
-    #[arg(long, default_value_t = 2000)]
+    #[arg(long, default_value_t = 1000000)]
     pub probe_case_events: usize,
     #[arg(long, default_value_t = 12000)]
     pub probe_node_events: usize,
-    /// Total propagation events for probes, divided among all lanes.
-    #[arg(long, default_value_t = 240000)]
+    /// Total probe events: shared root first, then the remainder divided among lanes.
+    #[arg(long, default_value_t = 200000000)]
     pub probe_events: usize,
     #[arg(long, default_value_t = 2)]
     pub probe_domains: usize,
     #[arg(long, default_value_t = 2)]
     pub absence_targets: usize,
-    /// Bounded pure prime-chain steps during shared root preparation.
-    #[arg(long, default_value_t = 0)]
+    /// Pure prime-chain steps per root pass; zero disables this accelerator.
+    #[arg(long, default_value_t = 50000000)]
     pub prime_chain_steps: usize,
     /// Per-lane DFS node limit; zero is unlimited.
     #[arg(long, default_value_t = 0)]
@@ -63,20 +72,23 @@ impl Default for Config {
         Self {
             maximum: 113,
             seconds: 30.0,
-            root_seconds: 30.0,
+            root_seconds: 120.0,
             threads: 1,
             policy: None,
             universal_members: false,
             prime_clauses: false,
             even_bound: false,
             probes: false,
+            root_strengthen: false,
+            probe_members: 2000,
+            root_probe_width: 8,
             seed_probe: false,
-            probe_case_events: 2000,
+            probe_case_events: 1000000,
             probe_node_events: 12000,
-            probe_events: 240000,
+            probe_events: 200000000,
             probe_domains: 2,
             absence_targets: 2,
-            prime_chain_steps: 0,
+            prime_chain_steps: 50000000,
             node_limit: 0,
         }
     }
@@ -202,6 +214,9 @@ fn accept(report: &mut Report, outcome: Outcome, cert: Option<Certificate>) {
 }
 
 pub fn run(cfg: Config, interrupted: Arc<AtomicBool>) -> Result<Report, String> {
+    if cfg.root_strengthen && cfg.root_probe_width < 2 {
+        return Err("root-probe-width must be at least two".into());
+    }
     if cfg.seed_probe && !(cfg.probes && cfg.universal_members && cfg.prime_clauses) {
         return Err("seed-probe requires probes, universal-members, and prime-clauses".into());
     }
@@ -222,10 +237,10 @@ pub fn run(cfg: Config, interrupted: Arc<AtomicBool>) -> Result<Report, String> 
             cancel: Arc::clone(&cancel),
             interrupted: Arc::clone(&interrupted),
         },
-        0,
+        cfg.probe_events,
     );
     let mut report = Report {
-        engine: "events-v1",
+        engine: "events-v2",
         config: cfg.clone(),
         status: "UNKNOWN".into(),
         evidence: "NONE".into(),
@@ -258,6 +273,11 @@ pub fn run(cfg: Config, interrupted: Arc<AtomicBool>) -> Result<Report, String> 
         } else {
             result
         };
+        let result = if result == Propagation::Quiet && cfg.root_strengthen {
+            prep.strengthen_root(&mut root)
+        } else {
+            result
+        };
         match result {
             Propagation::Quiet => Ok(()),
             Propagation::Paused => Err(Outcome::Unknown),
@@ -266,6 +286,7 @@ pub fn run(cfg: Config, interrupted: Arc<AtomicBool>) -> Result<Report, String> 
     };
     report.shared_root_time = root_started.elapsed().as_secs_f64();
     prep.metrics.proof_events = root.proof.len();
+    let search_probe_events = prep.probe_remaining;
     report.root_metrics = prep.metrics;
     if let Err(outcome) = ready {
         report.proof_events = root.proof.len();
@@ -290,7 +311,8 @@ pub fn run(cfg: Config, interrupted: Arc<AtomicBool>) -> Result<Report, String> 
     for lane in 0..threads {
         let mut state = root.clone();
         let tx = tx.clone();
-        let allowance = cfg.probe_events / threads + usize::from(lane < cfg.probe_events % threads);
+        let allowance =
+            search_probe_events / threads + usize::from(lane < search_probe_events % threads);
         let mut worker = engine(
             Arc::clone(&p),
             cfg.clone(),

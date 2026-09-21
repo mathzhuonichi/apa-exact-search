@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "same_options": [
+    "--threads",
+    "1",
+    "--root-strengthen",
+    "--probes",
+    "--root-seconds",
+    "120",
+    "--seconds",
+    "1",
+    "--node-limit",
+    "1",
+    "--prime-chain-steps",
+    "50000000",
+    "--probe-case-events",
+    "1000000",
+    "--probe-members",
+    "2000",
+    "--root-probe-width",
+    "8",
+    "--probe-events",
+    "200000000"
+  ],
+  "results": [
+    {
+      "maximum": 218303,
+      "status": "NO",
+      "evidence": "VERIFIED_NO",
+      "shared_root_time": 59.2859301,
+      "verification_time": 0.0025761,
+      "proof_nodes": 6693,
+      "root_rounds": 11,
+      "replay": "VERIFIED_NO"
+    },
+    {
+      "maximum": 221969,
+      "status": "NO",
+      "evidence": "VERIFIED_NO",
+      "shared_root_time": 27.7212001,
+      "verification_time": 0.0021384,
+      "proof_nodes": 5715,
+      "root_rounds": 5,
+      "replay": "VERIFIED_NO"
+    }
+  ]
+}

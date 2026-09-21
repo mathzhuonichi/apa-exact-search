@@ -15,6 +15,8 @@ def main():
     parser.add_argument('--binary', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--large', action='store_true')
+    parser.add_argument('--root-strengthen', action='store_true',
+                        help='enable the v2 shared-root loop in every control')
     args = parser.parse_args()
     binary = args.binary.resolve()
     args.output.mkdir(parents=True, exist_ok=True)
@@ -39,6 +41,8 @@ def main():
                                '--proof', str(proof)]
                     if probes:
                         command += ['--probes']
+                    if args.root_strengthen:
+                        command += ['--root-strengthen']
                     if lemmas:
                         command += ['--universal-members', '--prime-clauses', '--even-bound']
                     if probes and lemmas:

@@ -638,3 +638,79 @@ fn all_search_and_probe_proof_nodes_are_scope_valid() {
         );
     }
 }
+
+#[test]
+fn shared_root_strengthening_preserves_boundary_and_positive_controls() {
+    for n in [1, 2, 3, 31, 97, 112, 113, 114, 257] {
+        let report = run(
+            Config {
+                maximum: n,
+                root_strengthen: true,
+                threads: 2,
+                ..Config::default()
+            },
+            Arc::new(AtomicBool::new(false)),
+        )
+        .unwrap();
+        assert_eq!(
+            report.status,
+            if n == 2 || n == 113 { "YES" } else { "NO" },
+            "{:?}",
+            report.reason
+        );
+        if let Some(cert) = report.certificate {
+            assert_eq!(proof::verify(&cert, false), Ok(false));
+        }
+        let used = report.root_metrics.probe_events
+            + report
+                .lanes
+                .iter()
+                .map(|l| l.metrics.probe_events)
+                .sum::<u64>();
+        assert!(used <= report.config.probe_events as u64);
+    }
+}
+
+#[test]
+fn member_limited_probe_keeps_parent_queues_and_facts() {
+    let mut e = engine(113);
+    let mut s = State::new(&e.p);
+    e.initialize(&mut s).unwrap();
+    assert_eq!(e.quiesce(&mut s), Propagation::Quiet);
+    e.cfg.probe_members = 1;
+    let before = fingerprint(&s);
+    let v = (1..=113)
+        .find(|&v| s.member[v].is_none() && s.banned[v].is_none())
+        .unwrap();
+    let r = e.probe(&mut s, vec![Fact::Member(v)], 1000000);
+    assert_eq!(fingerprint(&s), before);
+    assert!(s.quiet());
+    counts(&e, &s);
+    if r.conflict.is_none() {
+        assert!(r.delta.contains_key(&Fact::Member(v)));
+    }
+}
+
+#[test]
+fn root_probes_cover_small_sums_and_repeat_only_on_progress() {
+    let mut e = engine(113);
+    let mut s = State::new(&e.p);
+    e.probe_remaining = 2000000;
+    e.initialize(&mut s).unwrap();
+    assert_eq!(e.quiesce(&mut s), Propagation::Quiet);
+    assert_eq!(e.strengthen_root(&mut s), Propagation::Quiet);
+    assert!(s.quiet());
+    counts(&e, &s);
+    assert!(e.metrics.root_strengthen_rounds > 0);
+    assert!(e.metrics.root_cover_sums.iter().any(|&sum| sum < 113));
+    let cert = proof::Certificate {
+        maximum: 113,
+        nodes: s.proof.nodes.clone(),
+        scopes: s.proof.scopes.clone(),
+        root: 0,
+    };
+    assert_eq!(
+        proof::verify(&cert, false),
+        Err("not a complete root refutation".into())
+    );
+}
