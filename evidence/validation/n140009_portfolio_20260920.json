@@ -1,0 +1,32 @@
+{
+  "source_sha256": "d69092bf410d9576adab96d08059f23c961240ff17283aae6f36f4df8052bba6",
+  "solver_sha256": "ac9b115a0c785d8aed525fa24f3f5f46549c395a1609bc647ec25adb1ac787ea",
+  "root_sha256": "4fe480723cfdc2874a2b8ede0722a3cff7a32323e8b86ef2eded86f3ab491686",
+  "status": "solver_NO",
+  "independent_certificate_replay": false,
+  "v10_k16_seconds": 1.95261,
+  "v9_k16_seconds": 2.16185,
+  "runtime_control_invocations": 158,
+  "new_13_case_seconds": 45.386098,
+  "new_original_12_case_seconds": 43.594958,
+  "stages": [
+    [
+      "maximum_first",
+      4,
+      2
+    ],
+    [
+      "insertion",
+      16,
+      3
+    ],
+    [
+      "insertion",
+      64,
+      25
+    ]
+  ],
+  "insertion_policy_tree_matches_v10": true,
+  "continuation_no_count": 11,
+  "continuation_unknown": 141443
+}

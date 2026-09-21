@@ -1,0 +1,114 @@
+[
+  {
+    "mode": "probe",
+    "workers": 6,
+    "wall_seconds": 30.09714054095093,
+    "status": "STOPPED_UNKNOWN",
+    "rows": [
+      {
+        "maximum": 139201,
+        "status": "NO",
+        "seconds": 19.662489292037208,
+        "winner": null,
+        "peak_observed_rss_kb": null,
+        "sum_lane_wall_seconds": null
+      },
+      {
+        "maximum": 140009,
+        "status": "NO",
+        "seconds": 1.420091790962033,
+        "winner": null,
+        "peak_observed_rss_kb": null,
+        "sum_lane_wall_seconds": null
+      },
+      {
+        "maximum": 141443,
+        "status": "NO",
+        "seconds": 1.4756835000007413,
+        "winner": null,
+        "peak_observed_rss_kb": null,
+        "sum_lane_wall_seconds": null
+      },
+      {
+        "maximum": 142277,
+        "status": "NO",
+        "seconds": 6.283515915973112,
+        "winner": null,
+        "peak_observed_rss_kb": null,
+        "sum_lane_wall_seconds": null
+      },
+      {
+        "maximum": 146563,
+        "status": "NO",
+        "seconds": 1.20748054102296,
+        "winner": null,
+        "peak_observed_rss_kb": null,
+        "sum_lane_wall_seconds": null
+      },
+      {
+        "maximum": 146621,
+        "status": "UNKNOWN",
+        "seconds": 30.038120292010717,
+        "winner": null,
+        "peak_observed_rss_kb": null,
+        "sum_lane_wall_seconds": null
+      }
+    ]
+  },
+  {
+    "mode": "parallel",
+    "workers": 2,
+    "wall_seconds": 22.15833320800448,
+    "status": "COMPLETED",
+    "rows": [
+      {
+        "maximum": 139201,
+        "status": "NO",
+        "seconds": 6.472955083998386,
+        "winner": "insertion64",
+        "peak_observed_rss_kb": 144176,
+        "sum_lane_wall_seconds": 19.30753933399683
+      },
+      {
+        "maximum": 140009,
+        "status": "NO",
+        "seconds": 1.6488204590277746,
+        "winner": "probe",
+        "peak_observed_rss_kb": 144640,
+        "sum_lane_wall_seconds": 4.829606416984461
+      },
+      {
+        "maximum": 141443,
+        "status": "NO",
+        "seconds": 1.5237056250334717,
+        "winner": "probe",
+        "peak_observed_rss_kb": 123840,
+        "sum_lane_wall_seconds": 4.439419042028021
+      },
+      {
+        "maximum": 142277,
+        "status": "NO",
+        "seconds": 6.23460566700669,
+        "winner": "probe",
+        "peak_observed_rss_kb": 143936,
+        "sum_lane_wall_seconds": 18.587449293001555
+      },
+      {
+        "maximum": 146563,
+        "status": "NO",
+        "seconds": 1.0694859169889241,
+        "winner": "probe",
+        "peak_observed_rss_kb": 144960,
+        "sum_lane_wall_seconds": 3.094089707999956
+      },
+      {
+        "maximum": 146621,
+        "status": "NO",
+        "seconds": 9.39659004099667,
+        "winner": "insertion8",
+        "peak_observed_rss_kb": 146640,
+        "sum_lane_wall_seconds": 28.07833549909992
+      }
+    ]
+  }
+]

@@ -1,0 +1,3301 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-20",
+  "source": {
+    "repository_path": "apa/experiments/outputs/propagation_campaign_20s_20260920/unknown_processed.txt",
+    "stable_copy": "$ORIGINAL_TMP/apa_unknown_processed_20260920.txt",
+    "sha256": "6ac25230a2da7dbee72c4b9df06020e741cbc886d2e02f109532e6539860f3bb",
+    "count": 18466,
+    "strictly_increasing": true,
+    "selected_start_after": 127999,
+    "selected_count": 108,
+    "selected_first": 128033,
+    "selected_last": 139817
+  },
+  "algorithm": {
+    "root_propagator": "apa/experiments/outputs/factor_branch_v5_20260920/root_propagator",
+    "root_propagator_sha256": "0e7cca216ba04af16576fcd7f44279ab0eac3316a65c5059a9fc8fc2ae6c6067",
+    "solver": "apa/experiments/outputs/factor_branch_v7_20260920/factor_branch_v7",
+    "solver_sha256": "799f98719cbc17cbe9c56f91507e0adc9c4238be7dd932f2f4c31b1e8395c02c",
+    "k4_seconds_cap": 5,
+    "k64_seconds_cap": 25,
+    "node_cap": 1000000000,
+    "parallelism_per_batch": 6,
+    "independent_replay": false,
+    "yes_raw_condition_check": "not applicable; no YES result occurred"
+  },
+  "run": {
+    "resume_after_verified_endpoint": 127999,
+    "first_bottleneck_n": 139201,
+    "stop_reason": "k4 and k64 both reached their caps for n=139201; status remained UNKNOWN",
+    "current_process_state": "no factor_branch_v7 or root_propagator process running",
+    "new_candidates_processed": 108,
+    "final_counts": {
+      "solver_NO": 107,
+      "UNKNOWN": 1,
+      "YES": 0
+    },
+    "k4_status_counts": {
+      "NO": 61,
+      "UNKNOWN": 47,
+      "YES": 0
+    },
+    "k64_status_counts": {
+      "NO": 46,
+      "UNKNOWN": 1,
+      "YES": 0
+    },
+    "stage_seconds_sum": {
+      "k4": 368.076792,
+      "k64_started": 449.50541,
+      "bottleneck_k4": 5.00032,
+      "bottleneck_k64": 25.0004
+    },
+    "stage_node_sum": {
+      "k4": 8135,
+      "k64_started": 13944,
+      "bottleneck_k4": 157,
+      "bottleneck_k64": 1326
+    },
+    "unverified_solver_NO_policy": "Complete solver NO results are recorded as solver NO and are not called VERIFIED_NO."
+  },
+  "rows": [
+    {
+      "n": 128033,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 26,
+        "banned_members": 23654,
+        "rounds": 2,
+        "prime_queries": 3093622,
+        "seconds": 0.0213539,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128033/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128033/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128033/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00038,
+        "nodes": 90,
+        "branches": 89,
+        "conflicts": 43,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128033/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128033/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128033/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 5.49641,
+        "nodes": 101,
+        "branches": 100,
+        "conflicts": 51,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128033/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128033/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128033/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 128071,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 25,
+        "banned_members": 22827,
+        "rounds": 2,
+        "prime_queries": 3192546,
+        "seconds": 0.0158002,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128071/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128071/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128071/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00021,
+        "nodes": 106,
+        "branches": 105,
+        "conflicts": 51,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128071/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128071/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128071/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 8.58786,
+        "nodes": 217,
+        "branches": 216,
+        "conflicts": 109,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128071/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128071/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128071/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 128077,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 23,
+        "banned_members": 19280,
+        "rounds": 2,
+        "prime_queries": 2911874,
+        "seconds": 0.0156839,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128077/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128077/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128077/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.0009,
+        "nodes": 95,
+        "branches": 94,
+        "conflicts": 46,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128077/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128077/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128077/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 5.02327,
+        "nodes": 101,
+        "branches": 100,
+        "conflicts": 51,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128077/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128077/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128077/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 128351,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 33,
+        "banned_members": 32467,
+        "rounds": 3,
+        "prime_queries": 3710906,
+        "seconds": 0.0228127,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128351/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128351/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128351/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 2.11805,
+        "nodes": 27,
+        "branches": 26,
+        "conflicts": 14,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128351/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128351/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128351/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 128491,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 24,
+        "banned_members": 21965,
+        "rounds": 2,
+        "prime_queries": 3007996,
+        "seconds": 0.0165718,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128491/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128491/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128491/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 1.4824,
+        "nodes": 21,
+        "branches": 20,
+        "conflicts": 11,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128491/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128491/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128491/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 128573,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 22,
+        "banned_members": 19230,
+        "rounds": 1,
+        "prime_queries": 2708820,
+        "seconds": 0.0138379,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128573/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128573/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128573/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.0004,
+        "nodes": 98,
+        "branches": 97,
+        "conflicts": 48,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128573/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128573/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128573/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 4.96468,
+        "nodes": 107,
+        "branches": 106,
+        "conflicts": 54,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128573/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128573/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128573/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 128723,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 27,
+        "banned_members": 26313,
+        "rounds": 2,
+        "prime_queries": 3195610,
+        "seconds": 0.0170719,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128723/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128723/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128723/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 4.14987,
+        "nodes": 129,
+        "branches": 128,
+        "conflicts": 65,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128723/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128723/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128723/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 128837,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 24,
+        "banned_members": 20497,
+        "rounds": 2,
+        "prime_queries": 2943802,
+        "seconds": 0.0151368,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128837/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128837/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128837/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00071,
+        "nodes": 91,
+        "branches": 90,
+        "conflicts": 44,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128837/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128837/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128837/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 3.93594,
+        "nodes": 105,
+        "branches": 104,
+        "conflicts": 53,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128837/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128837/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128837/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 128885,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 33,
+        "banned_members": 30644,
+        "rounds": 2,
+        "prime_queries": 3710474,
+        "seconds": 0.0240094,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128885/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128885/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128885/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 0.321487,
+        "nodes": 3,
+        "branches": 2,
+        "conflicts": 2,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128885/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128885/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/128885/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 129061,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 24,
+        "banned_members": 22038,
+        "rounds": 2,
+        "prime_queries": 3020738,
+        "seconds": 0.0179542,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129061/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129061/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129061/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 3.73743,
+        "nodes": 69,
+        "branches": 68,
+        "conflicts": 35,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129061/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129061/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129061/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 129233,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 29,
+        "banned_members": 24175,
+        "rounds": 2,
+        "prime_queries": 3429642,
+        "seconds": 0.0204643,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129233/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129233/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129233/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.0003,
+        "nodes": 99,
+        "branches": 98,
+        "conflicts": 47,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129233/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129233/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129233/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 10.672,
+        "nodes": 295,
+        "branches": 294,
+        "conflicts": 148,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129233/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129233/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129233/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 129263,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 25,
+        "banned_members": 26123,
+        "rounds": 3,
+        "prime_queries": 3013524,
+        "seconds": 0.0187252,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129263/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129263/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129263/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 4.93983,
+        "nodes": 71,
+        "branches": 70,
+        "conflicts": 36,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129263/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129263/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129263/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 129383,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 32,
+        "banned_members": 26308,
+        "rounds": 2,
+        "prime_queries": 3795130,
+        "seconds": 0.0281525,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129383/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129383/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129383/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00034,
+        "nodes": 179,
+        "branches": 178,
+        "conflicts": 87,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129383/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129383/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129383/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 23.0722,
+        "nodes": 947,
+        "branches": 946,
+        "conflicts": 474,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129383/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129383/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129383/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 129419,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 23,
+        "banned_members": 19894,
+        "rounds": 2,
+        "prime_queries": 2851038,
+        "seconds": 0.02418,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129419/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129419/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129419/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 4.39573,
+        "nodes": 103,
+        "branches": 102,
+        "conflicts": 52,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129419/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129419/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129419/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 129473,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 25,
+        "banned_members": 23778,
+        "rounds": 2,
+        "prime_queries": 3026062,
+        "seconds": 0.028776,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129473/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129473/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129473/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00039,
+        "nodes": 109,
+        "branches": 108,
+        "conflicts": 52,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129473/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129473/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129473/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 6.54865,
+        "nodes": 153,
+        "branches": 152,
+        "conflicts": 77,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129473/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129473/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129473/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 129559,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 27,
+        "banned_members": 29294,
+        "rounds": 3,
+        "prime_queries": 3261326,
+        "seconds": 0.025858,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129559/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129559/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129559/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 0.993071,
+        "nodes": 15,
+        "branches": 14,
+        "conflicts": 8,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129559/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129559/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129559/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 129803,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 24,
+        "banned_members": 22704,
+        "rounds": 2,
+        "prime_queries": 2945616,
+        "seconds": 0.021254,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129803/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129803/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129803/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00028,
+        "nodes": 110,
+        "branches": 109,
+        "conflicts": 53,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129803/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129803/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129803/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 13.1665,
+        "nodes": 363,
+        "branches": 362,
+        "conflicts": 182,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129803/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129803/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129803/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 129817,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 22,
+        "banned_members": 19498,
+        "rounds": 1,
+        "prime_queries": 2736954,
+        "seconds": 0.0165078,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129817/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129817/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129817/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00034,
+        "nodes": 122,
+        "branches": 121,
+        "conflicts": 60,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129817/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129817/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129817/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 5.04391,
+        "nodes": 133,
+        "branches": 132,
+        "conflicts": 67,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129817/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129817/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129817/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 129859,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 24,
+        "banned_members": 22057,
+        "rounds": 2,
+        "prime_queries": 3046246,
+        "seconds": 0.017383,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129859/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129859/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129859/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 4.16131,
+        "nodes": 151,
+        "branches": 150,
+        "conflicts": 76,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129859/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129859/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/129859/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 130007,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 25,
+        "banned_members": 26274,
+        "rounds": 2,
+        "prime_queries": 3038198,
+        "seconds": 0.0211017,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130007/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130007/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130007/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 1.21298,
+        "nodes": 21,
+        "branches": 20,
+        "conflicts": 11,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130007/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130007/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130007/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 130289,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 35,
+        "banned_members": 31875,
+        "rounds": 4,
+        "prime_queries": 3992978,
+        "seconds": 0.0262593,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130289/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130289/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130289/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 1.1738,
+        "nodes": 25,
+        "branches": 24,
+        "conflicts": 13,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130289/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130289/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130289/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 130313,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 25,
+        "banned_members": 23957,
+        "rounds": 2,
+        "prime_queries": 3047636,
+        "seconds": 0.0211114,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130313/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130313/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130313/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00041,
+        "nodes": 130,
+        "branches": 129,
+        "conflicts": 64,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130313/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130313/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130313/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 5.34012,
+        "nodes": 131,
+        "branches": 130,
+        "conflicts": 66,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130313/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130313/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130313/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 130381,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 23,
+        "banned_members": 19583,
+        "rounds": 2,
+        "prime_queries": 2960948,
+        "seconds": 0.0177113,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130381/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130381/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130381/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00055,
+        "nodes": 158,
+        "branches": 157,
+        "conflicts": 78,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130381/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130381/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130381/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 10.3966,
+        "nodes": 317,
+        "branches": 316,
+        "conflicts": 159,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130381/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130381/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130381/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 130711,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 29,
+        "banned_members": 30522,
+        "rounds": 3,
+        "prime_queries": 3543860,
+        "seconds": 0.0229569,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130711/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130711/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130711/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 1.25872,
+        "nodes": 21,
+        "branches": 20,
+        "conflicts": 11,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130711/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130711/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130711/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 130741,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 28,
+        "banned_members": 26694,
+        "rounds": 3,
+        "prime_queries": 3431642,
+        "seconds": 0.0200455,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130741/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130741/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130741/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 1.62908,
+        "nodes": 33,
+        "branches": 32,
+        "conflicts": 17,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130741/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130741/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130741/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 130883,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 26,
+        "banned_members": 26305,
+        "rounds": 2,
+        "prime_queries": 3151348,
+        "seconds": 0.0234853,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130883/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130883/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130883/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 2.86842,
+        "nodes": 67,
+        "branches": 66,
+        "conflicts": 34,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130883/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130883/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130883/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 130897,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 25,
+        "banned_members": 25076,
+        "rounds": 2,
+        "prime_queries": 3054958,
+        "seconds": 0.0237438,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130897/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130897/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130897/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 1.60736,
+        "nodes": 81,
+        "branches": 80,
+        "conflicts": 41,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130897/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130897/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130897/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 130927,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 24,
+        "banned_members": 22233,
+        "rounds": 2,
+        "prime_queries": 3071418,
+        "seconds": 0.0204505,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130927/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130927/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130927/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 2.11345,
+        "nodes": 39,
+        "branches": 38,
+        "conflicts": 20,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130927/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130927/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/130927/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 131153,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 26,
+        "banned_members": 27797,
+        "rounds": 3,
+        "prime_queries": 3141216,
+        "seconds": 0.0220606,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131153/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131153/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131153/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 1.49299,
+        "nodes": 31,
+        "branches": 30,
+        "conflicts": 16,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131153/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131153/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131153/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 131231,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 27,
+        "banned_members": 28491,
+        "rounds": 2,
+        "prime_queries": 3255030,
+        "seconds": 0.0195878,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131231/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131231/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131231/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 1.27251,
+        "nodes": 19,
+        "branches": 18,
+        "conflicts": 10,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131231/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131231/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131231/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 131269,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 22,
+        "banned_members": 19315,
+        "rounds": 1,
+        "prime_queries": 2761852,
+        "seconds": 0.0119773,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131269/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131269/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131269/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 2.29819,
+        "nodes": 37,
+        "branches": 36,
+        "conflicts": 19,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131269/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131269/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131269/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 131273,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 22,
+        "banned_members": 19702,
+        "rounds": 1,
+        "prime_queries": 2769574,
+        "seconds": 0.0136496,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131273/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131273/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131273/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00063,
+        "nodes": 114,
+        "branches": 113,
+        "conflicts": 55,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131273/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131273/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131273/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 7.21914,
+        "nodes": 249,
+        "branches": 248,
+        "conflicts": 125,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131273/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131273/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131273/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 131381,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 28,
+        "banned_members": 31550,
+        "rounds": 3,
+        "prime_queries": 3321364,
+        "seconds": 0.0190294,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131381/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131381/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131381/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 1.2379,
+        "nodes": 35,
+        "branches": 34,
+        "conflicts": 18,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131381/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131381/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131381/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 131519,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 27,
+        "banned_members": 26586,
+        "rounds": 2,
+        "prime_queries": 3281944,
+        "seconds": 0.0193272,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131519/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131519/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131519/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 4.82129,
+        "nodes": 93,
+        "branches": 92,
+        "conflicts": 47,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131519/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131519/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131519/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 131971,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 29,
+        "banned_members": 28967,
+        "rounds": 2,
+        "prime_queries": 3439104,
+        "seconds": 0.0201148,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131971/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131971/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131971/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 4.74632,
+        "nodes": 91,
+        "branches": 90,
+        "conflicts": 46,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131971/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131971/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/131971/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 132023,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 24,
+        "banned_members": 23159,
+        "rounds": 2,
+        "prime_queries": 2993630,
+        "seconds": 0.0142697,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132023/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132023/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132023/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00031,
+        "nodes": 125,
+        "branches": 124,
+        "conflicts": 61,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132023/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132023/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132023/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 5.33482,
+        "nodes": 173,
+        "branches": 172,
+        "conflicts": 87,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132023/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132023/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132023/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 132071,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 27,
+        "banned_members": 30408,
+        "rounds": 3,
+        "prime_queries": 3261228,
+        "seconds": 0.0231613,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132071/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132071/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132071/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 0.900337,
+        "nodes": 19,
+        "branches": 18,
+        "conflicts": 10,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132071/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132071/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132071/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 132079,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 28,
+        "banned_members": 27700,
+        "rounds": 2,
+        "prime_queries": 3452660,
+        "seconds": 0.0242094,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132079/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132079/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132079/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 2.85766,
+        "nodes": 57,
+        "branches": 56,
+        "conflicts": 29,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132079/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132079/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132079/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 132179,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 27,
+        "banned_members": 23411,
+        "rounds": 2,
+        "prime_queries": 3325356,
+        "seconds": 0.0198378,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132179/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132179/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132179/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00015,
+        "nodes": 135,
+        "branches": 134,
+        "conflicts": 65,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132179/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132179/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132179/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 9.44235,
+        "nodes": 303,
+        "branches": 302,
+        "conflicts": 152,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132179/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132179/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132179/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 132203,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 28,
+        "banned_members": 31088,
+        "rounds": 2,
+        "prime_queries": 3342558,
+        "seconds": 0.0281262,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132203/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132203/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132203/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 1.34418,
+        "nodes": 21,
+        "branches": 20,
+        "conflicts": 11,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132203/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132203/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132203/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 132211,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 28,
+        "banned_members": 28727,
+        "rounds": 2,
+        "prime_queries": 3449004,
+        "seconds": 0.0221133,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132211/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132211/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132211/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 2.70656,
+        "nodes": 53,
+        "branches": 52,
+        "conflicts": 27,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132211/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132211/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132211/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 132347,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 35,
+        "banned_members": 27928,
+        "rounds": 2,
+        "prime_queries": 4182430,
+        "seconds": 0.0205649,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132347/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132347/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132347/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00056,
+        "nodes": 108,
+        "branches": 107,
+        "conflicts": 51,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132347/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132347/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132347/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 7.66939,
+        "nodes": 179,
+        "branches": 178,
+        "conflicts": 90,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132347/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132347/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132347/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 132473,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 26,
+        "banned_members": 25250,
+        "rounds": 2,
+        "prime_queries": 3205180,
+        "seconds": 0.0310975,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132473/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132473/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132473/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 3.14705,
+        "nodes": 43,
+        "branches": 42,
+        "conflicts": 22,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132473/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132473/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132473/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 132547,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 23,
+        "banned_members": 22499,
+        "rounds": 2,
+        "prime_queries": 2897480,
+        "seconds": 0.0242456,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132547/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132547/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132547/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00038,
+        "nodes": 185,
+        "branches": 184,
+        "conflicts": 91,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132547/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132547/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132547/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 12.197,
+        "nodes": 403,
+        "branches": 402,
+        "conflicts": 202,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132547/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132547/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132547/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 132589,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 25,
+        "banned_members": 22590,
+        "rounds": 2,
+        "prime_queries": 3320980,
+        "seconds": 0.0244134,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132589/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132589/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132589/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00034,
+        "nodes": 132,
+        "branches": 131,
+        "conflicts": 64,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132589/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132589/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132589/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 12.2002,
+        "nodes": 327,
+        "branches": 326,
+        "conflicts": 164,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132589/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132589/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132589/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 132763,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 24,
+        "banned_members": 24628,
+        "rounds": 2,
+        "prime_queries": 2989780,
+        "seconds": 0.0289619,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132763/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132763/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132763/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 1.15586,
+        "nodes": 21,
+        "branches": 20,
+        "conflicts": 11,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132763/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132763/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132763/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 132773,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 23,
+        "banned_members": 22054,
+        "rounds": 2,
+        "prime_queries": 2897740,
+        "seconds": 0.0222041,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132773/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132773/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132773/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 3.71388,
+        "nodes": 55,
+        "branches": 54,
+        "conflicts": 28,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132773/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132773/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132773/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 132775,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 27,
+        "banned_members": 24403,
+        "rounds": 2,
+        "prime_queries": 3622236,
+        "seconds": 0.0208634,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132775/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132775/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132775/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 1.00787,
+        "nodes": 13,
+        "branches": 12,
+        "conflicts": 7,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132775/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132775/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132775/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 132863,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 24,
+        "banned_members": 23807,
+        "rounds": 2,
+        "prime_queries": 3003698,
+        "seconds": 0.0221579,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132863/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132863/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132863/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.0009,
+        "nodes": 78,
+        "branches": 77,
+        "conflicts": 37,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132863/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132863/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132863/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 23.1224,
+        "nodes": 569,
+        "branches": 568,
+        "conflicts": 285,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132863/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132863/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132863/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 132893,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 24,
+        "banned_members": 22981,
+        "rounds": 2,
+        "prime_queries": 3015126,
+        "seconds": 0.0226517,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132893/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132893/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132893/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00091,
+        "nodes": 81,
+        "branches": 80,
+        "conflicts": 38,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132893/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132893/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132893/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 5.52547,
+        "nodes": 99,
+        "branches": 98,
+        "conflicts": 50,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132893/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132893/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132893/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 132991,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 25,
+        "banned_members": 22522,
+        "rounds": 2,
+        "prime_queries": 3323312,
+        "seconds": 0.0231607,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132991/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132991/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132991/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 1.22464,
+        "nodes": 13,
+        "branches": 12,
+        "conflicts": 7,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132991/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132991/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/132991/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 133051,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 27,
+        "banned_members": 26635,
+        "rounds": 2,
+        "prime_queries": 3486140,
+        "seconds": 0.0237514,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133051/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133051/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133051/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00123,
+        "nodes": 98,
+        "branches": 97,
+        "conflicts": 46,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133051/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133051/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133051/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 5.30309,
+        "nodes": 113,
+        "branches": 112,
+        "conflicts": 57,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133051/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133051/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133051/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 133223,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 24,
+        "banned_members": 24646,
+        "rounds": 2,
+        "prime_queries": 3009150,
+        "seconds": 0.0199722,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133223/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133223/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133223/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 3.80893,
+        "nodes": 79,
+        "branches": 78,
+        "conflicts": 40,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133223/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133223/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133223/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 133421,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 25,
+        "banned_members": 24347,
+        "rounds": 2,
+        "prime_queries": 3124284,
+        "seconds": 0.0190376,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133421/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133421/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133421/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00042,
+        "nodes": 75,
+        "branches": 74,
+        "conflicts": 34,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133421/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133421/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133421/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 16.9707,
+        "nodes": 383,
+        "branches": 382,
+        "conflicts": 192,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133421/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133421/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133421/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 133451,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 25,
+        "banned_members": 26085,
+        "rounds": 2,
+        "prime_queries": 3118532,
+        "seconds": 0.0246384,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133451/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133451/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133451/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00021,
+        "nodes": 94,
+        "branches": 93,
+        "conflicts": 45,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133451/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133451/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133451/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 8.77094,
+        "nodes": 207,
+        "branches": 206,
+        "conflicts": 104,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133451/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133451/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133451/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 133499,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 30,
+        "banned_members": 28898,
+        "rounds": 3,
+        "prime_queries": 3596568,
+        "seconds": 0.0372558,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133499/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133499/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133499/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00043,
+        "nodes": 109,
+        "branches": 108,
+        "conflicts": 52,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133499/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133499/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133499/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 8.79153,
+        "nodes": 289,
+        "branches": 288,
+        "conflicts": 145,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133499/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133499/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133499/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 133733,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 23,
+        "banned_members": 22313,
+        "rounds": 2,
+        "prime_queries": 2919470,
+        "seconds": 0.0368617,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133733/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133733/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133733/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00044,
+        "nodes": 96,
+        "branches": 95,
+        "conflicts": 45,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133733/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133733/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133733/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 17.7983,
+        "nodes": 609,
+        "branches": 608,
+        "conflicts": 305,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133733/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133733/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133733/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 133751,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 28,
+        "banned_members": 25514,
+        "rounds": 2,
+        "prime_queries": 3547080,
+        "seconds": 0.0311457,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133751/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133751/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133751/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00054,
+        "nodes": 67,
+        "branches": 66,
+        "conflicts": 32,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133751/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133751/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133751/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 4.80818,
+        "nodes": 85,
+        "branches": 84,
+        "conflicts": 43,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133751/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133751/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133751/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 133853,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 22,
+        "banned_members": 19926,
+        "rounds": 1,
+        "prime_queries": 2820950,
+        "seconds": 0.0146694,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133853/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133853/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133853/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00028,
+        "nodes": 96,
+        "branches": 95,
+        "conflicts": 46,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133853/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133853/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133853/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 7.47167,
+        "nodes": 223,
+        "branches": 222,
+        "conflicts": 112,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133853/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133853/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133853/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 133883,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 31,
+        "banned_members": 34290,
+        "rounds": 4,
+        "prime_queries": 3625776,
+        "seconds": 0.0191473,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133883/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133883/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133883/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 0.67215,
+        "nodes": 9,
+        "branches": 8,
+        "conflicts": 5,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133883/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133883/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133883/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 133921,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 25,
+        "banned_members": 21924,
+        "rounds": 2,
+        "prime_queries": 3355018,
+        "seconds": 0.0163424,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133921/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133921/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133921/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00032,
+        "nodes": 146,
+        "branches": 145,
+        "conflicts": 69,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133921/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133921/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133921/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 11.355,
+        "nodes": 423,
+        "branches": 422,
+        "conflicts": 212,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133921/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133921/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/133921/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 134489,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 30,
+        "banned_members": 29749,
+        "rounds": 2,
+        "prime_queries": 3613796,
+        "seconds": 0.0220492,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134489/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134489/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134489/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 4.7107,
+        "nodes": 137,
+        "branches": 136,
+        "conflicts": 69,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134489/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134489/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134489/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 134531,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 36,
+        "banned_members": 34471,
+        "rounds": 3,
+        "prime_queries": 4104396,
+        "seconds": 0.0316816,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134531/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134531/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134531/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 2.01554,
+        "nodes": 33,
+        "branches": 32,
+        "conflicts": 17,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134531/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134531/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134531/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 134537,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 24,
+        "banned_members": 26069,
+        "rounds": 2,
+        "prime_queries": 3047862,
+        "seconds": 0.0203901,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134537/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134537/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134537/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 0.814736,
+        "nodes": 25,
+        "branches": 24,
+        "conflicts": 13,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134537/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134537/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134537/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 134929,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 23,
+        "banned_members": 22213,
+        "rounds": 2,
+        "prime_queries": 2946322,
+        "seconds": 0.0186473,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134929/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134929/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134929/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 1.35498,
+        "nodes": 23,
+        "branches": 22,
+        "conflicts": 12,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134929/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134929/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134929/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 134933,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 26,
+        "banned_members": 25920,
+        "rounds": 2,
+        "prime_queries": 3253534,
+        "seconds": 0.0166665,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134933/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134933/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134933/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 2.10118,
+        "nodes": 37,
+        "branches": 36,
+        "conflicts": 19,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134933/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134933/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134933/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 134971,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 30,
+        "banned_members": 30302,
+        "rounds": 3,
+        "prime_queries": 3819454,
+        "seconds": 0.0226838,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134971/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134971/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134971/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 1.24619,
+        "nodes": 23,
+        "branches": 22,
+        "conflicts": 12,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134971/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134971/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/134971/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 135029,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 28,
+        "banned_members": 28864,
+        "rounds": 2,
+        "prime_queries": 3438824,
+        "seconds": 0.0242376,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135029/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135029/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135029/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 2.41455,
+        "nodes": 59,
+        "branches": 58,
+        "conflicts": 30,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135029/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135029/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135029/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 135257,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 29,
+        "banned_members": 24806,
+        "rounds": 2,
+        "prime_queries": 3716862,
+        "seconds": 0.0238035,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135257/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135257/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135257/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00013,
+        "nodes": 117,
+        "branches": 116,
+        "conflicts": 57,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135257/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135257/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135257/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 5.09077,
+        "nodes": 125,
+        "branches": 124,
+        "conflicts": 63,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135257/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135257/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135257/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 135541,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 37,
+        "banned_members": 32513,
+        "rounds": 3,
+        "prime_queries": 4514116,
+        "seconds": 0.0270428,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135541/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135541/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135541/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 0.640844,
+        "nodes": 9,
+        "branches": 8,
+        "conflicts": 5,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135541/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135541/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135541/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 135545,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 31,
+        "banned_members": 29285,
+        "rounds": 2,
+        "prime_queries": 3735348,
+        "seconds": 0.020864,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135545/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135545/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135545/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 0.891365,
+        "nodes": 11,
+        "branches": 10,
+        "conflicts": 6,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135545/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135545/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135545/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 135743,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 27,
+        "banned_members": 25894,
+        "rounds": 2,
+        "prime_queries": 3379610,
+        "seconds": 0.0187542,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135743/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135743/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135743/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00037,
+        "nodes": 174,
+        "branches": 173,
+        "conflicts": 85,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135743/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135743/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135743/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 7.85309,
+        "nodes": 279,
+        "branches": 278,
+        "conflicts": 140,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135743/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135743/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135743/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 135803,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 29,
+        "banned_members": 29988,
+        "rounds": 3,
+        "prime_queries": 3531626,
+        "seconds": 0.0216163,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135803/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135803/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135803/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 1.2513,
+        "nodes": 21,
+        "branches": 20,
+        "conflicts": 11,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135803/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135803/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135803/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 135953,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 27,
+        "banned_members": 26014,
+        "rounds": 2,
+        "prime_queries": 3398764,
+        "seconds": 0.0199447,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135953/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135953/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135953/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 4.12789,
+        "nodes": 81,
+        "branches": 80,
+        "conflicts": 41,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135953/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135953/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135953/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 135955,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 30,
+        "banned_members": 33174,
+        "rounds": 3,
+        "prime_queries": 3683910,
+        "seconds": 0.0256035,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135955/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135955/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135955/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 0.48198,
+        "nodes": 5,
+        "branches": 4,
+        "conflicts": 3,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135955/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135955/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135955/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 135995,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 23,
+        "banned_members": 21143,
+        "rounds": 2,
+        "prime_queries": 2996752,
+        "seconds": 0.018559,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135995/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135995/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135995/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 1.32498,
+        "nodes": 31,
+        "branches": 30,
+        "conflicts": 16,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135995/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135995/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/135995/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 136013,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 22,
+        "banned_members": 20270,
+        "rounds": 1,
+        "prime_queries": 2864984,
+        "seconds": 0.0162814,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136013/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136013/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136013/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00037,
+        "nodes": 127,
+        "branches": 126,
+        "conflicts": 60,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136013/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136013/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136013/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 10.1181,
+        "nodes": 327,
+        "branches": 326,
+        "conflicts": 164,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136013/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136013/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136013/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 136111,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 29,
+        "banned_members": 27384,
+        "rounds": 2,
+        "prime_queries": 3664442,
+        "seconds": 0.0201387,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136111/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136111/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136111/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00039,
+        "nodes": 127,
+        "branches": 126,
+        "conflicts": 61,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136111/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136111/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136111/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 10.9226,
+        "nodes": 323,
+        "branches": 322,
+        "conflicts": 162,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136111/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136111/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136111/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 136583,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 23,
+        "banned_members": 20735,
+        "rounds": 2,
+        "prime_queries": 2997752,
+        "seconds": 0.0153297,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136583/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136583/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136583/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00028,
+        "nodes": 175,
+        "branches": 174,
+        "conflicts": 85,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136583/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136583/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136583/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 5.68237,
+        "nodes": 209,
+        "branches": 208,
+        "conflicts": 105,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136583/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136583/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136583/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 136621,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 32,
+        "banned_members": 31321,
+        "rounds": 3,
+        "prime_queries": 3893980,
+        "seconds": 0.0231543,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136621/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136621/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136621/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00037,
+        "nodes": 92,
+        "branches": 91,
+        "conflicts": 43,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136621/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136621/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136621/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 12.153,
+        "nodes": 259,
+        "branches": 258,
+        "conflicts": 130,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136621/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136621/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136621/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 136631,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 27,
+        "banned_members": 26161,
+        "rounds": 2,
+        "prime_queries": 3403548,
+        "seconds": 0.021441,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136631/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136631/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136631/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00024,
+        "nodes": 118,
+        "branches": 117,
+        "conflicts": 56,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136631/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136631/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136631/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 10.8534,
+        "nodes": 343,
+        "branches": 342,
+        "conflicts": 172,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136631/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136631/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136631/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 136657,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 25,
+        "banned_members": 24470,
+        "rounds": 2,
+        "prime_queries": 3300830,
+        "seconds": 0.0212975,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136657/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136657/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136657/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 2.70247,
+        "nodes": 55,
+        "branches": 54,
+        "conflicts": 28,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136657/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136657/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136657/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 136897,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 25,
+        "banned_members": 26643,
+        "rounds": 2,
+        "prime_queries": 3283604,
+        "seconds": 0.018655,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136897/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136897/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136897/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 2.05834,
+        "nodes": 31,
+        "branches": 30,
+        "conflicts": 16,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136897/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136897/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/136897/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 137009,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 28,
+        "banned_members": 27761,
+        "rounds": 3,
+        "prime_queries": 3513328,
+        "seconds": 0.0198228,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137009/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137009/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137009/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 2.67383,
+        "nodes": 65,
+        "branches": 64,
+        "conflicts": 33,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137009/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137009/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137009/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 137011,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 29,
+        "banned_members": 32307,
+        "rounds": 2,
+        "prime_queries": 3556642,
+        "seconds": 0.0266613,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137011/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137011/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137011/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 0.361102,
+        "nodes": 3,
+        "branches": 2,
+        "conflicts": 2,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137011/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137011/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137011/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 137047,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 24,
+        "banned_members": 26708,
+        "rounds": 2,
+        "prime_queries": 3086102,
+        "seconds": 0.0239317,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137047/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137047/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137047/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 2.39988,
+        "nodes": 45,
+        "branches": 44,
+        "conflicts": 23,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137047/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137047/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137047/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 137251,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 24,
+        "banned_members": 22396,
+        "rounds": 2,
+        "prime_queries": 3220290,
+        "seconds": 0.0217025,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137251/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137251/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137251/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.0004,
+        "nodes": 191,
+        "branches": 190,
+        "conflicts": 93,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137251/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137251/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137251/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 10.9376,
+        "nodes": 407,
+        "branches": 406,
+        "conflicts": 204,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137251/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137251/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137251/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 137281,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 25,
+        "banned_members": 20868,
+        "rounds": 2,
+        "prime_queries": 3578604,
+        "seconds": 0.0235631,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137281/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137281/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137281/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00038,
+        "nodes": 237,
+        "branches": 236,
+        "conflicts": 116,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137281/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137281/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137281/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 18.956,
+        "nodes": 1189,
+        "branches": 1188,
+        "conflicts": 595,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137281/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137281/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137281/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 137303,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 29,
+        "banned_members": 26816,
+        "rounds": 2,
+        "prime_queries": 3633586,
+        "seconds": 0.0217745,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137303/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137303/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137303/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00032,
+        "nodes": 130,
+        "branches": 129,
+        "conflicts": 62,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137303/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137303/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137303/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 15.8871,
+        "nodes": 431,
+        "branches": 430,
+        "conflicts": 216,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137303/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137303/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137303/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 137519,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 38,
+        "banned_members": 32493,
+        "rounds": 3,
+        "prime_queries": 4538008,
+        "seconds": 0.024823,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137519/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137519/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137519/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 1.46147,
+        "nodes": 23,
+        "branches": 22,
+        "conflicts": 12,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137519/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137519/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137519/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 137539,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 35,
+        "banned_members": 32302,
+        "rounds": 3,
+        "prime_queries": 4216432,
+        "seconds": 0.0242704,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137539/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137539/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137539/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 2.89903,
+        "nodes": 49,
+        "branches": 48,
+        "conflicts": 25,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137539/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137539/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137539/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 137639,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 25,
+        "banned_members": 24390,
+        "rounds": 2,
+        "prime_queries": 3243134,
+        "seconds": 0.0198109,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137639/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137639/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137639/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.0003,
+        "nodes": 121,
+        "branches": 120,
+        "conflicts": 59,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137639/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137639/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137639/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 9.98132,
+        "nodes": 331,
+        "branches": 330,
+        "conflicts": 166,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137639/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137639/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137639/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 137807,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 38,
+        "banned_members": 35076,
+        "rounds": 3,
+        "prime_queries": 4387870,
+        "seconds": 0.0255366,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137807/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137807/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137807/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00043,
+        "nodes": 95,
+        "branches": 94,
+        "conflicts": 46,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137807/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137807/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137807/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 6.13385,
+        "nodes": 111,
+        "branches": 110,
+        "conflicts": 56,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137807/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137807/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137807/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 137957,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 22,
+        "banned_members": 20895,
+        "rounds": 1,
+        "prime_queries": 2914532,
+        "seconds": 0.0188493,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137957/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137957/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137957/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 2.38111,
+        "nodes": 35,
+        "branches": 34,
+        "conflicts": 18,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137957/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137957/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/137957/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 138083,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 24,
+        "banned_members": 22404,
+        "rounds": 2,
+        "prime_queries": 3139808,
+        "seconds": 0.0190704,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138083/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138083/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138083/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00036,
+        "nodes": 94,
+        "branches": 93,
+        "conflicts": 46,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138083/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138083/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138083/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 5.48832,
+        "nodes": 99,
+        "branches": 98,
+        "conflicts": 50,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138083/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138083/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138083/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 138211,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 26,
+        "banned_members": 30235,
+        "rounds": 2,
+        "prime_queries": 3284050,
+        "seconds": 0.0209603,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138211/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138211/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138211/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 2.31038,
+        "nodes": 45,
+        "branches": 44,
+        "conflicts": 23,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138211/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138211/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138211/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 138253,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 32,
+        "banned_members": 28953,
+        "rounds": 2,
+        "prime_queries": 4106226,
+        "seconds": 0.0240435,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138253/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138253/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138253/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00039,
+        "nodes": 97,
+        "branches": 96,
+        "conflicts": 47,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138253/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138253/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138253/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 6.20119,
+        "nodes": 157,
+        "branches": 156,
+        "conflicts": 79,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138253/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138253/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138253/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 138349,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 28,
+        "banned_members": 24274,
+        "rounds": 2,
+        "prime_queries": 3680292,
+        "seconds": 0.0200765,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138349/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138349/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138349/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00069,
+        "nodes": 74,
+        "branches": 73,
+        "conflicts": 35,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138349/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138349/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138349/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 7.78786,
+        "nodes": 143,
+        "branches": 142,
+        "conflicts": 72,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138349/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138349/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138349/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 138409,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 24,
+        "banned_members": 24632,
+        "rounds": 2,
+        "prime_queries": 3130288,
+        "seconds": 0.0203767,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138409/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138409/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138409/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 4.1802,
+        "nodes": 55,
+        "branches": 54,
+        "conflicts": 28,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138409/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138409/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138409/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 138689,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 33,
+        "banned_members": 33018,
+        "rounds": 3,
+        "prime_queries": 3993344,
+        "seconds": 0.0260598,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138689/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138689/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138689/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 1.69637,
+        "nodes": 19,
+        "branches": 18,
+        "conflicts": 10,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138689/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138689/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138689/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 138691,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 32,
+        "banned_members": 25772,
+        "rounds": 2,
+        "prime_queries": 4119212,
+        "seconds": 0.0212394,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138691/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138691/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138691/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00018,
+        "nodes": 82,
+        "branches": 81,
+        "conflicts": 39,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138691/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138691/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138691/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 5.20546,
+        "nodes": 99,
+        "branches": 98,
+        "conflicts": 50,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138691/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138691/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138691/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 138983,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 29,
+        "banned_members": 31247,
+        "rounds": 2,
+        "prime_queries": 3617286,
+        "seconds": 0.0197032,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138983/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138983/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138983/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00046,
+        "nodes": 79,
+        "branches": 78,
+        "conflicts": 38,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138983/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138983/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138983/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 4.95923,
+        "nodes": 89,
+        "branches": 88,
+        "conflicts": 45,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138983/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138983/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/138983/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 139033,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 24,
+        "banned_members": 23078,
+        "rounds": 2,
+        "prime_queries": 3251602,
+        "seconds": 0.0167135,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139033/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139033/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139033/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 0.824579,
+        "nodes": 35,
+        "branches": 34,
+        "conflicts": 18,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139033/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139033/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139033/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 139201,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 22,
+        "banned_members": 20511,
+        "rounds": 1,
+        "prime_queries": 2927862,
+        "seconds": 0.0156233,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139201/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139201/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139201/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00032,
+        "nodes": 157,
+        "branches": 156,
+        "conflicts": 73,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139201/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139201/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139201/k4/solver.log"
+      },
+      "k64": {
+        "status": "UNKNOWN",
+        "seconds": 25.0004,
+        "nodes": 1326,
+        "branches": 1325,
+        "conflicts": 658,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139201/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139201/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139201/k64/solver.log"
+      },
+      "final_status": "UNKNOWN"
+    },
+    {
+      "n": 139217,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 24,
+        "banned_members": 21927,
+        "rounds": 2,
+        "prime_queries": 3178168,
+        "seconds": 0.0241715,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139217/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139217/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139217/root.trace.txt"
+      },
+      "k4": {
+        "status": "UNKNOWN",
+        "seconds": 5.00043,
+        "nodes": 93,
+        "branches": 92,
+        "conflicts": 46,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139217/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139217/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139217/k4/solver.log"
+      },
+      "k64": {
+        "status": "NO",
+        "seconds": 4.06543,
+        "nodes": 93,
+        "branches": 92,
+        "conflicts": 47,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139217/k64/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139217/k64/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139217/k64/solver.log"
+      },
+      "final_status": "NO"
+    },
+    {
+      "n": 139511,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 33,
+        "banned_members": 36296,
+        "rounds": 3,
+        "prime_queries": 3907784,
+        "seconds": 0.0294772,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139511/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139511/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139511/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 2.98908,
+        "nodes": 39,
+        "branches": 38,
+        "conflicts": 20,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139511/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139511/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139511/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 139765,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 30,
+        "banned_members": 26931,
+        "rounds": 2,
+        "prime_queries": 4009240,
+        "seconds": 0.0246716,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139765/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139765/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139765/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 3.3626,
+        "nodes": 59,
+        "branches": 58,
+        "conflicts": 30,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139765/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139765/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139765/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    },
+    {
+      "n": 139817,
+      "root": {
+        "status": "FIXPOINT",
+        "forced_members": 35,
+        "banned_members": 33313,
+        "rounds": 4,
+        "prime_queries": 4346820,
+        "seconds": 0.0287464,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139817/initial.json",
+        "state_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139817/root.state.txt",
+        "trace_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139817/root.trace.txt"
+      },
+      "k4": {
+        "status": "NO",
+        "seconds": 0.808741,
+        "nodes": 11,
+        "branches": 10,
+        "conflicts": 6,
+        "result_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139817/k4/result.json",
+        "proof_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139817/k4/proof.txt",
+        "solver_log_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/139817/k4/solver.log"
+      },
+      "k64": null,
+      "final_status": "NO"
+    }
+  ],
+  "provenance_correction_20260920": {
+    "finding": "Both historically labelled k4 and k64 stages invoked the same fixed-window v7 executable, not distinct v8 configurations. Original complete NO outputs are retained; portfolio labels are invalid.",
+    "corrected_n139201_status": "solver_NO",
+    "correction_record": "apa/logs/N139201_PORTFOLIO_CORRECTION_20260920.md",
+    "independent_replay": false
+  }
+}

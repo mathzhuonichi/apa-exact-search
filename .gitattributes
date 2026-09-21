@@ -1,0 +1,2 @@
+# Preserve hash-verified source/evidence bytes without EOL conversion.
+* -text

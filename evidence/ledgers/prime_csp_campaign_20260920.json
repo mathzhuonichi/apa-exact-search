@@ -1,0 +1,506 @@
+{
+  "algorithm": "factor_branch_prime_csp_v10",
+  "solver_sha256": "caf0cf63353ef8ce3d17265305f3e36ece5b0d4a46d31e0a86aa5f81672a4ec5",
+  "root_propagator_sha256": "731ac8c3d76d2f97914fa9f843403e27c8c4c3f73247b2f1cf5aea1492cedb9e",
+  "source_sha256": "6ac25230a2da7dbee72c4b9df06020e741cbc886d2e02f109532e6539860f3bb",
+  "source_count": 18466,
+  "resume_after": 139817,
+  "previous_ledger": "source-workspace/apa/experiments/outputs/factor_branch_portfolio_20260920/run_ledger_20260920.json",
+  "resolution_ledger": "source-workspace/apa/experiments/outputs/prime_csp_validation_20260920/regression/ledger.json",
+  "workers": 6,
+  "stages": [
+    [
+      4,
+      5
+    ],
+    [
+      64,
+      25
+    ]
+  ],
+  "independent_replay": false,
+  "rows": [
+    {
+      "maximum": 139847,
+      "stages": [
+        {
+          "command": [
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/solver",
+            "139847",
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/139847/root.state.txt",
+            "5",
+            "1000000000",
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/139847/k4/proof.txt",
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/139847/k4/result.json",
+            "4"
+          ],
+          "result": {
+            "maximum": 139847,
+            "status": "NO",
+            "seconds": 0.755141,
+            "algorithm": "factor_branch_prime_csp_v10",
+            "branch_lookahead": 4,
+            "seconds_cap": 5,
+            "node_cap": 1000000000,
+            "nodes": 15,
+            "branches": 14,
+            "conflicts": 8,
+            "translate_words": 134169200,
+            "new_demands": 864074,
+            "demand_scans": 6589,
+            "watch_rescans": 37,
+            "factor_visits": 7494798,
+            "prime_words": 68135899,
+            "new_prime_ban_bits": 205410,
+            "sparse_pair_checks": 1608453,
+            "early_prime_checks": 540456,
+            "early_prime_conflicts": 0,
+            "compatibility_checks": 672,
+            "support_rejections": 0,
+            "learned_pairs": 14,
+            "nogood_units": 14,
+            "factor_cache_sums": 188909,
+            "example_size": 0
+          },
+          "proof_sha256": "4616ffd9ebd346248d98a7b4a6facb6e9f2399121fa73d0e1c12adda26e895fa"
+        }
+      ],
+      "status": "NO",
+      "root": {
+        "command": [
+          "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/root_propagator",
+          "139847",
+          "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/139847/root.trace.txt",
+          "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/139847/root.state.txt"
+        ],
+        "result": {
+          "maximum": 139847,
+          "status": "FIXPOINT",
+          "forced_members": 35,
+          "banned_members": 33374,
+          "rounds": 3,
+          "prime_queries": 4300766,
+          "seconds": 0.0375298
+        },
+        "state_sha256": "f9f0994904603798496a59d2ce6f2f80a8d11b72d075b4be0dad366251355b67"
+      },
+      "total_wall_seconds": 1.478240917029325
+    },
+    {
+      "maximum": 140009,
+      "stages": [
+        {
+          "command": [
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/solver",
+            "140009",
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140009/root.state.txt",
+            "5",
+            "1000000000",
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140009/k4/proof.txt",
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140009/k4/result.json",
+            "4"
+          ],
+          "result": {
+            "maximum": 140009,
+            "status": "UNKNOWN",
+            "seconds": 5.00035,
+            "algorithm": "factor_branch_prime_csp_v10",
+            "branch_lookahead": 4,
+            "seconds_cap": 5,
+            "node_cap": 1000000000,
+            "nodes": 99,
+            "branches": 98,
+            "conflicts": 48,
+            "translate_words": 1161808846,
+            "new_demands": 7656903,
+            "demand_scans": 109245,
+            "watch_rescans": 99,
+            "factor_visits": 65843261,
+            "prime_words": 613966736,
+            "new_prime_ban_bits": 1964015,
+            "sparse_pair_checks": 27981979,
+            "early_prime_checks": 4631544,
+            "early_prime_conflicts": 0,
+            "compatibility_checks": 4800,
+            "support_rejections": 0,
+            "learned_pairs": 89,
+            "nogood_units": 89,
+            "factor_cache_sums": 194712,
+            "example_size": 0
+          },
+          "proof_sha256": null
+        },
+        {
+          "command": [
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/solver",
+            "140009",
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140009/root.state.txt",
+            "25",
+            "1000000000",
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140009/k64/proof.txt",
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140009/k64/result.json",
+            "64"
+          ],
+          "result": {
+            "maximum": 140009,
+            "status": "UNKNOWN",
+            "seconds": 25.0118,
+            "algorithm": "factor_branch_prime_csp_v10",
+            "branch_lookahead": 64,
+            "seconds_cap": 25,
+            "node_cap": 1000000000,
+            "nodes": 2113,
+            "branches": 2112,
+            "conflicts": 1054,
+            "translate_words": 4016680330,
+            "new_demands": 80912176,
+            "demand_scans": 16243128,
+            "watch_rescans": 1287,
+            "factor_visits": 740084001,
+            "prime_words": 1758952264,
+            "new_prime_ban_bits": 17439320,
+            "sparse_pair_checks": 517141316,
+            "early_prime_checks": 44072708,
+            "early_prime_conflicts": 34,
+            "compatibility_checks": 34067120,
+            "support_rejections": 0,
+            "learned_pairs": 2082,
+            "nogood_units": 2082,
+            "factor_cache_sums": 193488,
+            "example_size": 0
+          },
+          "proof_sha256": null
+        }
+      ],
+      "status": "UNKNOWN",
+      "root": {
+        "command": [
+          "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/root_propagator",
+          "140009",
+          "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140009/root.trace.txt",
+          "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140009/root.state.txt"
+        ],
+        "result": {
+          "maximum": 140009,
+          "status": "FIXPOINT",
+          "forced_members": 28,
+          "banned_members": 25871,
+          "rounds": 2,
+          "prime_queries": 3638596,
+          "seconds": 0.0357066
+        },
+        "state_sha256": "4fe480723cfdc2874a2b8ede0722a3cff7a32323e8b86ef2eded86f3ab491686"
+      },
+      "total_wall_seconds": 30.810838625009637
+    },
+    {
+      "maximum": 140017,
+      "stages": [
+        {
+          "command": [
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/solver",
+            "140017",
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140017/root.state.txt",
+            "5",
+            "1000000000",
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140017/k4/proof.txt",
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140017/k4/result.json",
+            "4"
+          ],
+          "result": {
+            "maximum": 140017,
+            "status": "UNKNOWN",
+            "seconds": 5.00047,
+            "algorithm": "factor_branch_prime_csp_v10",
+            "branch_lookahead": 4,
+            "seconds_cap": 5,
+            "node_cap": 1000000000,
+            "nodes": 108,
+            "branches": 107,
+            "conflicts": 51,
+            "translate_words": 1195068311,
+            "new_demands": 7278847,
+            "demand_scans": 17852,
+            "watch_rescans": 120,
+            "factor_visits": 62909434,
+            "prime_words": 613421465,
+            "new_prime_ban_bits": 1948487,
+            "sparse_pair_checks": 11796794,
+            "early_prime_checks": 4533447,
+            "early_prime_conflicts": 7,
+            "compatibility_checks": 5376,
+            "support_rejections": 0,
+            "learned_pairs": 94,
+            "nogood_units": 94,
+            "factor_cache_sums": 195978,
+            "example_size": 0
+          },
+          "proof_sha256": null
+        },
+        {
+          "command": [
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/solver",
+            "140017",
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140017/root.state.txt",
+            "25",
+            "1000000000",
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140017/k64/proof.txt",
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140017/k64/result.json",
+            "64"
+          ],
+          "result": {
+            "maximum": 140017,
+            "status": "NO",
+            "seconds": 0.664219,
+            "algorithm": "factor_branch_prime_csp_v10",
+            "branch_lookahead": 64,
+            "seconds_cap": 25,
+            "node_cap": 1000000000,
+            "nodes": 71,
+            "branches": 72,
+            "conflicts": 35,
+            "translate_words": 137141275,
+            "new_demands": 1443195,
+            "demand_scans": 17126,
+            "watch_rescans": 67,
+            "factor_visits": 13339986,
+            "prime_words": 63946864,
+            "new_prime_ban_bits": 765517,
+            "sparse_pair_checks": 1285314,
+            "early_prime_checks": 865190,
+            "early_prime_conflicts": 8,
+            "compatibility_checks": 426338,
+            "support_rejections": 1,
+            "learned_pairs": 70,
+            "nogood_units": 68,
+            "factor_cache_sums": 190883,
+            "example_size": 0
+          },
+          "proof_sha256": "93cd41430ecf59b35921912f1b2dfe46cbbdbbb758c85e893dd4f0401f6dddc8"
+        }
+      ],
+      "status": "NO",
+      "root": {
+        "command": [
+          "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/root_propagator",
+          "140017",
+          "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140017/root.trace.txt",
+          "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140017/root.state.txt"
+        ],
+        "result": {
+          "maximum": 140017,
+          "status": "FIXPOINT",
+          "forced_members": 24,
+          "banned_members": 25546,
+          "rounds": 2,
+          "prime_queries": 3162312,
+          "seconds": 0.0305546
+        },
+        "state_sha256": "79f6334a7a8df55d5029a7f3833570714fa57f9982f24e086177921c711a9131"
+      },
+      "total_wall_seconds": 6.46932554099476
+    },
+    {
+      "maximum": 140027,
+      "stages": [
+        {
+          "command": [
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/solver",
+            "140027",
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140027/root.state.txt",
+            "5",
+            "1000000000",
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140027/k4/proof.txt",
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140027/k4/result.json",
+            "4"
+          ],
+          "result": {
+            "maximum": 140027,
+            "status": "NO",
+            "seconds": 1.34962,
+            "algorithm": "factor_branch_prime_csp_v10",
+            "branch_lookahead": 4,
+            "seconds_cap": 5,
+            "node_cap": 1000000000,
+            "nodes": 27,
+            "branches": 26,
+            "conflicts": 14,
+            "translate_words": 242957756,
+            "new_demands": 1636194,
+            "demand_scans": 6588,
+            "watch_rescans": 63,
+            "factor_visits": 14357898,
+            "prime_words": 123424246,
+            "new_prime_ban_bits": 407168,
+            "sparse_pair_checks": 2579037,
+            "early_prime_checks": 1036308,
+            "early_prime_conflicts": 2,
+            "compatibility_checks": 1248,
+            "support_rejections": 0,
+            "learned_pairs": 26,
+            "nogood_units": 26,
+            "factor_cache_sums": 195007,
+            "example_size": 0
+          },
+          "proof_sha256": "fcac6db0088dca75119244fd5ab363651f2028ac8f582a651b1c040873bc1c7c"
+        }
+      ],
+      "status": "NO",
+      "root": {
+        "command": [
+          "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/root_propagator",
+          "140027",
+          "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140027/root.trace.txt",
+          "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140027/root.state.txt"
+        ],
+        "result": {
+          "maximum": 140027,
+          "status": "FIXPOINT",
+          "forced_members": 26,
+          "banned_members": 29977,
+          "rounds": 2,
+          "prime_queries": 3350348,
+          "seconds": 0.0377276
+        },
+        "state_sha256": "668da0a9cd78d7d099336c69a269e8a76fa5ce5fa87a5c93b9845690809988d1"
+      },
+      "total_wall_seconds": 2.066037166980095
+    },
+    {
+      "maximum": 140083,
+      "stages": [
+        {
+          "command": [
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/solver",
+            "140083",
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140083/root.state.txt",
+            "5",
+            "1000000000",
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140083/k4/proof.txt",
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140083/k4/result.json",
+            "4"
+          ],
+          "result": {
+            "maximum": 140083,
+            "status": "NO",
+            "seconds": 2.93854,
+            "algorithm": "factor_branch_prime_csp_v10",
+            "branch_lookahead": 4,
+            "seconds_cap": 5,
+            "node_cap": 1000000000,
+            "nodes": 61,
+            "branches": 60,
+            "conflicts": 31,
+            "translate_words": 646872999,
+            "new_demands": 4137568,
+            "demand_scans": 7572,
+            "watch_rescans": 50,
+            "factor_visits": 35752880,
+            "prime_words": 329727227,
+            "new_prime_ban_bits": 1203567,
+            "sparse_pair_checks": 6290059,
+            "early_prime_checks": 2562590,
+            "early_prime_conflicts": 3,
+            "compatibility_checks": 2880,
+            "support_rejections": 0,
+            "learned_pairs": 60,
+            "nogood_units": 60,
+            "factor_cache_sums": 194186,
+            "example_size": 0
+          },
+          "proof_sha256": "970107727672ce7fc8ab1021d6fa4683f4c28d365de3f52d5975313e92be5ddf"
+        }
+      ],
+      "status": "NO",
+      "root": {
+        "command": [
+          "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/root_propagator",
+          "140083",
+          "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140083/root.trace.txt",
+          "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140083/root.state.txt"
+        ],
+        "result": {
+          "maximum": 140083,
+          "status": "FIXPOINT",
+          "forced_members": 23,
+          "banned_members": 23297,
+          "rounds": 2,
+          "prime_queries": 3048718,
+          "seconds": 0.0306948
+        },
+        "state_sha256": "1931d37bac55b82c04dc8a0cd9b2511505bfe3dca977a4840b04b1bf67465eac"
+      },
+      "total_wall_seconds": 3.6741437910241075
+    },
+    {
+      "maximum": 140123,
+      "stages": [
+        {
+          "command": [
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/solver",
+            "140123",
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140123/root.state.txt",
+            "5",
+            "1000000000",
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140123/k4/proof.txt",
+            "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140123/k4/result.json",
+            "4"
+          ],
+          "result": {
+            "maximum": 140123,
+            "status": "NO",
+            "seconds": 4.36222,
+            "algorithm": "factor_branch_prime_csp_v10",
+            "branch_lookahead": 4,
+            "seconds_cap": 5,
+            "node_cap": 1000000000,
+            "nodes": 141,
+            "branches": 140,
+            "conflicts": 71,
+            "translate_words": 986892005,
+            "new_demands": 6902031,
+            "demand_scans": 46772,
+            "watch_rescans": 126,
+            "factor_visits": 61315195,
+            "prime_words": 494037727,
+            "new_prime_ban_bits": 1970848,
+            "sparse_pair_checks": 10285367,
+            "early_prime_checks": 4349370,
+            "early_prime_conflicts": 2,
+            "compatibility_checks": 6720,
+            "support_rejections": 0,
+            "learned_pairs": 140,
+            "nogood_units": 140,
+            "factor_cache_sums": 195107,
+            "example_size": 0
+          },
+          "proof_sha256": "5fa8e9e93c5f0a4dc1c4725e88ad21c6dae9cc54d21ac01b3f670096d05e22fc"
+        }
+      ],
+      "status": "NO",
+      "root": {
+        "command": [
+          "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/root_propagator",
+          "140123",
+          "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140123/root.trace.txt",
+          "source-workspace/apa/experiments/outputs/prime_csp_campaign_20260920/140123/root.state.txt"
+        ],
+        "result": {
+          "maximum": 140123,
+          "status": "FIXPOINT",
+          "forced_members": 29,
+          "banned_members": 27379,
+          "rounds": 2,
+          "prime_queries": 3806322,
+          "seconds": 0.0342852
+        },
+        "state_sha256": "2a9ed8d6739946561f29e069701962ffe92c4b318333030260691d8fd632092e"
+      },
+      "total_wall_seconds": 5.085150541970506
+    }
+  ],
+  "status": "STOPPED_UNKNOWN",
+  "active_batch": [],
+  "first_unknown": 140009,
+  "operational_errors": []
+}

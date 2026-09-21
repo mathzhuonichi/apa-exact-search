@@ -1,0 +1,5 @@
+{
+  "paused": true,
+  "status_file": "progress/STATUS.json",
+  "automatic_resume_authorized": false
+}

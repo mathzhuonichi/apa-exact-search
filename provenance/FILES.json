@@ -1,0 +1,462 @@
+[
+  {
+    "path": ".gitattributes",
+    "sha256": "483aa2b0a67713b4a600a907327b471165637320535e005b9e6a6efc63d9af59",
+    "bytes": 79
+  },
+  {
+    "path": ".gitignore",
+    "sha256": "dcb94f9810932395b07fdd70d076317a2a9cd791524c538becf14fe768aff906",
+    "bytes": 57
+  },
+  {
+    "path": "AGENTS.md",
+    "sha256": "fb4379a5e8b470636a17011e4f36ee2a1bedf19b8b4d3d6769f2a25243d13742",
+    "bytes": 1105
+  },
+  {
+    "path": "Makefile",
+    "sha256": "70b7399e17f671f47fa8b5c8ba2d67d21f4dcec3523fb9351993f0fab7b7c43a",
+    "bytes": 936
+  },
+  {
+    "path": "PAUSED.json",
+    "sha256": "5afbe495cbcb6c2b77571f1b3853636e91dded06c24720b70e4b44642cc20aed",
+    "bytes": 102
+  },
+  {
+    "path": "README.md",
+    "sha256": "352ae2f8c2ba86c847e358f0f7386899365c5c95de96822582bc74e4463b588a",
+    "bytes": 2920
+  },
+  {
+    "path": "docs/ALGORITHM.md",
+    "sha256": "bc86e229b97fbe80c0f24db8c30db40a5a3a994f84f8cd4b077c21979644200c",
+    "bytes": 3497
+  },
+  {
+    "path": "docs/HANDOFF.md",
+    "sha256": "ad5c4a25f5ffd35a247f8c6d46acf6f2896ed4552c4e7d9137020b6cf75970da",
+    "bytes": 2062
+  },
+  {
+    "path": "docs/STATUS.md",
+    "sha256": "1567c820654b121446c359debf20f023f89120e0f7300f4a7485bc18b1fd7e68",
+    "bytes": 2182
+  },
+  {
+    "path": "docs/VALIDATION.md",
+    "sha256": "42602d50a6d65d42d1414597c83dee518532f7497de9da5fb8c6b448454f9f7b",
+    "bytes": 1992
+  },
+  {
+    "path": "evidence/latest/147241/insertion64/proof.txt",
+    "sha256": "c477ac01fbd91f08d2859eed7bdd009701b6c22df1ce3e1d43720a186b4b6282",
+    "bytes": 499,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147241/insertion64/proof.txt",
+    "source_sha256": "c477ac01fbd91f08d2859eed7bdd009701b6c22df1ce3e1d43720a186b4b6282"
+  },
+  {
+    "path": "evidence/latest/147241/insertion64/result.json",
+    "sha256": "4dc54418be3fc22982d16ebdb04cb8f0e2828b3fb63da7cf1cd3695b71d7dd62",
+    "bytes": 714,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147241/insertion64/result.json",
+    "source_sha256": "7f2fc19fec5aa0f50be896705a1eccbbf437ef7c97824f4d9a787c38f108eab4"
+  },
+  {
+    "path": "evidence/latest/147241/result.json",
+    "sha256": "65c2f2f02c755adc1469cdce7dda3194738fae57ee947d0880c96357c6d5e777",
+    "bytes": 4280,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147241/result.json",
+    "source_sha256": "87d9e5ededb40133cb72bff2347cbfa34f06a44f75d7f94ee4db4f835a9881b8"
+  },
+  {
+    "path": "evidence/latest/147241/root.state.txt",
+    "sha256": "8227afa54e6bfbb75b50223d041bd163b652c2590164a8e9b8ce41dfbec5894d",
+    "bytes": 234895,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147241/root.state.txt",
+    "source_sha256": "8227afa54e6bfbb75b50223d041bd163b652c2590164a8e9b8ce41dfbec5894d"
+  },
+  {
+    "path": "evidence/latest/147353/insertion64/proof.txt",
+    "sha256": "51c47eff30c078abbd99940ec99d5bbbdf619eddd898c79dab1a3ce10504deee",
+    "bytes": 798,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147353/insertion64/proof.txt",
+    "source_sha256": "51c47eff30c078abbd99940ec99d5bbbdf619eddd898c79dab1a3ce10504deee"
+  },
+  {
+    "path": "evidence/latest/147353/insertion64/result.json",
+    "sha256": "4f116591bfbf208fae7ece024d95619026f58199df0384a6916b4950e9daafdd",
+    "bytes": 717,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147353/insertion64/result.json",
+    "source_sha256": "44bc298d709f471e53a611ad90b9169835f44d039033783395a7da345ffae8ac"
+  },
+  {
+    "path": "evidence/latest/147353/result.json",
+    "sha256": "bc5054d1e71e1b9cb3d24b5d4c0e8a6ad397de8abce80843772e1ec5a01538ba",
+    "bytes": 4287,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147353/result.json",
+    "source_sha256": "dd380c4c23a7e27147be79923d5860cf35d977ec327f8c5f074edcb65f40cee6"
+  },
+  {
+    "path": "evidence/latest/147353/root.state.txt",
+    "sha256": "d5d905357c4b67106234f3d87467480cb8497ff5aa0cb322750708724b47818e",
+    "bytes": 259730,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147353/root.state.txt",
+    "source_sha256": "d5d905357c4b67106234f3d87467480cb8497ff5aa0cb322750708724b47818e"
+  },
+  {
+    "path": "evidence/latest/147467/insertion64/proof.txt",
+    "sha256": "2ed11e6ac4bc0aa9c1895547f2cd2eaf1a7560a8837d5ae2ef592c198d6890a4",
+    "bytes": 140,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147467/insertion64/proof.txt",
+    "source_sha256": "2ed11e6ac4bc0aa9c1895547f2cd2eaf1a7560a8837d5ae2ef592c198d6890a4"
+  },
+  {
+    "path": "evidence/latest/147467/insertion64/result.json",
+    "sha256": "64e9e3450dad7f2bd779acffbe462c1eaa70676fa877aa2954fe76e268513444",
+    "bytes": 706,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147467/insertion64/result.json",
+    "source_sha256": "8b9d7b08bfe8fe021b51ccf0e869504f65801f1d75a1a0d655ec46b7d2e44614"
+  },
+  {
+    "path": "evidence/latest/147467/result.json",
+    "sha256": "92381fff6118b040d4c84bcb99fbe46387f7b706ebdb17cbd9c1aa0b3918db87",
+    "bytes": 4268,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147467/result.json",
+    "source_sha256": "a6b640e4712b41590053700d00497821c9d2fd347d48150c5d8824ceee1f88db"
+  },
+  {
+    "path": "evidence/latest/147467/root.state.txt",
+    "sha256": "e2a87fbb3ebe5f855992d4e6f1e131b3a9c139df7bfcacb53362e220290fabdf",
+    "bytes": 266663,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147467/root.state.txt",
+    "source_sha256": "e2a87fbb3ebe5f855992d4e6f1e131b3a9c139df7bfcacb53362e220290fabdf"
+  },
+  {
+    "path": "evidence/latest/147503/insertion64/proof.txt",
+    "sha256": "41e37e7a41699d1383b11e45727f37c731eb308881ca41275f111ea1e9e90169",
+    "bytes": 771,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147503/insertion64/proof.txt",
+    "source_sha256": "41e37e7a41699d1383b11e45727f37c731eb308881ca41275f111ea1e9e90169"
+  },
+  {
+    "path": "evidence/latest/147503/insertion64/result.json",
+    "sha256": "891c4bec2ef0fd10f88489285ab4d7676bca1e3b4f08913eda64241a6bdc6e52",
+    "bytes": 713,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147503/insertion64/result.json",
+    "source_sha256": "5f9a4b0947696bacce881682c6c1be84b5da56efe8f356a344da00acc3a4260d"
+  },
+  {
+    "path": "evidence/latest/147503/result.json",
+    "sha256": "498cac3dc114960bdf97a36715ea2f82ca781a492fa0191784279a30a8a74a2d",
+    "bytes": 4279,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147503/result.json",
+    "source_sha256": "97a2ec2d2fd718a57881b39177f6467c099092f5e76ad2622439d9fb55b67826"
+  },
+  {
+    "path": "evidence/latest/147503/root.state.txt",
+    "sha256": "bc71c4db059b375760f50680818464d768d74b4e50944bbe0bcfd859be083d67",
+    "bytes": 220768,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147503/root.state.txt",
+    "source_sha256": "bc71c4db059b375760f50680818464d768d74b4e50944bbe0bcfd859be083d67"
+  },
+  {
+    "path": "evidence/latest/147587/insertion8/proof.txt",
+    "sha256": "aaa8f950639b8b3b4071f6f8235a91f6bc5172e99d4d73ff43f904a9a1d17280",
+    "bytes": 278,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147587/insertion8/proof.txt",
+    "source_sha256": "aaa8f950639b8b3b4071f6f8235a91f6bc5172e99d4d73ff43f904a9a1d17280"
+  },
+  {
+    "path": "evidence/latest/147587/insertion8/result.json",
+    "sha256": "7345ef6d294e4ced62e1ace6928280847c831e9cb86e7d611b63bccd4d0a8916",
+    "bytes": 716,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147587/insertion8/result.json",
+    "source_sha256": "4e4ba9153c50c9762b34262312b1ff1c33de38debf805368c694a64c38635458"
+  },
+  {
+    "path": "evidence/latest/147587/result.json",
+    "sha256": "17299bf221ab49956b88cbe480abd2e03236995d9f7d43071afca13257c8b863",
+    "bytes": 4281,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147587/result.json",
+    "source_sha256": "09f05db4435432520ff566900340700135c7d007a7334b047012f94e2d9ac542"
+  },
+  {
+    "path": "evidence/latest/147587/root.state.txt",
+    "sha256": "3f7aaff1514406486325ce8fe7842fe654dae092941f77bc61b6d005e627d107",
+    "bytes": 195718,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147587/root.state.txt",
+    "source_sha256": "3f7aaff1514406486325ce8fe7842fe654dae092941f77bc61b6d005e627d107"
+  },
+  {
+    "path": "evidence/latest/147743/insertion64/proof.txt",
+    "sha256": "146448911ca63c6ae5662ba92084741a2c13bfb944b1fc7760abfa0fa9dc18d3",
+    "bytes": 955,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147743/insertion64/proof.txt",
+    "source_sha256": "146448911ca63c6ae5662ba92084741a2c13bfb944b1fc7760abfa0fa9dc18d3"
+  },
+  {
+    "path": "evidence/latest/147743/insertion64/result.json",
+    "sha256": "c1b9cb08aeafe3493ee73e3e827b3d2cfeba08b440964b21b4a0bf1acf863c3b",
+    "bytes": 720,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147743/insertion64/result.json",
+    "source_sha256": "97f190c20a7ab1214bc6e87b52fe3a0167c81db8210371da8ad7b2e7e8398aac"
+  },
+  {
+    "path": "evidence/latest/147743/result.json",
+    "sha256": "702fc62ef8985e2bd58573903732c6a23d025b93f73f3781140278a4d7296a17",
+    "bytes": 4292,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147743/result.json",
+    "source_sha256": "1e0ced2b00abfd73a15020634eb15d8674824477d1084ba8fde69b154d61a3b3"
+  },
+  {
+    "path": "evidence/latest/147743/root.state.txt",
+    "sha256": "fba54ff7419b945abf422eed8834de7cbe94fb059e8a70e31a621dc400afaf1e",
+    "bytes": 305796,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147743/root.state.txt",
+    "source_sha256": "fba54ff7419b945abf422eed8834de7cbe94fb059e8a70e31a621dc400afaf1e"
+  },
+  {
+    "path": "evidence/latest/147829/insertion64/proof.txt",
+    "sha256": "fae8519e06c4187f1ff6dcd5db52cd27e58e860623a7daf6efd7f55269c0d430",
+    "bytes": 176,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147829/insertion64/proof.txt",
+    "source_sha256": "fae8519e06c4187f1ff6dcd5db52cd27e58e860623a7daf6efd7f55269c0d430"
+  },
+  {
+    "path": "evidence/latest/147829/insertion64/result.json",
+    "sha256": "1050a83c42be741e5c060e9d05231e1729b10ad2a4b678d81ceedc166eb7dbeb",
+    "bytes": 707,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147829/insertion64/result.json",
+    "source_sha256": "266c8a48ff3bfe46267c902b0fda46e3a5ccc9c9b852f09eef22532b89f48b4d"
+  },
+  {
+    "path": "evidence/latest/147829/result.json",
+    "sha256": "ed9422f27f49e480c2ab1051fcfb8ee6f0bf93b274f4da59c220a379f4f4b74a",
+    "bytes": 4268,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147829/result.json",
+    "source_sha256": "2359bf2224fc5aa31e09b6589084185f9011fb11d2efe9aa0e38b5e61dc02c2e"
+  },
+  {
+    "path": "evidence/latest/147829/root.state.txt",
+    "sha256": "b64a0f469f5364497e29de635ec93ac69c6a6fd5b6e8ecb25706b54726b74da8",
+    "bytes": 249363,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147829/root.state.txt",
+    "source_sha256": "b64a0f469f5364497e29de635ec93ac69c6a6fd5b6e8ecb25706b54726b74da8"
+  },
+  {
+    "path": "evidence/latest/147907/result.json",
+    "sha256": "f2bb82db5576876491224a2c79279bc15acca37a76f85f03979994f311fd2ff1",
+    "bytes": 2467,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147907/result.json",
+    "source_sha256": "071a33a76afe288715bfb6af1fa9b21b749924c62de80ea29c70057884dbbc51"
+  },
+  {
+    "path": "evidence/latest/147907/root.state.txt",
+    "sha256": "cf44433ab9ff9799716ff327e153466be395d78b759dbb258c27bd1906a495b6",
+    "bytes": 183283,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147907/root.state.txt",
+    "source_sha256": "cf44433ab9ff9799716ff327e153466be395d78b759dbb258c27bd1906a495b6"
+  },
+  {
+    "path": "evidence/latest/147923/result.json",
+    "sha256": "b94a2c07a9f795adfc624e6cda846bc20297b8b490a44f2b2470a659f605a1a2",
+    "bytes": 6244,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147923/result.json",
+    "source_sha256": "b5ffe0b3df961213211351f02a2bd2918f8eae769cd99f83fc14ab66d2fa3931"
+  },
+  {
+    "path": "evidence/latest/147923/root.state.txt",
+    "sha256": "b77fec078e5166430f5f714ff536f4b17fd73e98ad807d30849839b55fa1f25e",
+    "bytes": 212591,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/147923/root.state.txt",
+    "source_sha256": "b77fec078e5166430f5f714ff536f4b17fd73e98ad807d30849839b55fa1f25e"
+  },
+  {
+    "path": "evidence/ledgers/factor_branch_portfolio_20260920.json",
+    "sha256": "b9f08f750f6ba98eca75d89fea8406a562cf00df4b50ac1a2d0ebc09e3777e6f",
+    "bytes": 137167,
+    "source_path": "apa/experiments/outputs/factor_branch_portfolio_20260920/run_ledger_20260920.json",
+    "source_sha256": "985a7a3d483fdce269c75d3c8eb664f9d4d07cfd190225870ed02c7548880aa7"
+  },
+  {
+    "path": "evidence/ledgers/failed_witness_campaign_20260920.json",
+    "sha256": "16956487381145552886be5634b5637d3787ab95d3a87f281da6d8b019f337ad",
+    "bytes": 330071,
+    "source_path": "apa/experiments/outputs/failed_witness_campaign_20260920/ledger.json",
+    "source_sha256": "be35f51e7e8530a5ca5e596d534437113af3720c7710024ed9c54e0662f3c378"
+  },
+  {
+    "path": "evidence/ledgers/layered_witness_campaign_20260920.json",
+    "sha256": "527398713f15f50e39d8dc0841480a0f31431742729605566284a5752756f7d2",
+    "bytes": 1676890,
+    "source_path": "apa/experiments/outputs/layered_witness_campaign_20260920/ledger.json",
+    "source_sha256": "b1f8454e02e7ff298adda762bd76503d4e5d68cfe2df10aaed8de49d7d9d53a5"
+  },
+  {
+    "path": "evidence/ledgers/parallel_witness_campaign_20260920.json",
+    "sha256": "c32c06e324d3fe2fc41f586f79673bb4845afe6eab0d679e344dde60f4d07279",
+    "bytes": 48244,
+    "source_path": "apa/experiments/outputs/parallel_witness_campaign_20260920/ledger.json",
+    "source_sha256": "24ad3719a07c249e3c9ba1a501385f767b2a1a66aa2d78702a4798bc539e0917"
+  },
+  {
+    "path": "evidence/ledgers/portfolio_v11_campaign_20260920.json",
+    "sha256": "44dc3aef0255ccbfa72dde52adc403bc21fee5782d73f8299fbf39fd29ca3ab5",
+    "bytes": 42089,
+    "source_path": "apa/experiments/outputs/portfolio_v11_campaign_20260920/ledger.json",
+    "source_sha256": "b89a57417a7c8842a2ce6bbaa2ca56af2c34c3f8d3338c2216793d25e31a9f09"
+  },
+  {
+    "path": "evidence/ledgers/prime_csp_campaign_20260920.json",
+    "sha256": "617e72d699703d96d21fcc1bf3aae6968a967a7e1a770be882389efa80396c67",
+    "bytes": 18747,
+    "source_path": "apa/experiments/outputs/prime_csp_campaign_20260920/ledger.json",
+    "source_sha256": "0903247c12c135fbc7efa8f9a37f84469b826b2e67e4346edcb7b2ad484e9218"
+  },
+  {
+    "path": "evidence/validation/apa-parallel-benchmark-rolling-summary.json",
+    "sha256": "11ffc0440bb8e0fa06a0d8825e3c0bca9de3425b6a1b0baedd18901ede67ba29",
+    "bytes": 208792,
+    "source_path": "apa/experiments/outputs/n146621_parallel_20260920/apa-parallel-benchmark-rolling-summary.json",
+    "source_sha256": "e8d1d2226da37fe4557ed965fcff2304bb93a56c0eeb7ec937b4903f42b6bb16"
+  },
+  {
+    "path": "evidence/validation/apa-parallel-benchmark-summary.json",
+    "sha256": "8bf97ebfade0a80a1daf5696ea65acc11713cbca0fcba709a3ef441d7a4fd657",
+    "bytes": 2878,
+    "source_path": "apa/experiments/outputs/n146621_parallel_20260920/apa-parallel-benchmark-summary.json",
+    "source_sha256": "40825b030725ad1b45aa2bd65472374004594690808a60cdba3bc86eabf2deaf"
+  },
+  {
+    "path": "evidence/validation/lifecycle-tests-summary.json",
+    "sha256": "1c3654498c2b19592aa64b616318b3ea2594d59133587b5b8537e52629c86f2f",
+    "bytes": 1967,
+    "source_path": "apa/experiments/outputs/n146621_parallel_20260920/lifecycle-tests/summary.json",
+    "source_sha256": "1c3654498c2b19592aa64b616318b3ea2594d59133587b5b8537e52629c86f2f"
+  },
+  {
+    "path": "evidence/validation/n140009_portfolio_20260920.json",
+    "sha256": "10f7a1ef962a69e189683153fa4a74003dd1f8e969bc38e9b99fd7a29be26336",
+    "bytes": 790,
+    "source_path": "apa/experiments/outputs/n140009_portfolio_20260920/summary.json",
+    "source_sha256": "10f7a1ef962a69e189683153fa4a74003dd1f8e969bc38e9b99fd7a29be26336"
+  },
+  {
+    "path": "evidence/validation/n141443_failed_witness_20260920.json",
+    "sha256": "1b7190a9f28243c40d1f33e6b1927514de1bbff38c0ffbc1e92fc80896e7d287",
+    "bytes": 377,
+    "source_path": "apa/experiments/outputs/n141443_failed_witness_20260920/summary.json",
+    "source_sha256": "1b7190a9f28243c40d1f33e6b1927514de1bbff38c0ffbc1e92fc80896e7d287"
+  },
+  {
+    "path": "evidence/validation/n142277_layered_probe_20260920.json",
+    "sha256": "2df88509645eae3ec9e3ca48c37f82ec51300493e83181a42da1134e655d6706",
+    "bytes": 390,
+    "source_path": "apa/experiments/outputs/n142277_layered_probe_20260920/summary.json",
+    "source_sha256": "2df88509645eae3ec9e3ca48c37f82ec51300493e83181a42da1134e655d6706"
+  },
+  {
+    "path": "evidence/validation/source_hashes.json",
+    "sha256": "fc4f7f0c7f5f0d1b7e7d0b582907bac276957eb9c26813ea7bb986e1cb85bba0",
+    "bytes": 457,
+    "source_path": "apa/experiments/outputs/n146621_parallel_20260920/source_hashes.json",
+    "source_sha256": "fc4f7f0c7f5f0d1b7e7d0b582907bac276957eb9c26813ea7bb986e1cb85bba0"
+  },
+  {
+    "path": "progress/STATUS.json",
+    "sha256": "5ce04f24fa01962baa84acc50a609c75e54948b83bee064aeac0a35ab5fd0507",
+    "bytes": 2210
+  },
+  {
+    "path": "progress/candidates.txt",
+    "sha256": "6ac25230a2da7dbee72c4b9df06020e741cbc886d2e02f109532e6539860f3bb",
+    "bytes": 128964,
+    "source_path": "apa/experiments/outputs/propagation_campaign_20s_20260920/unknown_processed.txt",
+    "source_sha256": "6ac25230a2da7dbee72c4b9df06020e741cbc886d2e02f109532e6539860f3bb"
+  },
+  {
+    "path": "progress/classification.csv",
+    "sha256": "ed3353d6bf3394a04f03790b57ac3f506d2e7b5dfe62e65e6d92a3ec85624e76",
+    "bytes": 362836
+  },
+  {
+    "path": "provenance/EXPORT.md",
+    "sha256": "d57d8a0c86420ad118288ca8c89bd874ee9573cad3b313b8d14472d10ab33bdf",
+    "bytes": 930
+  },
+  {
+    "path": "src/fixed_max_factor_branch_v11_20260920.cpp",
+    "sha256": "d69092bf410d9576adab96d08059f23c961240ff17283aae6f36f4df8052bba6",
+    "bytes": 19771,
+    "source_path": "apa/experiments/fixed_max_factor_branch_v11_20260920.cpp",
+    "source_sha256": "d69092bf410d9576adab96d08059f23c961240ff17283aae6f36f4df8052bba6"
+  },
+  {
+    "path": "src/fixed_max_factor_branch_v9_20260920.cpp",
+    "sha256": "4303bab8426f4baeb137f03632c29b01584a13d3b8a16dbf0fcc60024d6b2e5d",
+    "bytes": 15432,
+    "source_path": "apa/experiments/fixed_max_factor_branch_v9_20260920.cpp",
+    "source_sha256": "4303bab8426f4baeb137f03632c29b01584a13d3b8a16dbf0fcc60024d6b2e5d"
+  },
+  {
+    "path": "src/fixed_max_unary_propagation_20260920.cpp",
+    "sha256": "025a82afe4499ce81bbf5b4d1cfc1dc20abb935287ee08edeb65c925b30faaaa",
+    "bytes": 6280,
+    "source_path": "apa/experiments/fixed_max_unary_propagation_20260920.cpp",
+    "source_sha256": "025a82afe4499ce81bbf5b4d1cfc1dc20abb935287ee08edeb65c925b30faaaa"
+  },
+  {
+    "path": "src/run_factor_portfolio_20260920.py",
+    "sha256": "7da3886d44bdc4e62311756c08cec59443e9898e1bad034b5878a45f5314e243",
+    "bytes": 5086,
+    "source_path": "apa/experiments/run_factor_portfolio_20260920.py",
+    "source_sha256": "7da3886d44bdc4e62311756c08cec59443e9898e1bad034b5878a45f5314e243"
+  },
+  {
+    "path": "src/run_factor_portfolio_v11_20260920.py",
+    "sha256": "becafa5dc8c7279f3a7bde2d9aa684b5f9856172d82c25fcb4642c403251bc8f",
+    "bytes": 15496,
+    "source_path": "apa/experiments/run_factor_portfolio_v11_20260920.py",
+    "source_sha256": "becafa5dc8c7279f3a7bde2d9aa684b5f9856172d82c25fcb4642c403251bc8f"
+  },
+  {
+    "path": "src/run_parallel_factor_portfolio_20260920.py",
+    "sha256": "cff6b7190e15c366f4cd81b6bbbf3876799d29ce9b38b62e19fce407b40e7bfd",
+    "bytes": 17611,
+    "source_path": "apa/experiments/run_parallel_factor_portfolio_20260920.py",
+    "source_sha256": "cff6b7190e15c366f4cd81b6bbbf3876799d29ce9b38b62e19fce407b40e7bfd"
+  },
+  {
+    "path": "src/run_witness_probe_portfolio_20260920.py",
+    "sha256": "b1beca8448992673ba737c7142bf80f29c0bb8b9419232d059a1492f50cdf11e",
+    "bytes": 9800,
+    "source_path": "apa/experiments/run_witness_probe_portfolio_20260920.py",
+    "source_sha256": "b1beca8448992673ba737c7142bf80f29c0bb8b9419232d059a1492f50cdf11e"
+  },
+  {
+    "path": "src/test_parallel_factor_portfolio_20260920.py",
+    "sha256": "532ea8b630ef9d00d790af19ab45af4cede12e91669313a177b1bc14a82111f0",
+    "bytes": 5674,
+    "source_path": "apa/experiments/test_parallel_factor_portfolio_20260920.py",
+    "source_sha256": "532ea8b630ef9d00d790af19ab45af4cede12e91669313a177b1bc14a82111f0"
+  },
+  {
+    "path": "src/test_prime_csp_20260920.py",
+    "sha256": "c8a7293309cc18370f72dcf4ab65ae2e2c6bae037a80ea6aaa13531e5a350d48",
+    "bytes": 3383,
+    "source_path": "apa/experiments/test_prime_csp_20260920.py",
+    "source_sha256": "c8a7293309cc18370f72dcf4ab65ae2e2c6bae037a80ea6aaa13531e5a350d48"
+  },
+  {
+    "path": "tools/check_snapshot.py",
+    "sha256": "c573d1f23c6246a94e6654fe39579a33bd33b1269734f39ed3d7d5769f8e1b49",
+    "bytes": 2670
+  },
+  {
+    "path": "tools/status.py",
+    "sha256": "1ef4458956ba8a274d182e5d8b373f6019849d30822db6788a3f0c61a3d0c722",
+    "bytes": 234
+  }
+]

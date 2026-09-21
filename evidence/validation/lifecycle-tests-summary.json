@@ -1,0 +1,90 @@
+[
+  {
+    "maximum": 2,
+    "status": "NO",
+    "winner": "probe",
+    "seconds": 0.061955375014804304,
+    "children_reaped": true,
+    "stop_reason": null
+  },
+  {
+    "maximum": 7,
+    "status": "NO",
+    "winner": "probe",
+    "seconds": 0.05825270799687132,
+    "children_reaped": true,
+    "stop_reason": null
+  },
+  {
+    "maximum": 31,
+    "status": "NO",
+    "winner": "probe",
+    "seconds": 0.0571702920133248,
+    "children_reaped": true,
+    "stop_reason": null
+  },
+  {
+    "maximum": 113,
+    "status": "YES",
+    "winner": "insertion8",
+    "seconds": 0.03786816698266193,
+    "children_reaped": true,
+    "stop_reason": null
+  },
+  {
+    "maximum": 146621,
+    "status": "UNKNOWN",
+    "winner": null,
+    "seconds": 0.13765070802764967,
+    "children_reaped": true,
+    "stop_reason": "shared_search_deadline"
+  },
+  {
+    "maximum": 146621,
+    "status": "RESOURCE_LIMIT",
+    "winner": null,
+    "seconds": 0.06109508400550112,
+    "children_reaped": true,
+    "stop_reason": "observed_case_rss_limit"
+  },
+  {
+    "maximum": 146621,
+    "status": "OPERATIONAL_ERROR",
+    "winner": null,
+    "seconds": 0.06858929200097919,
+    "children_reaped": true,
+    "stop_reason": "all_lanes_finished_without_conclusion"
+  },
+  {
+    "maximum": 146621,
+    "status": "UNKNOWN",
+    "winner": null,
+    "seconds": 0.2355521249701269,
+    "children_reaped": true,
+    "stop_reason": "shared_search_deadline"
+  },
+  {
+    "maximum": 146621,
+    "status": "UNKNOWN",
+    "winner": null,
+    "seconds": 0.24512824998237193,
+    "children_reaped": true,
+    "stop_reason": "shared_search_deadline"
+  },
+  {
+    "maximum": 146621,
+    "status": "CANCELLED",
+    "winner": null,
+    "seconds": 0.524569416011218,
+    "children_reaped": true,
+    "stop_reason": "controller_cancelled"
+  },
+  {
+    "maximum": 146621,
+    "status": "CANCELLED",
+    "winner": null,
+    "seconds": 0,
+    "children_reaped": true,
+    "stop_reason": "cancelled_before_dispatch"
+  }
+]

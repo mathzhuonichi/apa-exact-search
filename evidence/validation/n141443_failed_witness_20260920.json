@@ -1,0 +1,10 @@
+{
+  "algorithm": "factor_witness_probe_portfolio_v1",
+  "source_sha256": "4743490c1c19cddac04c3e133bf984979e4ff6de0a3943c6567d0ed3d693c5c6",
+  "solver_sha256": "ac9b115a0c785d8aed525fa24f3f5f46549c395a1609bc647ec25adb1ac787ea",
+  "regression_count": 14,
+  "regression_seconds": 46.54184795898618,
+  "all_NO": true,
+  "controls": 37,
+  "independent_certificate_replay": false
+}

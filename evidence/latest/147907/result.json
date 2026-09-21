@@ -1,0 +1,85 @@
+{
+  "algorithm": "factor_parallel_portfolio_v1",
+  "maximum": 147907,
+  "status": "UNKNOWN",
+  "seconds_cap": 30,
+  "root_sha256": "cf44433ab9ff9799716ff327e153466be395d78b759dbb258c27bd1906a495b6",
+  "solver_sha256": "ac9b115a0c785d8aed525fa24f3f5f46549c395a1609bc647ec25adb1ac787ea",
+  "wrapper_sha256": "b1beca8448992673ba737c7142bf80f29c0bb8b9419232d059a1492f50cdf11e",
+  "slots_reserved": 3,
+  "memory_budget_mb": 2048,
+  "lanes": [
+    {
+      "name": "probe",
+      "command": [
+        "$ORIGINAL_HOME/.local/bin/python3",
+        "evidence/latest/code/run_witness_probe_portfolio_20260920.py",
+        "--solver",
+        "evidence/latest/solver",
+        "--maximum",
+        "147907",
+        "--state",
+        "evidence/latest/147907/root.state.txt",
+        "--output",
+        "evidence/latest/147907/probe",
+        "--seconds",
+        "30.0"
+      ],
+      "status": "CANCELLED_AT_LIMIT",
+      "cap": 30.0,
+      "window": null,
+      "process_group": 21615,
+      "wall_seconds": 30.007495041994844
+    },
+    {
+      "name": "insertion8",
+      "command": [
+        "evidence/latest/solver",
+        "147907",
+        "evidence/latest/147907/root.state.txt",
+        "29.995",
+        "1000000000",
+        "evidence/latest/147907/insertion8/proof.txt",
+        "evidence/latest/147907/insertion8/result.json",
+        "8",
+        "insertion"
+      ],
+      "status": "CANCELLED_AT_LIMIT",
+      "cap": 29.995,
+      "window": 8,
+      "process_group": 21616,
+      "wall_seconds": 30.00501395901665
+    },
+    {
+      "name": "insertion64",
+      "command": [
+        "evidence/latest/solver",
+        "147907",
+        "evidence/latest/147907/root.state.txt",
+        "29.993",
+        "1000000000",
+        "evidence/latest/147907/insertion64/proof.txt",
+        "evidence/latest/147907/insertion64/result.json",
+        "64",
+        "insertion"
+      ],
+      "status": "CANCELLED_AT_LIMIT",
+      "cap": 29.993,
+      "window": 64,
+      "process_group": 21617,
+      "wall_seconds": 30.002594375051558
+    }
+  ],
+  "stages": [],
+  "winner_policy": "first_valid_observed_completion",
+  "poll_seconds": 0.01,
+  "independent_replay": false,
+  "queue_seconds": 3.691698657348752e-05,
+  "stop_reason": "shared_search_deadline",
+  "owned_groups_empty": true,
+  "search_wall_seconds": 30.012189250031952,
+  "seconds": 30.04949454101734,
+  "sum_lane_wall_seconds": 90.01510337606305,
+  "peak_observed_rss_kb": 155488,
+  "children_reaped": true
+}
