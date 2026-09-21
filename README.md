@@ -1,5 +1,14 @@
 # APA exact search
 
+## Opt-in Rust event engine
+
+The new modular engine is available as `solve-events`; the previous Rust
+engine remains available as `solve` and `campaign`. See
+[the implementation and CLI guide](docs/EVENT_ENGINE.md) and
+[the recorded regression results](evidence/events-v1/README.md).
+Build with `cargo build --release` and run controls with `cargo test`.
+This revision does not start or resume the residual campaign.
+
 Exact fixed-maximum search for finite sets of positive integers satisfying
 
 \[

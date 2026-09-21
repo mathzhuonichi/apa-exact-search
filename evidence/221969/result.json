@@ -1,0 +1,208 @@
+{
+  "maximum": 221969,
+  "status": "NO",
+  "evidence_level": "independently_replayed_seed_free_arithmetic_certificate",
+  "initial_members": [
+    1,
+    2,
+    221969
+  ],
+  "initial_members_justification": "Minimum-element lemma in README.md; 221969 is the assumed maximum.",
+  "historical_seed_list_used": false,
+  "maximum_deletion_used": false,
+  "historical_NO_results_used": false,
+  "formal_proof_assistant_verified": false,
+  "proof": "evidence/221969/proof.json.gz",
+  "checker": "evidence/221969/verify.py",
+  "verification": "evidence/221969/verification.json",
+  "final_conflict": {
+    "sum_pair": [
+      221227,
+      180181
+    ],
+    "sum": 401408,
+    "factorization": "2^13 * 7^2",
+    "all_bounded_factor_pairs_blocked": [
+      {
+        "factor_pair": [
+          2,
+          200704
+        ],
+        "excluded_endpoint": 200704,
+        "mandatory_partner": 219979,
+        "prime_sum": 420683
+      },
+      {
+        "factor_pair": [
+          4,
+          100352
+        ],
+        "excluded_endpoint": 100352,
+        "mandatory_partner": 221219,
+        "prime_sum": 321571
+      },
+      {
+        "factor_pair": [
+          7,
+          57344
+        ],
+        "excluded_endpoint": 57344,
+        "mandatory_partner": 221219,
+        "prime_sum": 278563
+      },
+      {
+        "factor_pair": [
+          8,
+          50176
+        ],
+        "excluded_endpoint": 50176,
+        "mandatory_partner": 220513,
+        "prime_sum": 270689
+      },
+      {
+        "factor_pair": [
+          14,
+          28672
+        ],
+        "excluded_endpoint": 28672,
+        "mandatory_partner": 220471,
+        "prime_sum": 249143
+      },
+      {
+        "factor_pair": [
+          16,
+          25088
+        ],
+        "excluded_endpoint": 25088,
+        "mandatory_partner": 220889,
+        "prime_sum": 245977
+      },
+      {
+        "factor_pair": [
+          28,
+          14336
+        ],
+        "excluded_endpoint": 14336,
+        "mandatory_partner": 220973,
+        "prime_sum": 235309
+      },
+      {
+        "factor_pair": [
+          32,
+          12544
+        ],
+        "excluded_endpoint": 12544,
+        "mandatory_partner": 219979,
+        "prime_sum": 232523
+      },
+      {
+        "factor_pair": [
+          49,
+          8192
+        ],
+        "excluded_endpoint": 8192,
+        "mandatory_partner": 221069,
+        "prime_sum": 229261
+      },
+      {
+        "factor_pair": [
+          56,
+          7168
+        ],
+        "excluded_endpoint": 7168,
+        "mandatory_partner": 220681,
+        "prime_sum": 227849
+      },
+      {
+        "factor_pair": [
+          64,
+          6272
+        ],
+        "excluded_endpoint": 6272,
+        "mandatory_partner": 220859,
+        "prime_sum": 227131
+      },
+      {
+        "factor_pair": [
+          98,
+          4096
+        ],
+        "excluded_endpoint": 98,
+        "mandatory_partner": 221969,
+        "prime_sum": 222067
+      },
+      {
+        "factor_pair": [
+          112,
+          3584
+        ],
+        "excluded_endpoint": 3584,
+        "mandatory_partner": 221093,
+        "prime_sum": 224677
+      },
+      {
+        "factor_pair": [
+          128,
+          3136
+        ],
+        "excluded_endpoint": 3136,
+        "mandatory_partner": 221227,
+        "prime_sum": 224363
+      },
+      {
+        "factor_pair": [
+          196,
+          2048
+        ],
+        "excluded_endpoint": 2048,
+        "mandatory_partner": 220151,
+        "prime_sum": 222199
+      },
+      {
+        "factor_pair": [
+          224,
+          1792
+        ],
+        "excluded_endpoint": 224,
+        "mandatory_partner": 221969,
+        "prime_sum": 222193
+      },
+      {
+        "factor_pair": [
+          256,
+          1568
+        ],
+        "excluded_endpoint": 1568,
+        "mandatory_partner": 221219,
+        "prime_sum": 222787
+      },
+      {
+        "factor_pair": [
+          392,
+          1024
+        ],
+        "excluded_endpoint": 392,
+        "mandatory_partner": 221969,
+        "prime_sum": 222361
+      },
+      {
+        "factor_pair": [
+          448,
+          896
+        ],
+        "excluded_endpoint": 896,
+        "mandatory_partner": 221093,
+        "prime_sum": 221989
+      },
+      {
+        "factor_pair": [
+          512,
+          784
+        ],
+        "excluded_endpoint": 784,
+        "mandatory_partner": 221227,
+        "prime_sum": 222011
+      }
+    ]
+  }
+}

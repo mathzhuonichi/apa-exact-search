@@ -1,0 +1,10 @@
+{
+  "independent_arithmetic_replay": "PASS",
+  "result": "NO",
+  "events": 29,
+  "arithmetic_steps": 101227,
+  "base_prime_chain_bans": 26114,
+  "members": 12981,
+  "seconds": 1.1399999999557622,
+  "premise": "Only 1,2,N initially, with 1,2 justified by the minimum-element lemma. No historical seed list, maximum-deletion, or prior NO results are used. Not a formal proof assistant certificate."
+}
