@@ -116,8 +116,129 @@ impl Arena {
         id
     }
     pub fn freeze(&mut self) {
-        assert!(self.prefix.is_empty());
-        self.prefix = Arc::new(std::mem::take(&mut self.nodes));
+        if !self.nodes.is_empty() {
+            Arc::make_mut(&mut self.prefix).append(&mut self.nodes);
+        }
+    }
+    /// Import only the dependency closure of conclusions from a shared snapshot.
+    /// Local proof IDs and scope IDs belong to the worker and must both be remapped.
+    pub(super) fn import(&mut self, source: &Arena, roots: &[Id], shared_scopes: usize) -> Vec<Id> {
+        assert!(Arc::ptr_eq(&self.prefix, &source.prefix));
+        let base = self.prefix.len();
+        let mut used = BTreeSet::new();
+        let mut todo = roots.to_vec();
+        while let Some(id) = todo.pop() {
+            if id >= base && used.insert(id) {
+                todo.extend(&source.get(id).premises);
+            }
+        }
+        let mut scopes = BTreeSet::new();
+        let mut scope_todo = vec![];
+        for &id in &used {
+            let node = source.get(id);
+            scope_todo.push(node.scope);
+            match &node.rule {
+                Rule::Discharge(scope) => scope_todo.push(*scope),
+                Rule::Join { scopes, .. } => scope_todo.extend(scopes),
+                _ => {}
+            }
+        }
+        while let Some(scope) = scope_todo.pop() {
+            if scope >= shared_scopes && scopes.insert(scope) {
+                scope_todo.extend(source.scopes[scope].parent);
+            }
+        }
+        let mut scope_map = HashMap::new();
+        for scope in scopes {
+            let old = &source.scopes[scope];
+            let parent = old.parent.unwrap();
+            let parent = scope_map.get(&parent).copied().unwrap_or(parent);
+            scope_map.insert(scope, self.enter(parent, old.assumptions.clone()));
+        }
+        let mut ids = HashMap::new();
+        for id in used {
+            let mut node = source.get(id).clone();
+            node.scope = scope_map.get(&node.scope).copied().unwrap_or(node.scope);
+            match &mut node.rule {
+                Rule::Discharge(scope) => *scope = scope_map.get(scope).copied().unwrap_or(*scope),
+                Rule::Join { scopes, .. } => {
+                    for scope in scopes {
+                        *scope = scope_map.get(scope).copied().unwrap_or(*scope);
+                    }
+                }
+                _ => {}
+            }
+            node.premises = node
+                .premises
+                .iter()
+                .map(|p| ids.get(p).copied().unwrap_or(*p))
+                .collect();
+            let new = self.add(node.scope, node.fact, node.rule, node.premises);
+            ids.insert(id, new);
+        }
+        roots
+            .iter()
+            .map(|id| ids.get(id).copied().unwrap_or(*id))
+            .collect()
+    }
+    pub(super) fn fragment(&self, roots: &[Id], shared_scopes: usize) -> (Arena, Vec<Id>) {
+        let mut fragment = Arena {
+            prefix: Arc::clone(&self.prefix),
+            nodes: vec![],
+            scopes: self.scopes[..shared_scopes].to_vec(),
+        };
+        let roots = fragment.import(self, roots, shared_scopes);
+        (fragment, roots)
+    }
+    /// Fragments already contain exactly their dependency closure in topological
+    /// order. Move them directly instead of walking and cloning the DAG again.
+    pub(super) fn append_fragment(
+        &mut self,
+        fragment: Arena,
+        mut roots: Vec<Id>,
+        shared_scopes: usize,
+    ) -> Vec<Id> {
+        assert!(Arc::ptr_eq(&self.prefix, &fragment.prefix));
+        let base = self.prefix.len();
+        let node_offset = self.nodes.len();
+        let scope_offset = self.scopes.len() - shared_scopes;
+        let map_id = |id: &mut usize| {
+            if *id >= base {
+                *id += node_offset;
+            }
+        };
+        let map_scope = |scope: &mut usize| {
+            if *scope >= shared_scopes {
+                *scope += scope_offset;
+            }
+        };
+        self.scopes.extend(
+            fragment
+                .scopes
+                .into_iter()
+                .skip(shared_scopes)
+                .map(|mut scope| {
+                    if let Some(parent) = &mut scope.parent {
+                        map_scope(parent);
+                    }
+                    scope
+                }),
+        );
+        self.nodes
+            .extend(fragment.nodes.into_iter().map(|mut node| {
+                map_scope(&mut node.scope);
+                for id in &mut node.premises {
+                    map_id(id);
+                }
+                match &mut node.rule {
+                    Rule::Discharge(scope) => map_scope(scope),
+                    Rule::Join { scopes, .. } => scopes.iter_mut().for_each(map_scope),
+                    _ => {}
+                }
+                node
+            }));
+        roots.iter_mut().for_each(map_id);
+        roots
     }
     pub fn certificate(&self, n: usize, root: Id) -> Certificate {
         let mut used = BTreeSet::new();

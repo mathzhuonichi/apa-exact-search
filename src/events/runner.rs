@@ -19,7 +19,7 @@ pub struct Config {
     /// Root preparation deadline, including table construction; zero is unlimited.
     #[arg(long, default_value_t = 120.0)]
     pub root_seconds: f64,
-    /// Zero uses all logical processors.
+    /// Root probe workers and DFS lanes; zero uses all logical processors.
     #[arg(long, default_value_t = 0)]
     pub threads: usize,
     /// Optional single-policy control; otherwise alternate the two policies.
@@ -73,7 +73,7 @@ impl Default for Config {
             maximum: 113,
             seconds: 30.0,
             root_seconds: 120.0,
-            threads: 1,
+            threads: 0,
             policy: None,
             universal_members: false,
             prime_clauses: false,
@@ -166,7 +166,7 @@ fn engine(
         probe_remaining,
     }
 }
-fn accept(report: &mut Report, outcome: Outcome, cert: Option<Certificate>) {
+pub(super) fn accept(report: &mut Report, outcome: Outcome, cert: Option<Certificate>) {
     report.status = status(&outcome).into();
     match outcome {
         Outcome::Yes(values) => {
@@ -221,6 +221,11 @@ pub fn run(cfg: Config, interrupted: Arc<AtomicBool>) -> Result<Report, String> 
         return Err("seed-probe requires probes, universal-members, and prime-clauses".into());
     }
     let started = Instant::now();
+    let threads = if cfg.threads == 0 {
+        std::thread::available_parallelism().map_or(1, usize::from)
+    } else {
+        cfg.threads
+    };
     let root_deadline = deadline(started, cfg.root_seconds)?;
     deadline(started, cfg.seconds)?;
     let p = Arc::new(Problem::new(cfg.maximum)?);
@@ -274,7 +279,11 @@ pub fn run(cfg: Config, interrupted: Arc<AtomicBool>) -> Result<Report, String> 
             result
         };
         let result = if result == Propagation::Quiet && cfg.root_strengthen {
-            prep.strengthen_root(&mut root)
+            if threads == 1 {
+                prep.strengthen_root(&mut root)
+            } else {
+                super::parallel_root::strengthen(&mut prep, &mut root, threads)?
+            }
         } else {
             result
         };
@@ -299,11 +308,6 @@ pub fn run(cfg: Config, interrupted: Arc<AtomicBool>) -> Result<Report, String> 
         return Ok(report);
     }
     root.freeze();
-    let threads = if cfg.threads == 0 {
-        std::thread::available_parallelism().map_or(1, usize::from)
-    } else {
-        cfg.threads
-    };
     let search_started = Instant::now();
     let search_deadline = deadline(search_started, cfg.seconds)?;
     let (tx, rx) = mpsc::channel();

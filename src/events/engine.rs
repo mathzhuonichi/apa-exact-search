@@ -49,6 +49,40 @@ pub struct Metrics {
     pub root_strengthen_rounds: usize,
     pub root_cover_sums: Vec<usize>,
     pub root_forced_absences: Vec<usize>,
+    pub root_parallel_batches: usize,
+    pub root_parallel_workers: usize,
+}
+impl Metrics {
+    pub(super) fn add_probe_work(&mut self, other: &Self) {
+        macro_rules! add {
+            ($($field:ident),* $(,)?) => { $(self.$field += other.$field;)* };
+        }
+        add!(
+            conflicts,
+            witness_kills,
+            repeated_kill_attempts,
+            endpoint_occ_visits,
+            endpoint_sum_occ_visits,
+            full_domain_enumerations,
+            dirty_domain_events,
+            low_pair_activations,
+            new_members,
+            bans,
+            bad_products,
+            product_counter_updates,
+            prime_clause_fires,
+            even_bound_fires,
+            probe_calls,
+            probe_refutations,
+            probe_pauses,
+            probe_unstarted_cases,
+            probe_common_members,
+            probe_common_bans,
+            probe_common_e,
+            probe_common_g,
+            probe_events
+        );
+    }
 }
 #[derive(Clone, Debug)]
 enum Event {
@@ -229,8 +263,21 @@ impl State {
         self.trail.clear();
         self.proof.freeze();
     }
+    pub(super) fn delta(&self, cp: &Checkpoint) -> BTreeMap<Fact, Id> {
+        self.trail[cp.trail..]
+            .iter()
+            .filter_map(|undo| match *undo {
+                Undo::Member(v) => Some((Fact::Member(v), self.member[v].unwrap())),
+                Undo::Ban(v) => Some((Fact::Ban(v), self.banned[v].unwrap())),
+                Undo::Bad(v) => Some((Fact::Bad(v), self.bad[v].unwrap())),
+                Undo::Pair(d, e) => Some((Fact::Pair(d, e), self.pairs[&(d, e)])),
+                _ => None,
+            })
+            .collect()
+    }
 }
 
+#[derive(Clone)]
 pub struct Limits {
     pub deadline: Option<Instant>,
     pub cancel: Arc<AtomicBool>,
@@ -669,7 +716,7 @@ impl Engine {
             }
         })
     }
-    fn apply(&mut self, s: &mut State, fact: Fact, r: Id) -> Result<(), Id> {
+    pub(super) fn apply(&mut self, s: &mut State, fact: Fact, r: Id) -> Result<(), Id> {
         match fact {
             Fact::Member(v) => self.force(s, v, r),
             Fact::Ban(v) => self.ban(s, v, r),

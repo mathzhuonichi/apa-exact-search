@@ -1,25 +1,54 @@
-# Future handoff — do not resume yet
+# Handoff after paused optimized continuation through 224929
 
-Current administrative state: PAUSED_BY_USER.
+Current execution state: PAUSED_FOR_RUNTIME_DIAGNOSIS.
 
-1. Read `progress/STATUS.json`. The immediate unresolved cases are 147907 and
-   147923; preserve the latest seven NO results and inherited completed entries.
-2. Correct and test the first-UNKNOWN global cancellation policy before any
-   production continuation. No such code change was made during publication.
-3. Reassess concurrency and the memory monitor after the reported machine
-   sluggishness. Do not assume the historical defaults are authorized.
-4. Obtain the user's explicit instruction to resume. Then build the binaries
-   locally and record their new hashes, compiler, flags, and platform.
-5. Use the included roots to investigate unresolved cases. Any conditional
-   probe NO is only conditional; it must not be passed off as a whole-root NO.
-6. Do not pass normalized historical commands straight to a shell. Those
-   commands are provenance records. Create fresh output directories and
-   regenerate local paths for any newly authorized run.
+The user explicitly authorized continuation with the optimized Rust event-v2
+solver after the 221969 resolution. The optimized `--threads 0`
+configuration independently solved the continuation candidates through
+224929 as complete `NO`/`VERIFIED_NO` results. Their proof, result, and replay
+records are under `evidence/events-v2-optimized-continuation/`; the run ledger
+records the exact options and resource observations.
 
-The worker/coordinator protocol remains: the worker reports a bottleneck and
-its full evidence to the coordinating agent; the coordinator diagnoses and
-validates improvements. An execution-stage goal ending is not the end of the
-research request. At present, both research and worker execution remain paused.
+The accepted complete-residual semantics now extend contiguous exclusion
+through 224929. The next unstarted residual is 224999. This is a solver NO
+boundary supported by independently replayed event certificates, not a formal
+proof-assistant theorem.
+
+The user then requested a pause to diagnose why current candidates often take
+longer than the earlier approximately-one-second path. The current command
+uses `--root-strengthen` with `--root-seconds 120` and `--probe-events 200000000`;
+the `--seconds 1` value only bounds the lane search after root preparation.
+Unlike the older `solve`/`campaign` path, the `solve-events` CLI also has no
+`--complete-prefix-base` option, so this continuation did not apply the
+authorized maximum-deletion root constraint.
+All recent slow cases spent their time in shared-root strengthening and had
+`lane_search_time: 0`. Root batches reach many processors, but batch joins,
+proof-fragment import, serial `quiesce`, and serial `prime_chains` create long
+tails and candidate-specific propagation work.
+
+Two `sol` reviews classified the near-cap cases 224071 and 224869 as
+candidate-specific propagation amplified by that known batch-barrier design,
+not an algorithmic regression or a genuine solution. No solver process remains
+running. Any future algorithm revision still needs known-outcome regression
+checks.
+
+Maximum 221969 has a complete seed-free arithmetic exclusion certificate in
+`evidence/221969/`. Read its `README.md`, `result.json`, and `verification.json`.
+Run `python evidence/221969/verify.py` to replay it without launching a search.
+The checker derives its initial root from only 1, 2, and 221969; the proof uses
+neither historical seed assumptions nor maximum deletion. This is independently
+replayed computational arithmetic evidence, not a proof-assistant theorem.
+
+The certificate for 221969 does not independently re-audit older campaign
+results. The older 30-second UNKNOWN remains a historical record and was not
+rewritten into a solver NO.
+
+The older 30-second UNKNOWN and its profile remain historical records in
+`outputs/automatic/run-20260921-154351-288/221969.json` and
+`docs/GPT6_HANDOFF_221969.md`. They are not edited into retrospective solver
+NO results. Preserve UNKNOWN versus complete NO, and distinguish conditional
+branch refutations, independently replayed arithmetic evidence, and formal
+proof.
 
 ## Included evidence and omissions
 

@@ -3,17 +3,21 @@
 CXX ?= c++
 CXXFLAGS ?= -O3 -std=c++17 -Wall -Wextra
 
-.PHONY: help check syntax build
+.PHONY: help check syntax build rust-build
 help:
-	@echo "Paused research snapshot. Safe commands: make check; make build (compile only)."
+	@echo "Paused research snapshot. Safe commands: make check; make rust-build."
 	@echo "Read docs/STATUS.md before considering any search."
 check:
-	python3 tools/check_snapshot.py
+	cargo fmt --check
+	cargo check
+	cargo test
 syntax:
 	$(CXX) -std=c++17 -fsyntax-only src/fixed_max_factor_branch_v11_20260920.cpp
 	$(CXX) -std=c++17 -fsyntax-only src/fixed_max_unary_propagation_20260920.cpp
 	$(CXX) -std=c++17 -fsyntax-only src/fixed_max_factor_branch_v9_20260920.cpp
 build: build/solver build/root-propagator build/baseline
+rust-build:
+	cargo build --release
 build/solver: src/fixed_max_factor_branch_v11_20260920.cpp
 	mkdir -p build
 	$(CXX) $(CXXFLAGS) $< -o $@

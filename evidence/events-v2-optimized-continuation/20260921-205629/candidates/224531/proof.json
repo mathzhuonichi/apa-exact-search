@@ -1,0 +1,11552 @@
+{
+  "maximum": 224531,
+  "nodes": [
+    {
+      "scope": 0,
+      "fact": {
+        "Member": 1
+      },
+      "rule": "Initial",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Member": 2
+      },
+      "rule": "Initial",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Member": 224531
+      },
+      "rule": "Initial",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Active": 224533
+      },
+      "rule": "Sum",
+      "premises": [
+        2,
+        1
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 224563
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 224569
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 224579
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 224617
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 224629
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 224633
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 224677
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 224683
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 224699
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 224737
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 224863
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 225461
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 225493
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 225523
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 225821
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 226133
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 226409
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 226531
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 226663
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 226813
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 226903
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 227869
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 228757
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 229213
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 229981
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 230003
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 230389
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 231719
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 231839
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 231871
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 232699
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 233141
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 233713
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 234809
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 236377
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 237763
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 238213
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 239849
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 240883
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 241847
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 242647
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 243553
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 246769
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 248569
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 253543
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 254141
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 254437
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 257731
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 259163
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 259201
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 259691
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 260339
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 267433
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 269387
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 271729
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 273997
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 275083
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 280729
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 280843
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 281557
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 284707
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 286591
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 287977
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 288697
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 294787
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 295237
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 296353
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 296749
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 301789
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 312401
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 327247
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 331693
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 336829
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 337873
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 340447
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 341743
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 354373
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 354877
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 357967
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 365809
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 366097
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 372733
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 373777
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 379009
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 393709
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 400033
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 409153
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 421417
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Bad": 427249
+      },
+      "rule": "Empty",
+      "premises": []
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Member": 31
+      },
+      "rule": {
+        "Unique": [
+          31,
+          7243
+        ]
+      },
+      "premises": [
+        3
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Member": 7243
+      },
+      "rule": {
+        "Unique": [
+          31,
+          7243
+        ]
+      },
+      "premises": [
+        3
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 32
+      },
+      "rule": "BadSum",
+      "premises": [
+        4,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 38
+      },
+      "rule": "BadSum",
+      "premises": [
+        5,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 48
+      },
+      "rule": "BadSum",
+      "premises": [
+        6,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 146
+      },
+      "rule": "BadSum",
+      "premises": [
+        10,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 206
+      },
+      "rule": "BadSum",
+      "premises": [
+        13,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 332
+      },
+      "rule": "BadSum",
+      "premises": [
+        14,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 2372
+      },
+      "rule": "BadSum",
+      "premises": [
+        24,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 4226
+      },
+      "rule": "BadSum",
+      "premises": [
+        26,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 4682
+      },
+      "rule": "BadSum",
+      "premises": [
+        27,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 8168
+      },
+      "rule": "BadSum",
+      "premises": [
+        34,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 9182
+      },
+      "rule": "BadSum",
+      "premises": [
+        36,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 11846
+      },
+      "rule": "BadSum",
+      "premises": [
+        38,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 13682
+      },
+      "rule": "BadSum",
+      "premises": [
+        40,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 19022
+      },
+      "rule": "BadSum",
+      "premises": [
+        45,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 22238
+      },
+      "rule": "BadSum",
+      "premises": [
+        46,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 47198
+      },
+      "rule": "BadSum",
+      "premises": [
+        58,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 49466
+      },
+      "rule": "BadSum",
+      "premises": [
+        59,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 56198
+      },
+      "rule": "BadSum",
+      "premises": [
+        61,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 57026
+      },
+      "rule": "BadSum",
+      "premises": [
+        63,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 64166
+      },
+      "rule": "BadSum",
+      "premises": [
+        67,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 70706
+      },
+      "rule": "BadSum",
+      "premises": [
+        69,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 71822
+      },
+      "rule": "BadSum",
+      "premises": [
+        70,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 72218
+      },
+      "rule": "BadSum",
+      "premises": [
+        71,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 77258
+      },
+      "rule": "BadSum",
+      "premises": [
+        72,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 102716
+      },
+      "rule": "BadSum",
+      "premises": [
+        74,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 112298
+      },
+      "rule": "BadSum",
+      "premises": [
+        76,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 113342
+      },
+      "rule": "BadSum",
+      "premises": [
+        77,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 115916
+      },
+      "rule": "BadSum",
+      "premises": [
+        78,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 117212
+      },
+      "rule": "BadSum",
+      "premises": [
+        79,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 129842
+      },
+      "rule": "BadSum",
+      "premises": [
+        80,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 130346
+      },
+      "rule": "BadSum",
+      "premises": [
+        81,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 133436
+      },
+      "rule": "BadSum",
+      "premises": [
+        82,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 141278
+      },
+      "rule": "BadSum",
+      "premises": [
+        83,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 141566
+      },
+      "rule": "BadSum",
+      "premises": [
+        84,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 148202
+      },
+      "rule": "BadSum",
+      "premises": [
+        85,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 149246
+      },
+      "rule": "BadSum",
+      "premises": [
+        86,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 154478
+      },
+      "rule": "BadSum",
+      "premises": [
+        87,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 169178
+      },
+      "rule": "BadSum",
+      "premises": [
+        88,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 175502
+      },
+      "rule": "BadSum",
+      "premises": [
+        89,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 184622
+      },
+      "rule": "BadSum",
+      "premises": [
+        90,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 196886
+      },
+      "rule": "BadSum",
+      "premises": [
+        91,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 202718
+      },
+      "rule": "BadSum",
+      "premises": [
+        92,
+        2
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Active": 231774
+      },
+      "rule": "Sum",
+      "premises": [
+        2,
+        94
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          32
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        95
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          32,
+          4591
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        95
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          32,
+          5923
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        95
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          32,
+          6841
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        95
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          32,
+          11119
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        95
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          38
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        96
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          48
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        97
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          146,
+          1538
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        98
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          206
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        99
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          332,
+          1019
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        100
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          2372
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        101
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          4226
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        102
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          4682
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        103
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          8168
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        104
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          16,
+          9182
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        105
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          16,
+          11846
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        106
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          16,
+          13682
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        107
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          3,
+          19022
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        108
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          16,
+          22238
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        109
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          2,
+          47198
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        110
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          3,
+          49466
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        111
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          2,
+          56198
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        112
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          57026
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        113
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          64166
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        114
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          70706
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        115
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          2,
+          71822
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        116
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          2,
+          72218
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        117
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          3,
+          77258
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        118
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          102716
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        119
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          112298
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        120
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          2,
+          113342
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        121
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          115916
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        122
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          117212
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        123
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          2,
+          129842
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        124
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          2,
+          130346
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        125
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          133436
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        126
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          141278
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        127
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          2,
+          141566
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        128
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          148202
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        129
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          2,
+          149246
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        130
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          154478
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        131
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          169178
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        132
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          2,
+          175502
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        133
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          184622
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        134
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          196886
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        135
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          202718
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        136
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Active": 3
+      },
+      "rule": "Sum",
+      "premises": [
+        1,
+        0
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Member": 3
+      },
+      "rule": {
+        "Unique": [
+          1,
+          3
+        ]
+      },
+      "premises": [
+        184
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Active": 32
+      },
+      "rule": "Sum",
+      "premises": [
+        93,
+        0
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Active": 5
+      },
+      "rule": "Sum",
+      "premises": [
+        185,
+        1
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Member": 5
+      },
+      "rule": {
+        "Unique": [
+          1,
+          5
+        ]
+      },
+      "premises": [
+        187
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Active": 7
+      },
+      "rule": "Sum",
+      "premises": [
+        188,
+        1
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Member": 7
+      },
+      "rule": {
+        "Unique": [
+          1,
+          7
+        ]
+      },
+      "premises": [
+        189
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Active": 8
+      },
+      "rule": "Sum",
+      "premises": [
+        188,
+        185
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Active": 38
+      },
+      "rule": "Sum",
+      "premises": [
+        190,
+        93
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Member": 19
+      },
+      "rule": {
+        "Unique": [
+          2,
+          19
+        ]
+      },
+      "premises": [
+        192,
+        143
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Active": 12
+      },
+      "rule": "Sum",
+      "premises": [
+        190,
+        188
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Active": 20
+      },
+      "rule": "Sum",
+      "premises": [
+        193,
+        0
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Active": 7262
+      },
+      "rule": "Sum",
+      "premises": [
+        193,
+        94
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 112314
+      },
+      "rule": {
+        "PrimeChain": {
+          "candidate": 112314,
+          "steps": [
+            [
+              7243,
+              112314,
+              119557
+            ],
+            [
+              119557,
+              112314,
+              231871
+            ]
+          ]
+        }
+      },
+      "premises": [
+        0,
+        2,
+        93,
+        94,
+        185,
+        188,
+        190,
+        193,
+        1
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          112314
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        197
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 112874
+      },
+      "rule": {
+        "PrimeChain": {
+          "candidate": 112874,
+          "steps": [
+            [
+              3,
+              112874,
+              112877
+            ],
+            [
+              112877,
+              112874,
+              225751
+            ]
+          ]
+        }
+      },
+      "premises": [
+        0,
+        2,
+        93,
+        94,
+        185,
+        188,
+        190,
+        193,
+        1
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          2,
+          112874
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        199
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 130334
+      },
+      "rule": {
+        "PrimeChain": {
+          "candidate": 130334,
+          "steps": [
+            [
+              3,
+              130334,
+              130337
+            ],
+            [
+              130337,
+              130334,
+              260671
+            ]
+          ]
+        }
+      },
+      "premises": [
+        0,
+        2,
+        93,
+        94,
+        185,
+        188,
+        190,
+        193,
+        1
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          130334
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        201
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 140398
+      },
+      "rule": {
+        "PrimeChain": {
+          "candidate": 140398,
+          "steps": [
+            [
+              3,
+              140398,
+              140401
+            ],
+            [
+              19,
+              140398,
+              140417
+            ],
+            [
+              140417,
+              2,
+              140419
+            ],
+            [
+              140419,
+              140398,
+              280817
+            ]
+          ]
+        }
+      },
+      "premises": [
+        0,
+        2,
+        93,
+        94,
+        185,
+        188,
+        190,
+        193,
+        1
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          140398
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        203
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 143644
+      },
+      "rule": {
+        "PrimeChain": {
+          "candidate": 143644,
+          "steps": [
+            [
+              7,
+              143644,
+              143651
+            ],
+            [
+              143651,
+              2,
+              143653
+            ],
+            [
+              143653,
+              143644,
+              287297
+            ]
+          ]
+        }
+      },
+      "premises": [
+        0,
+        2,
+        93,
+        94,
+        185,
+        188,
+        190,
+        193,
+        1
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          143644
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        205
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 148398
+      },
+      "rule": {
+        "PrimeChain": {
+          "candidate": 148398,
+          "steps": [
+            [
+              1,
+              148398,
+              148399
+            ],
+            [
+              31,
+              148398,
+              148429
+            ],
+            [
+              5,
+              148398,
+              148403
+            ],
+            [
+              148399,
+              148398,
+              296797
+            ]
+          ]
+        }
+      },
+      "premises": [
+        0,
+        2,
+        93,
+        94,
+        185,
+        188,
+        190,
+        193,
+        1
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          148398
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        207
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 177904
+      },
+      "rule": {
+        "PrimeChain": {
+          "candidate": 177904,
+          "steps": [
+            [
+              3,
+              177904,
+              177907
+            ],
+            [
+              177907,
+              177904,
+              355811
+            ]
+          ]
+        }
+      },
+      "premises": [
+        0,
+        2,
+        93,
+        94,
+        185,
+        188,
+        190,
+        193,
+        1
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          2,
+          177904
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        209
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 182918
+      },
+      "rule": {
+        "PrimeChain": {
+          "candidate": 182918,
+          "steps": [
+            [
+              3,
+              182918,
+              182921
+            ],
+            [
+              182921,
+              182918,
+              365839
+            ]
+          ]
+        }
+      },
+      "premises": [
+        0,
+        2,
+        93,
+        94,
+        185,
+        188,
+        190,
+        193,
+        1
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          182918
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        211
+      ]
+    },
+    {
+      "scope": 1,
+      "fact": {
+        "Member": 8
+      },
+      "rule": "Assumption",
+      "premises": []
+    },
+    {
+      "scope": 1,
+      "fact": {
+        "Active": 11
+      },
+      "rule": "Sum",
+      "premises": [
+        213,
+        185
+      ]
+    },
+    {
+      "scope": 1,
+      "fact": {
+        "Member": 11
+      },
+      "rule": {
+        "Unique": [
+          1,
+          11
+        ]
+      },
+      "premises": [
+        214
+      ]
+    },
+    {
+      "scope": 1,
+      "fact": {
+        "Active": 13
+      },
+      "rule": "Sum",
+      "premises": [
+        213,
+        188
+      ]
+    },
+    {
+      "scope": 1,
+      "fact": {
+        "Member": 13
+      },
+      "rule": {
+        "Unique": [
+          1,
+          13
+        ]
+      },
+      "premises": [
+        216
+      ]
+    },
+    {
+      "scope": 2,
+      "fact": {
+        "Member": 4
+      },
+      "rule": "Assumption",
+      "premises": []
+    },
+    {
+      "scope": 2,
+      "fact": {
+        "Active": 11
+      },
+      "rule": "Sum",
+      "premises": [
+        218,
+        190
+      ]
+    },
+    {
+      "scope": 2,
+      "fact": {
+        "Member": 11
+      },
+      "rule": {
+        "Unique": [
+          1,
+          11
+        ]
+      },
+      "premises": [
+        219
+      ]
+    },
+    {
+      "scope": 2,
+      "fact": {
+        "Active": 13
+      },
+      "rule": "Sum",
+      "premises": [
+        220,
+        1
+      ]
+    },
+    {
+      "scope": 2,
+      "fact": {
+        "Member": 13
+      },
+      "rule": {
+        "Unique": [
+          1,
+          13
+        ]
+      },
+      "premises": [
+        221
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Member": 11
+      },
+      "rule": {
+        "Join": {
+          "cover": {
+            "Factor": 8
+          },
+          "scopes": [
+            1,
+            2
+          ],
+          "context": 1
+        }
+      },
+      "premises": [
+        191,
+        215,
+        220
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Member": 13
+      },
+      "rule": {
+        "Join": {
+          "cover": {
+            "Factor": 8
+          },
+          "scopes": [
+            1,
+            2
+          ],
+          "context": 1
+        }
+      },
+      "premises": [
+        191,
+        217,
+        222
+      ]
+    },
+    {
+      "scope": 3,
+      "fact": {
+        "Member": 12
+      },
+      "rule": "Assumption",
+      "premises": []
+    },
+    {
+      "scope": 3,
+      "fact": {
+        "Active": 17
+      },
+      "rule": "Sum",
+      "premises": [
+        225,
+        188
+      ]
+    },
+    {
+      "scope": 3,
+      "fact": {
+        "Member": 17
+      },
+      "rule": {
+        "Unique": [
+          1,
+          17
+        ]
+      },
+      "premises": [
+        226
+      ]
+    },
+    {
+      "scope": 4,
+      "fact": {
+        "Member": 6
+      },
+      "rule": "Assumption",
+      "premises": []
+    },
+    {
+      "scope": 4,
+      "fact": {
+        "Active": 11
+      },
+      "rule": "Sum",
+      "premises": [
+        228,
+        188
+      ]
+    },
+    {
+      "scope": 4,
+      "fact": {
+        "Member": 11
+      },
+      "rule": {
+        "Unique": [
+          1,
+          11
+        ]
+      },
+      "premises": [
+        229
+      ]
+    },
+    {
+      "scope": 4,
+      "fact": {
+        "Active": 17
+      },
+      "rule": "Sum",
+      "premises": [
+        230,
+        228
+      ]
+    },
+    {
+      "scope": 4,
+      "fact": {
+        "Member": 17
+      },
+      "rule": {
+        "Unique": [
+          1,
+          17
+        ]
+      },
+      "premises": [
+        231
+      ]
+    },
+    {
+      "scope": 5,
+      "fact": {
+        "Member": 4
+      },
+      "rule": "Assumption",
+      "premises": []
+    },
+    {
+      "scope": 5,
+      "fact": {
+        "Active": 11
+      },
+      "rule": "Sum",
+      "premises": [
+        233,
+        190
+      ]
+    },
+    {
+      "scope": 5,
+      "fact": {
+        "Member": 11
+      },
+      "rule": {
+        "Unique": [
+          1,
+          11
+        ]
+      },
+      "premises": [
+        234
+      ]
+    },
+    {
+      "scope": 5,
+      "fact": {
+        "Active": 13
+      },
+      "rule": "Sum",
+      "premises": [
+        235,
+        1
+      ]
+    },
+    {
+      "scope": 5,
+      "fact": {
+        "Member": 13
+      },
+      "rule": {
+        "Unique": [
+          1,
+          13
+        ]
+      },
+      "premises": [
+        236
+      ]
+    },
+    {
+      "scope": 5,
+      "fact": {
+        "Active": 17
+      },
+      "rule": "Sum",
+      "premises": [
+        237,
+        233
+      ]
+    },
+    {
+      "scope": 5,
+      "fact": {
+        "Member": 17
+      },
+      "rule": {
+        "Unique": [
+          1,
+          17
+        ]
+      },
+      "premises": [
+        238
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Member": 17
+      },
+      "rule": {
+        "Join": {
+          "cover": {
+            "Factor": 12
+          },
+          "scopes": [
+            3,
+            4,
+            5
+          ],
+          "context": 1
+        }
+      },
+      "premises": [
+        194,
+        227,
+        232,
+        239
+      ]
+    },
+    {
+      "scope": 6,
+      "fact": {
+        "Member": 20
+      },
+      "rule": "Assumption",
+      "premises": []
+    },
+    {
+      "scope": 6,
+      "fact": {
+        "Active": 23
+      },
+      "rule": "Sum",
+      "premises": [
+        241,
+        185
+      ]
+    },
+    {
+      "scope": 6,
+      "fact": {
+        "Member": 23
+      },
+      "rule": {
+        "Unique": [
+          1,
+          23
+        ]
+      },
+      "premises": [
+        242
+      ]
+    },
+    {
+      "scope": 7,
+      "fact": {
+        "Member": 10
+      },
+      "rule": "Assumption",
+      "premises": []
+    },
+    {
+      "scope": 7,
+      "fact": {
+        "Active": 13
+      },
+      "rule": "Sum",
+      "premises": [
+        244,
+        185
+      ]
+    },
+    {
+      "scope": 7,
+      "fact": {
+        "Member": 13
+      },
+      "rule": {
+        "Unique": [
+          1,
+          13
+        ]
+      },
+      "premises": [
+        245
+      ]
+    },
+    {
+      "scope": 7,
+      "fact": {
+        "Active": 23
+      },
+      "rule": "Sum",
+      "premises": [
+        246,
+        244
+      ]
+    },
+    {
+      "scope": 7,
+      "fact": {
+        "Member": 23
+      },
+      "rule": {
+        "Unique": [
+          1,
+          23
+        ]
+      },
+      "premises": [
+        247
+      ]
+    },
+    {
+      "scope": 8,
+      "fact": {
+        "Member": 4
+      },
+      "rule": "Assumption",
+      "premises": []
+    },
+    {
+      "scope": 8,
+      "fact": {
+        "Active": 23
+      },
+      "rule": "Sum",
+      "premises": [
+        249,
+        193
+      ]
+    },
+    {
+      "scope": 8,
+      "fact": {
+        "Member": 23
+      },
+      "rule": {
+        "Unique": [
+          1,
+          23
+        ]
+      },
+      "premises": [
+        250
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Member": 23
+      },
+      "rule": {
+        "Join": {
+          "cover": {
+            "Factor": 20
+          },
+          "scopes": [
+            6,
+            7,
+            8
+          ],
+          "context": 1
+        }
+      },
+      "premises": [
+        195,
+        243,
+        248,
+        251
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 4
+      },
+      "rule": "Assumption",
+      "premises": []
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 6
+      },
+      "rule": "Assumption",
+      "premises": []
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 224537
+      },
+      "rule": "Sum",
+      "premises": [
+        2,
+        254
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 151
+      },
+      "rule": {
+        "Unique": [
+          151,
+          1487
+        ]
+      },
+      "premises": [
+        255
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 1487
+      },
+      "rule": {
+        "Unique": [
+          151,
+          1487
+        ]
+      },
+      "premises": [
+        255
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 7247
+      },
+      "rule": "Sum",
+      "premises": [
+        253,
+        94
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 7247
+      },
+      "rule": {
+        "Unique": [
+          1,
+          7247
+        ]
+      },
+      "premises": [
+        258
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 11
+      },
+      "rule": "Sum",
+      "premises": [
+        253,
+        190
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 11
+      },
+      "rule": {
+        "Unique": [
+          1,
+          11
+        ]
+      },
+      "premises": [
+        260
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 37
+      },
+      "rule": "Sum",
+      "premises": [
+        254,
+        93
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 37
+      },
+      "rule": {
+        "Unique": [
+          1,
+          37
+        ]
+      },
+      "premises": [
+        262
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 157
+      },
+      "rule": "Sum",
+      "premises": [
+        256,
+        254
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 157
+      },
+      "rule": {
+        "Unique": [
+          1,
+          157
+        ]
+      },
+      "premises": [
+        264
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 1493
+      },
+      "rule": "Sum",
+      "premises": [
+        257,
+        254
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 1493
+      },
+      "rule": {
+        "Unique": [
+          1,
+          1493
+        ]
+      },
+      "premises": [
+        266
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 7253
+      },
+      "rule": "Sum",
+      "premises": [
+        259,
+        254
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 7253
+      },
+      "rule": {
+        "Unique": [
+          1,
+          7253
+        ]
+      },
+      "premises": [
+        268
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 41
+      },
+      "rule": "Sum",
+      "premises": [
+        263,
+        253
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 41
+      },
+      "rule": {
+        "Unique": [
+          1,
+          41
+        ]
+      },
+      "premises": [
+        270
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 43
+      },
+      "rule": "Sum",
+      "premises": [
+        263,
+        254
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 43
+      },
+      "rule": {
+        "Unique": [
+          1,
+          43
+        ]
+      },
+      "premises": [
+        272
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 163
+      },
+      "rule": "Sum",
+      "premises": [
+        265,
+        254
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 163
+      },
+      "rule": {
+        "Unique": [
+          1,
+          163
+        ]
+      },
+      "premises": [
+        274
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 47
+      },
+      "rule": "Sum",
+      "premises": [
+        271,
+        254
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 47
+      },
+      "rule": {
+        "Unique": [
+          1,
+          47
+        ]
+      },
+      "premises": [
+        276
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 224578
+      },
+      "rule": "Sum",
+      "premises": [
+        2,
+        277
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 112289
+      },
+      "rule": {
+        "Unique": [
+          2,
+          112289
+        ]
+      },
+      "premises": [
+        278
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 112394
+      },
+      "rule": "BadSum",
+      "premises": [
+        11,
+        279
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 119582
+      },
+      "rule": "BadSum",
+      "premises": [
+        33,
+        279
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 141254
+      },
+      "rule": "BadSum",
+      "premises": [
+        48,
+        279
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 146912
+      },
+      "rule": "BadSum",
+      "premises": [
+        53,
+        279
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 175688
+      },
+      "rule": "BadSum",
+      "premises": [
+        66,
+        279
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 182498
+      },
+      "rule": "BadSum",
+      "premises": [
+        68,
+        279
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          112394
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        280
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          119582
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        281
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          2,
+          141254
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        282
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          146912
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        283
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          175688
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        284
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          182498
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        285
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 167
+      },
+      "rule": "Sum",
+      "premises": [
+        275,
+        253
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 167
+      },
+      "rule": {
+        "Unique": [
+          1,
+          167
+        ]
+      },
+      "premises": [
+        292
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 224698
+      },
+      "rule": "Sum",
+      "premises": [
+        2,
+        293
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 112349
+      },
+      "rule": {
+        "Unique": [
+          2,
+          112349
+        ]
+      },
+      "premises": [
+        294
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 112334
+      },
+      "rule": "BadSum",
+      "premises": [
+        11,
+        295
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 168494
+      },
+      "rule": "BadSum",
+      "premises": [
+        62,
+        295
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 172358
+      },
+      "rule": "BadSum",
+      "premises": [
+        64,
+        295
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 174242
+      },
+      "rule": "BadSum",
+      "premises": [
+        65,
+        295
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          112334
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        296
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          168494
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        297
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          172358
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        298
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          174242
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        299
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 206
+      },
+      "rule": "Sum",
+      "premises": [
+        275,
+        273
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 103
+      },
+      "rule": {
+        "Unique": [
+          2,
+          103
+        ]
+      },
+      "premises": [
+        304,
+        146
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 53
+      },
+      "rule": "Sum",
+      "premises": [
+        277,
+        254
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 53
+      },
+      "rule": {
+        "Unique": [
+          1,
+          53
+        ]
+      },
+      "premises": [
+        306
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 112291
+      },
+      "rule": "Sum",
+      "premises": [
+        279,
+        1
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 112291
+      },
+      "rule": {
+        "Unique": [
+          1,
+          112291
+        ]
+      },
+      "premises": [
+        308
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 112342
+      },
+      "rule": "BadSum",
+      "premises": [
+        9,
+        309
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 113842
+      },
+      "rule": "BadSum",
+      "premises": [
+        19,
+        309
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          112342
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        310
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          113842
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        311
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 119542
+      },
+      "rule": "Sum",
+      "premises": [
+        279,
+        269
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 113842
+      },
+      "rule": "Sum",
+      "premises": [
+        295,
+        267
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 56921
+      },
+      "rule": {
+        "Unique": [
+          2,
+          56921
+        ]
+      },
+      "premises": [
+        315,
+        313
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 112396
+      },
+      "rule": "Sum",
+      "premises": [
+        295,
+        277
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 112342
+      },
+      "rule": "Sum",
+      "premises": [
+        307,
+        279
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 56171
+      },
+      "rule": {
+        "Unique": [
+          2,
+          56171
+        ]
+      },
+      "premises": [
+        318,
+        312
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 280702
+      },
+      "rule": "Sum",
+      "premises": [
+        2,
+        319
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 168446
+      },
+      "rule": "BadSum",
+      "premises": [
+        7,
+        319
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 168458
+      },
+      "rule": "BadSum",
+      "premises": [
+        8,
+        319
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 218912
+      },
+      "rule": "BadSum",
+      "premises": [
+        60,
+        319
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 140351
+      },
+      "rule": {
+        "Unique": [
+          2,
+          140351
+        ]
+      },
+      "premises": [
+        320
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          168446
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        321
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          168458
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        322
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          218912
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        323
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 84386
+      },
+      "rule": "BadSum",
+      "premises": [
+        13,
+        324
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          84386
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        328
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 112298
+      },
+      "rule": "Sum",
+      "premises": [
+        309,
+        190
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 56149
+      },
+      "rule": {
+        "Unique": [
+          2,
+          56149
+        ]
+      },
+      "premises": [
+        330,
+        167
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 203542
+      },
+      "rule": "BadSum",
+      "premises": [
+        54,
+        331
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 213238
+      },
+      "rule": "BadSum",
+      "premises": [
+        57,
+        331
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          203542
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        332
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          213238
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        333
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 112297
+      },
+      "rule": "Sum",
+      "premises": [
+        309,
+        254
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 112297
+      },
+      "rule": {
+        "Unique": [
+          1,
+          112297
+        ]
+      },
+      "premises": [
+        336
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 119542
+      },
+      "rule": "BadSum",
+      "premises": [
+        32,
+        337
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          119542
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        338
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 59771
+      },
+      "rule": {
+        "Unique": [
+          2,
+          59771
+        ]
+      },
+      "premises": [
+        314,
+        339
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 284302
+      },
+      "rule": "Sum",
+      "premises": [
+        2,
+        340
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 142151
+      },
+      "rule": {
+        "Unique": [
+          2,
+          142151
+        ]
+      },
+      "premises": [
+        341
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 88238
+      },
+      "rule": "BadSum",
+      "premises": [
+        30,
+        342
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          88238
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        343
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 112334
+      },
+      "rule": "Sum",
+      "premises": [
+        309,
+        273
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 56167
+      },
+      "rule": {
+        "Unique": [
+          2,
+          56167
+        ]
+      },
+      "premises": [
+        345,
+        300
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 112394
+      },
+      "rule": "Sum",
+      "premises": [
+        309,
+        305
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 56197
+      },
+      "rule": {
+        "Unique": [
+          2,
+          56197
+        ]
+      },
+      "premises": [
+        347,
+        286
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 56923
+      },
+      "rule": "Sum",
+      "premises": [
+        316,
+        1
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 56923
+      },
+      "rule": {
+        "Unique": [
+          1,
+          56923
+        ]
+      },
+      "premises": [
+        349
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 141838
+      },
+      "rule": "Sum",
+      "premises": [
+        324,
+        257
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 140398
+      },
+      "rule": "Sum",
+      "premises": [
+        324,
+        277
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 70199
+      },
+      "rule": {
+        "Unique": [
+          2,
+          70199
+        ]
+      },
+      "premises": [
+        352,
+        204
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 112303
+      },
+      "rule": "Sum",
+      "premises": [
+        337,
+        254
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 112303
+      },
+      "rule": {
+        "Unique": [
+          1,
+          112303
+        ]
+      },
+      "premises": [
+        354
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 112396
+      },
+      "rule": "BadSum",
+      "premises": [
+        12,
+        355
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 141838
+      },
+      "rule": "BadSum",
+      "premises": [
+        49,
+        355
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          112396
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        356
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          141838
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        357
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 28099
+      },
+      "rule": {
+        "Unique": [
+          4,
+          28099
+        ]
+      },
+      "premises": [
+        317,
+        358,
+        159
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 70919
+      },
+      "rule": {
+        "Unique": [
+          2,
+          70919
+        ]
+      },
+      "premises": [
+        351,
+        359
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 196514
+      },
+      "rule": "BadSum",
+      "premises": [
+        56,
+        361
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          196514
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        362
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 168446
+      },
+      "rule": "Sum",
+      "premises": [
+        337,
+        331
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 84223
+      },
+      "rule": {
+        "Unique": [
+          2,
+          84223
+        ]
+      },
+      "premises": [
+        364,
+        325
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 142157
+      },
+      "rule": "Sum",
+      "premises": [
+        342,
+        254
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 142157
+      },
+      "rule": {
+        "Unique": [
+          1,
+          142157
+        ]
+      },
+      "premises": [
+        366
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 84374
+      },
+      "rule": "BadSum",
+      "premises": [
+        21,
+        367
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 98726
+      },
+      "rule": "BadSum",
+      "premises": [
+        42,
+        367
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 189536
+      },
+      "rule": "BadSum",
+      "premises": [
+        75,
+        367
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          84374
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        368
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          98726
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        369
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          189536
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        370
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 142162
+      },
+      "rule": "Sum",
+      "premises": [
+        342,
+        261
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 143644
+      },
+      "rule": "Sum",
+      "premises": [
+        342,
+        267
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 35911
+      },
+      "rule": {
+        "Unique": [
+          4,
+          35911
+        ]
+      },
+      "premises": [
+        375,
+        206,
+        163
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 168458
+      },
+      "rule": "Sum",
+      "premises": [
+        346,
+        309
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 84229
+      },
+      "rule": {
+        "Unique": [
+          2,
+          84229
+        ]
+      },
+      "premises": [
+        377,
+        326
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 168494
+      },
+      "rule": "Sum",
+      "premises": [
+        348,
+        337
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 84247
+      },
+      "rule": {
+        "Unique": [
+          2,
+          84247
+        ]
+      },
+      "premises": [
+        379,
+        301
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 142162
+      },
+      "rule": "BadSum",
+      "premises": [
+        20,
+        380
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          142162
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        381
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 71081
+      },
+      "rule": {
+        "Unique": [
+          2,
+          71081
+        ]
+      },
+      "premises": [
+        374,
+        382
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 64166
+      },
+      "rule": "Sum",
+      "premises": [
+        350,
+        94
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 32083
+      },
+      "rule": {
+        "Unique": [
+          2,
+          32083
+        ]
+      },
+      "premises": [
+        384,
+        161
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 57026
+      },
+      "rule": "Sum",
+      "premises": [
+        350,
+        305
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 28513
+      },
+      "rule": {
+        "Unique": [
+          2,
+          28513
+        ]
+      },
+      "premises": [
+        386,
+        160
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 70201
+      },
+      "rule": "Sum",
+      "premises": [
+        353,
+        1
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 70201
+      },
+      "rule": {
+        "Unique": [
+          1,
+          70201
+        ]
+      },
+      "premises": [
+        388
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 70921
+      },
+      "rule": "Sum",
+      "premises": [
+        361,
+        1
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 70921
+      },
+      "rule": {
+        "Unique": [
+          1,
+          70921
+        ]
+      },
+      "premises": [
+        390
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 84374
+      },
+      "rule": "Sum",
+      "premises": [
+        365,
+        256
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 42187
+      },
+      "rule": {
+        "Unique": [
+          2,
+          42187
+        ]
+      },
+      "premises": [
+        392,
+        371
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 84386
+      },
+      "rule": "Sum",
+      "premises": [
+        365,
+        275
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 42193
+      },
+      "rule": {
+        "Unique": [
+          2,
+          42193
+        ]
+      },
+      "premises": [
+        394,
+        329
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 196514
+      },
+      "rule": "Sum",
+      "premises": [
+        365,
+        309
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 98257
+      },
+      "rule": {
+        "Unique": [
+          2,
+          98257
+        ]
+      },
+      "premises": [
+        396,
+        363
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 142159
+      },
+      "rule": "Sum",
+      "premises": [
+        367,
+        1
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 142159
+      },
+      "rule": {
+        "Unique": [
+          1,
+          142159
+        ]
+      },
+      "premises": [
+        398
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 87844
+      },
+      "rule": "BadSum",
+      "premises": [
+        29,
+        399
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          2,
+          87844
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        400
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 282508
+      },
+      "rule": "Sum",
+      "premises": [
+        367,
+        324
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 70627
+      },
+      "rule": {
+        "Unique": [
+          4,
+          70627
+        ]
+      },
+      "premises": [
+        402,
+        288
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 148202
+      },
+      "rule": "Sum",
+      "premises": [
+        376,
+        309
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 74101
+      },
+      "rule": {
+        "Unique": [
+          2,
+          74101
+        ]
+      },
+      "premises": [
+        404,
+        176
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 213238
+      },
+      "rule": "Sum",
+      "premises": [
+        383,
+        367
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 106619
+      },
+      "rule": {
+        "Unique": [
+          2,
+          106619
+        ]
+      },
+      "premises": [
+        406,
+        335
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 32089
+      },
+      "rule": "Sum",
+      "premises": [
+        385,
+        254
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 32089
+      },
+      "rule": {
+        "Unique": [
+          1,
+          32089
+        ]
+      },
+      "premises": [
+        408
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 182498
+      },
+      "rule": "Sum",
+      "premises": [
+        389,
+        337
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 91249
+      },
+      "rule": {
+        "Unique": [
+          2,
+          91249
+        ]
+      },
+      "premises": [
+        410,
+        291
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 154478
+      },
+      "rule": "Sum",
+      "premises": [
+        393,
+        309
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 77239
+      },
+      "rule": {
+        "Unique": [
+          2,
+          77239
+        ]
+      },
+      "premises": [
+        412,
+        178
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 70706
+      },
+      "rule": "Sum",
+      "premises": [
+        395,
+        387
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 35353
+      },
+      "rule": {
+        "Unique": [
+          2,
+          35353
+        ]
+      },
+      "premises": [
+        414,
+        162
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 169178
+      },
+      "rule": "Sum",
+      "premises": [
+        397,
+        391
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 84589
+      },
+      "rule": {
+        "Unique": [
+          2,
+          84589
+        ]
+      },
+      "premises": [
+        416,
+        179
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 174242
+      },
+      "rule": "Sum",
+      "premises": [
+        399,
+        385
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 87121
+      },
+      "rule": {
+        "Unique": [
+          2,
+          87121
+        ]
+      },
+      "premises": [
+        418,
+        303
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 182918
+      },
+      "rule": "Sum",
+      "premises": [
+        403,
+        309
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 91459
+      },
+      "rule": {
+        "Unique": [
+          2,
+          91459
+        ]
+      },
+      "premises": [
+        420,
+        212
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 98726
+      },
+      "rule": "Sum",
+      "premises": [
+        403,
+        360
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 49363
+      },
+      "rule": {
+        "Unique": [
+          2,
+          49363
+        ]
+      },
+      "premises": [
+        422,
+        372
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 172358
+      },
+      "rule": "Sum",
+      "premises": [
+        405,
+        397
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 86179
+      },
+      "rule": {
+        "Unique": [
+          2,
+          86179
+        ]
+      },
+      "premises": [
+        424,
+        302
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 106621
+      },
+      "rule": "Sum",
+      "premises": [
+        407,
+        1
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 106621
+      },
+      "rule": {
+        "Unique": [
+          1,
+          106621
+        ]
+      },
+      "premises": [
+        426
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 88238
+      },
+      "rule": "Sum",
+      "premises": [
+        409,
+        331
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 44119
+      },
+      "rule": {
+        "Unique": [
+          2,
+          44119
+        ]
+      },
+      "premises": [
+        428,
+        344
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 91253
+      },
+      "rule": "Sum",
+      "premises": [
+        411,
+        253
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 91253
+      },
+      "rule": {
+        "Unique": [
+          1,
+          91253
+        ]
+      },
+      "premises": [
+        430
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 189536
+      },
+      "rule": "Sum",
+      "premises": [
+        413,
+        337
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 119582
+      },
+      "rule": "Sum",
+      "premises": [
+        415,
+        378
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 59791
+      },
+      "rule": {
+        "Unique": [
+          2,
+          59791
+        ]
+      },
+      "premises": [
+        433,
+        287
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 196886
+      },
+      "rule": "Sum",
+      "premises": [
+        417,
+        337
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 98443
+      },
+      "rule": {
+        "Unique": [
+          2,
+          98443
+        ]
+      },
+      "premises": [
+        435,
+        182
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 175688
+      },
+      "rule": "Sum",
+      "premises": [
+        421,
+        378
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 49367
+      },
+      "rule": "Sum",
+      "premises": [
+        423,
+        253
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 49367
+      },
+      "rule": {
+        "Unique": [
+          1,
+          49367
+        ]
+      },
+      "premises": [
+        438
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 273898
+      },
+      "rule": "Sum",
+      "premises": [
+        2,
+        439
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 136949
+      },
+      "rule": {
+        "Unique": [
+          2,
+          136949
+        ]
+      },
+      "premises": [
+        440
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 106627
+      },
+      "rule": "Sum",
+      "premises": [
+        427,
+        254
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 106627
+      },
+      "rule": {
+        "Unique": [
+          1,
+          106627
+        ]
+      },
+      "premises": [
+        442
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 218912
+      },
+      "rule": "Sum",
+      "premises": [
+        427,
+        309
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 44123
+      },
+      "rule": "Sum",
+      "premises": [
+        429,
+        253
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 44123
+      },
+      "rule": {
+        "Unique": [
+          1,
+          44123
+        ]
+      },
+      "premises": [
+        445
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 268654
+      },
+      "rule": "Sum",
+      "premises": [
+        2,
+        446
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 134327
+      },
+      "rule": {
+        "Unique": [
+          2,
+          134327
+        ]
+      },
+      "premises": [
+        447
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 358858
+      },
+      "rule": "Sum",
+      "premises": [
+        2,
+        448
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 179429
+      },
+      "rule": {
+        "Unique": [
+          2,
+          179429
+        ]
+      },
+      "premises": [
+        449
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 47384
+      },
+      "rule": "BadSum",
+      "premises": [
+        23,
+        450
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          4,
+          47384
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        451
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 203542
+      },
+      "rule": "Sum",
+      "premises": [
+        431,
+        279
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 101771
+      },
+      "rule": {
+        "Unique": [
+          2,
+          101771
+        ]
+      },
+      "premises": [
+        453,
+        334
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 326302
+      },
+      "rule": "Sum",
+      "premises": [
+        2,
+        454
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 163151
+      },
+      "rule": {
+        "Unique": [
+          2,
+          163151
+        ]
+      },
+      "premises": [
+        455
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 387682
+      },
+      "rule": "Sum",
+      "premises": [
+        2,
+        456
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 193841
+      },
+      "rule": {
+        "Unique": [
+          2,
+          193841
+        ]
+      },
+      "premises": [
+        457
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 43922
+      },
+      "rule": "BadSum",
+      "premises": [
+        39,
+        458
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 54728
+      },
+      "rule": "BadSum",
+      "premises": [
+        47,
+        458
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          4,
+          43922
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        459
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          4,
+          54728
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        460
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 8
+      },
+      "rule": {
+        "Unique": [
+          8,
+          21961
+        ]
+      },
+      "premises": [
+        437,
+        290,
+        401,
+        461
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 146912
+      },
+      "rule": "Sum",
+      "premises": [
+        434,
+        419
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 184622
+      },
+      "rule": "Sum",
+      "premises": [
+        436,
+        425
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 92311
+      },
+      "rule": {
+        "Unique": [
+          2,
+          92311
+        ]
+      },
+      "premises": [
+        465,
+        181
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Active": 136951
+      },
+      "rule": "Sum",
+      "premises": [
+        441,
+        1
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 136951
+      },
+      "rule": {
+        "Unique": [
+          1,
+          136951
+        ]
+      },
+      "premises": [
+        467
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 94768
+      },
+      "rule": "BadSum",
+      "premises": [
+        31,
+        468
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          2,
+          94768
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        469
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 23692
+      },
+      "rule": {
+        "Unique": [
+          8,
+          23692
+        ]
+      },
+      "premises": [
+        432,
+        373,
+        470,
+        452,
+        153,
+        140
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 201769
+      },
+      "rule": "BadSum",
+      "premises": [
+        15,
+        471
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 202129
+      },
+      "rule": "BadSum",
+      "premises": [
+        18,
+        471
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 209449
+      },
+      "rule": "BadSum",
+      "premises": [
+        35,
+        471
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 216157
+      },
+      "rule": "BadSum",
+      "premises": [
+        41,
+        471
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          201769
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        472
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          202129
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        473
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          209449
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        474
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          216157
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        475
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Bad": 201769
+      },
+      "rule": "Empty",
+      "premises": [
+        476
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Bad": 202129
+      },
+      "rule": "Empty",
+      "premises": [
+        477
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Bad": 209449
+      },
+      "rule": "Empty",
+      "premises": [
+        478
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Bad": 216157
+      },
+      "rule": "Empty",
+      "premises": [
+        479
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 201767
+      },
+      "rule": "BadSum",
+      "premises": [
+        480,
+        1
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 202127
+      },
+      "rule": "BadSum",
+      "premises": [
+        481,
+        1
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 209441
+      },
+      "rule": "BadSum",
+      "premises": [
+        482,
+        463
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 36728
+      },
+      "rule": "BadSum",
+      "premises": [
+        483,
+        450
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          201767
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        484
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          202127
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        485
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          209441
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        486
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          4,
+          36728
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        487
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Bad": 201767
+      },
+      "rule": "Empty",
+      "premises": [
+        488
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Bad": 202127
+      },
+      "rule": "Empty",
+      "premises": [
+        489
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Bad": 209441
+      },
+      "rule": "Empty",
+      "premises": [
+        490
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 109456
+      },
+      "rule": "BadSum",
+      "premises": [
+        492,
+        466
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 185749
+      },
+      "rule": "BadSum",
+      "premises": [
+        494,
+        471
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          2,
+          109456
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        495
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          185749
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        496
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 27364
+      },
+      "rule": {
+        "Unique": [
+          8,
+          27364
+        ]
+      },
+      "premises": [
+        444,
+        327,
+        497,
+        462,
+        154,
+        141
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Bad": 185749
+      },
+      "rule": "Empty",
+      "premises": [
+        498
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 174763
+      },
+      "rule": "BadSum",
+      "premises": [
+        493,
+        499
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 185747
+      },
+      "rule": "BadSum",
+      "premises": [
+        500,
+        1
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          174763
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        501
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          185747
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        502
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Bad": 174763
+      },
+      "rule": "Empty",
+      "premises": [
+        503
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Bad": 185747
+      },
+      "rule": "Empty",
+      "premises": [
+        504
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          2,
+          174761
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        505
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 73456
+      },
+      "rule": "BadSum",
+      "premises": [
+        506,
+        309
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Bad": 349522
+      },
+      "rule": "Empty",
+      "premises": [
+        507
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          2,
+          73456
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        508
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 124991
+      },
+      "rule": "BadSum",
+      "premises": [
+        509,
+        2
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Member": 18364
+      },
+      "rule": {
+        "Unique": [
+          8,
+          18364
+        ]
+      },
+      "premises": [
+        464,
+        289,
+        510,
+        491,
+        152,
+        139
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Dead": [
+          1,
+          124991
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        511
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Bad": 124991
+      },
+      "rule": "Empty",
+      "premises": [
+        513
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": {
+        "Ban": 18364
+      },
+      "rule": "BadSum",
+      "premises": [
+        514,
+        443
+      ]
+    },
+    {
+      "scope": 12,
+      "fact": "False",
+      "rule": "Conflict",
+      "premises": [
+        515,
+        512
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Pair": [
+          4,
+          6
+        ]
+      },
+      "rule": {
+        "Discharge": 12
+      },
+      "premises": [
+        516
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Active": 224548
+      },
+      "rule": "Sum",
+      "premises": [
+        2,
+        240
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Active": 48
+      },
+      "rule": "Sum",
+      "premises": [
+        240,
+        93
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 4
+      },
+      "rule": "Assumption",
+      "premises": []
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          2,
+          4
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        520
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          4,
+          8
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        520
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          4,
+          523
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        520
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          4,
+          593
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        520
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          4,
+          1021
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        520
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          4,
+          1049
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        520
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          4,
+          1163
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        520
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          4,
+          2003
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        520
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          4,
+          2042
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        520
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          4,
+          23599
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        520
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          4,
+          25679
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        520
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          4,
+          28979
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        520
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          4,
+          29303
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        520
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          4,
+          33359
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        520
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          4,
+          56137
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        520
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          4,
+          56437
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        520
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          4,
+          56671
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        520
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          4,
+          64921
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        520
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          4,
+          65173
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        520
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          4,
+          70627
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        520
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          4,
+          70783
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        520
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          4,
+          74623
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        520
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          4,
+          84577
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        520
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          4,
+          87751
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        520
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Member": 8
+      },
+      "rule": {
+        "Unique": [
+          1,
+          8
+        ]
+      },
+      "premises": [
+        191,
+        521
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Member": 16
+      },
+      "rule": {
+        "Unique": [
+          2,
+          16
+        ]
+      },
+      "premises": [
+        186,
+        138,
+        522
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 225748
+      },
+      "rule": "Empty",
+      "premises": [
+        200,
+        536
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 226684
+      },
+      "rule": "Empty",
+      "premises": [
+        168,
+        537
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 259684
+      },
+      "rule": "Empty",
+      "premises": [
+        171,
+        538
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 260692
+      },
+      "rule": "Empty",
+      "premises": [
+        172,
+        539
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 283132
+      },
+      "rule": "Empty",
+      "premises": [
+        175,
+        541
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 298492
+      },
+      "rule": "Empty",
+      "premises": [
+        177,
+        542
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 351004
+      },
+      "rule": "Empty",
+      "premises": [
+        180,
+        544
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Active": 224539
+      },
+      "rule": "Sum",
+      "premises": [
+        2,
+        545
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 1217
+      },
+      "rule": "BadSum",
+      "premises": [
+        547,
+        2
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 2153
+      },
+      "rule": "BadSum",
+      "premises": [
+        548,
+        2
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 35153
+      },
+      "rule": "BadSum",
+      "premises": [
+        549,
+        2
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 36161
+      },
+      "rule": "BadSum",
+      "premises": [
+        550,
+        2
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 58601
+      },
+      "rule": "BadSum",
+      "premises": [
+        551,
+        2
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 73961
+      },
+      "rule": "BadSum",
+      "premises": [
+        552,
+        2
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 126473
+      },
+      "rule": "BadSum",
+      "premises": [
+        553,
+        2
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Member": 32077
+      },
+      "rule": {
+        "Unique": [
+          7,
+          32077
+        ]
+      },
+      "premises": [
+        554
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          1217
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        555
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          2153
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        556
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          35153
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        557
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          36161
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        558
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          58601
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        559
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          73961
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        560
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          126473
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        561
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 1217
+      },
+      "rule": "Empty",
+      "premises": [
+        563
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 2153
+      },
+      "rule": "Empty",
+      "premises": [
+        564
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 35153
+      },
+      "rule": "Empty",
+      "premises": [
+        565
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 36161
+      },
+      "rule": "Empty",
+      "premises": [
+        566
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 58601
+      },
+      "rule": "Empty",
+      "premises": [
+        567
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 73961
+      },
+      "rule": "Empty",
+      "premises": [
+        568
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 126473
+      },
+      "rule": "Empty",
+      "premises": [
+        569
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 1186
+      },
+      "rule": "BadSum",
+      "premises": [
+        570,
+        93
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 1201
+      },
+      "rule": "BadSum",
+      "premises": [
+        570,
+        546
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 2137
+      },
+      "rule": "BadSum",
+      "premises": [
+        571,
+        546
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 3076
+      },
+      "rule": "BadSum",
+      "premises": [
+        572,
+        562
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 4084
+      },
+      "rule": "BadSum",
+      "premises": [
+        573,
+        562
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 51358
+      },
+      "rule": "BadSum",
+      "premises": [
+        574,
+        94
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 66718
+      },
+      "rule": "BadSum",
+      "premises": [
+        575,
+        94
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 94396
+      },
+      "rule": "BadSum",
+      "premises": [
+        576,
+        562
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          2,
+          1186
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        577
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          193,
+          1201
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        578
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          2137
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        579
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          73,
+          3076
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        580
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          4084
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        581
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          2,
+          4084
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        581
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          2,
+          51358
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        582
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          2,
+          66718
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        583
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          94396
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        584
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 2372
+      },
+      "rule": "Empty",
+      "premises": [
+        148,
+        585,
+        524
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 231793
+      },
+      "rule": "Empty",
+      "premises": [
+        586
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 2137
+      },
+      "rule": "Empty",
+      "premises": [
+        587
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 102716
+      },
+      "rule": "Empty",
+      "premises": [
+        166,
+        591,
+        531
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 133436
+      },
+      "rule": "Empty",
+      "premises": [
+        173,
+        592,
+        534
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 94396
+      },
+      "rule": "Empty",
+      "premises": [
+        593,
+        157,
+        530
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 2341
+      },
+      "rule": "BadSum",
+      "premises": [
+        594,
+        93
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 7262
+      },
+      "rule": "BadSum",
+      "premises": [
+        595,
+        2
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 2129
+      },
+      "rule": "BadSum",
+      "premises": [
+        596,
+        545
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 70639
+      },
+      "rule": "BadSum",
+      "premises": [
+        597,
+        562
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 101359
+      },
+      "rule": "BadSum",
+      "premises": [
+        598,
+        562
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 94379
+      },
+      "rule": "BadSum",
+      "premises": [
+        599,
+        240
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          2341
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        600
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          2,
+          2341
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        600
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          7262
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        601
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          2129
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        602
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          2,
+          70639
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        603
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          2,
+          101359
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        604
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          3,
+          94379
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        605
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 2341
+      },
+      "rule": "Empty",
+      "premises": [
+        606
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 4682
+      },
+      "rule": "Empty",
+      "premises": [
+        150,
+        607
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Member": 3631
+      },
+      "rule": {
+        "Unique": [
+          2,
+          3631
+        ]
+      },
+      "premises": [
+        196,
+        608
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 2129
+      },
+      "rule": "Empty",
+      "premises": [
+        609
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 141278
+      },
+      "rule": "Empty",
+      "premises": [
+        174,
+        610
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 202718
+      },
+      "rule": "Empty",
+      "premises": [
+        183,
+        611
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 283137
+      },
+      "rule": "Empty",
+      "premises": [
+        612
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 2339
+      },
+      "rule": "BadSum",
+      "premises": [
+        613,
+        1
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 4663
+      },
+      "rule": "BadSum",
+      "premises": [
+        614,
+        193
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 1051
+      },
+      "rule": "BadSum",
+      "premises": [
+        614,
+        615
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 2098
+      },
+      "rule": "BadSum",
+      "premises": [
+        616,
+        93
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 2113
+      },
+      "rule": "BadSum",
+      "premises": [
+        616,
+        546
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          141277
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        617
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 170641
+      },
+      "rule": "BadSum",
+      "premises": [
+        618,
+        562
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 58606
+      },
+      "rule": "BadSum",
+      "premises": [
+        619,
+        2
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          2339
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        620
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          4663
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        621
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          1051
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        622
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          2098
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        623
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          2,
+          2098
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        623
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          2113
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        624
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          2,
+          2113
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        624
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 141277
+      },
+      "rule": "Empty",
+      "premises": [
+        625
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          170641
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        626
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          2,
+          58606
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        627
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 2339
+      },
+      "rule": "Empty",
+      "premises": [
+        628
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 4663
+      },
+      "rule": "Empty",
+      "premises": [
+        629
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 1051
+      },
+      "rule": "Empty",
+      "premises": [
+        630
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 2113
+      },
+      "rule": "Empty",
+      "premises": [
+        633
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 4226
+      },
+      "rule": "Empty",
+      "premises": [
+        149,
+        634
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 141254
+      },
+      "rule": "BadSum",
+      "premises": [
+        635,
+        252
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 170641
+      },
+      "rule": "Empty",
+      "premises": [
+        636
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 117212
+      },
+      "rule": "Empty",
+      "premises": [
+        170,
+        637,
+        533
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 2326
+      },
+      "rule": "BadSum",
+      "premises": [
+        638,
+        224
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 4652
+      },
+      "rule": "BadSum",
+      "premises": [
+        639,
+        223
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          2,
+          1049
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        640
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 1046
+      },
+      "rule": "BadSum",
+      "premises": [
+        640,
+        188
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 2111
+      },
+      "rule": "BadSum",
+      "premises": [
+        641,
+        1
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 4219
+      },
+      "rule": "BadSum",
+      "premises": [
+        642,
+        190
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          2,
+          141254
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        643
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 117193
+      },
+      "rule": "BadSum",
+      "premises": [
+        645,
+        193
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          2,
+          2326
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        646
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          4652
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        647
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 2098
+      },
+      "rule": "Empty",
+      "premises": [
+        631,
+        648
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          2,
+          1046
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        649
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          2111
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        650
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          4219
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        651
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 282508
+      },
+      "rule": "Empty",
+      "premises": [
+        652,
+        540
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          117193
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        653
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 4652
+      },
+      "rule": "Empty",
+      "premises": [
+        655,
+        654,
+        527
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 2087
+      },
+      "rule": "BadSum",
+      "premises": [
+        656,
+        223
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 2111
+      },
+      "rule": "Empty",
+      "premises": [
+        658
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 4219
+      },
+      "rule": "Empty",
+      "premises": [
+        659
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 57977
+      },
+      "rule": "BadSum",
+      "premises": [
+        660,
+        2
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 117193
+      },
+      "rule": "Empty",
+      "premises": [
+        661
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 1021
+      },
+      "rule": "BadSum",
+      "premises": [
+        662,
+        615
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          2,
+          2087
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        663
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 2092
+      },
+      "rule": "BadSum",
+      "premises": [
+        664,
+        193
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 4196
+      },
+      "rule": "BadSum",
+      "premises": [
+        665,
+        252
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          57977
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        666
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          2,
+          117191
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        667
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          8,
+          1021
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        668
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          2092
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        670
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          4196
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        671
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 57977
+      },
+      "rule": "Empty",
+      "premises": [
+        672
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 234382
+      },
+      "rule": "Empty",
+      "premises": [
+        673
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 8168
+      },
+      "rule": "Empty",
+      "premises": [
+        151,
+        590,
+        529,
+        674
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 2092
+      },
+      "rule": "Empty",
+      "premises": [
+        675,
+        657,
+        523
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 4196
+      },
+      "rule": "Empty",
+      "premises": [
+        676,
+        632,
+        526
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 57958
+      },
+      "rule": "BadSum",
+      "premises": [
+        677,
+        193
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 9851
+      },
+      "rule": "BadSum",
+      "premises": [
+        678,
+        2
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 2069
+      },
+      "rule": "BadSum",
+      "premises": [
+        680,
+        252
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 4177
+      },
+      "rule": "BadSum",
+      "premises": [
+        681,
+        193
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          2,
+          57958
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        682
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          23,
+          9851
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        683
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          2069
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        684
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          4177
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        685
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 115916
+      },
+      "rule": "Empty",
+      "premises": [
+        169,
+        686,
+        532
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 226573
+      },
+      "rule": "Empty",
+      "premises": [
+        687
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 2069
+      },
+      "rule": "Empty",
+      "premises": [
+        688
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 4177
+      },
+      "rule": "Empty",
+      "premises": [
+        689
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 115903
+      },
+      "rule": "BadSum",
+      "premises": [
+        690,
+        224
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 2042
+      },
+      "rule": "BadSum",
+      "premises": [
+        691,
+        2
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 2038
+      },
+      "rule": "BadSum",
+      "premises": [
+        692,
+        93
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 4174
+      },
+      "rule": "BadSum",
+      "premises": [
+        693,
+        185
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          115903
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        694
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          2,
+          2042
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        695
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          166,
+          2038
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        696
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          4174
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        697
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 115903
+      },
+      "rule": "Empty",
+      "premises": [
+        698
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 4084
+      },
+      "rule": "Empty",
+      "premises": [
+        589,
+        699,
+        525
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 4174
+      },
+      "rule": "Empty",
+      "premises": [
+        701,
+        669
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 115887
+      },
+      "rule": "BadSum",
+      "premises": [
+        702,
+        546
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 4076
+      },
+      "rule": "BadSum",
+      "premises": [
+        703,
+        545
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 4157
+      },
+      "rule": "BadSum",
+      "premises": [
+        704,
+        240
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          2,
+          115887
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        705
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          83,
+          4076
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        706
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          4157
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        707
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Member": 6
+      },
+      "rule": {
+        "Unique": [
+          6,
+          38629
+        ]
+      },
+      "premises": [
+        137,
+        708,
+        165
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 4157
+      },
+      "rule": "Empty",
+      "premises": [
+        710
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Active": 224537
+      },
+      "rule": "Sum",
+      "premises": [
+        2,
+        711
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Member": 151
+      },
+      "rule": {
+        "Unique": [
+          151,
+          1487
+        ]
+      },
+      "premises": [
+        713
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Member": 1487
+      },
+      "rule": {
+        "Unique": [
+          151,
+          1487
+        ]
+      },
+      "premises": [
+        713
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 8017
+      },
+      "rule": "BadSum",
+      "premises": [
+        679,
+        714
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 4006
+      },
+      "rule": "BadSum",
+      "premises": [
+        712,
+        714
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 169154
+      },
+      "rule": "BadSum",
+      "premises": [
+        644,
+        715
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          8017
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        716
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          2,
+          4006
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        717
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          2,
+          169154
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        718
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 8017
+      },
+      "rule": "Empty",
+      "premises": [
+        719
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 338308
+      },
+      "rule": "Empty",
+      "premises": [
+        721,
+        543,
+        709,
+        700,
+        147
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 8012
+      },
+      "rule": "BadSum",
+      "premises": [
+        722,
+        188
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 113777
+      },
+      "rule": "BadSum",
+      "premises": [
+        723,
+        2
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          8012
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        724
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          113777
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        725
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 8012
+      },
+      "rule": "Empty",
+      "premises": [
+        726,
+        720,
+        528
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 113777
+      },
+      "rule": "Empty",
+      "premises": [
+        727
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 769
+      },
+      "rule": "BadSum",
+      "premises": [
+        728,
+        94
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 113761
+      },
+      "rule": "BadSum",
+      "premises": [
+        729,
+        546
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          292,
+          769
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        730
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Dead": [
+          1,
+          113761
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        731
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Member": 112274
+      },
+      "rule": {
+        "Unique": [
+          2,
+          112274
+        ]
+      },
+      "premises": [
+        518,
+        535,
+        588,
+        145,
+        732
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Bad": 113761
+      },
+      "rule": "Empty",
+      "premises": [
+        733
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": {
+        "Ban": 1487
+      },
+      "rule": "BadSum",
+      "premises": [
+        735,
+        734
+      ]
+    },
+    {
+      "scope": 55,
+      "fact": "False",
+      "rule": "Conflict",
+      "premises": [
+        736,
+        715
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Member": 4
+      },
+      "rule": {
+        "Discharge": 55
+      },
+      "premises": [
+        737
+      ]
+    },
+    {
+      "scope": 56,
+      "fact": {
+        "Ban": 29
+      },
+      "rule": "Assumption",
+      "premises": []
+    },
+    {
+      "scope": 56,
+      "fact": {
+        "Dead": [
+          1,
+          29
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        739
+      ]
+    },
+    {
+      "scope": 56,
+      "fact": {
+        "Bad": 29
+      },
+      "rule": "Empty",
+      "premises": [
+        740
+      ]
+    },
+    {
+      "scope": 56,
+      "fact": {
+        "Ban": 24
+      },
+      "rule": "BadSum",
+      "premises": [
+        741,
+        188
+      ]
+    },
+    {
+      "scope": 56,
+      "fact": {
+        "Ban": 16
+      },
+      "rule": "BadSum",
+      "premises": [
+        741,
+        224
+      ]
+    },
+    {
+      "scope": 56,
+      "fact": {
+        "Ban": 12
+      },
+      "rule": "BadSum",
+      "premises": [
+        741,
+        240
+      ]
+    },
+    {
+      "scope": 56,
+      "fact": {
+        "Ban": 6
+      },
+      "rule": "BadSum",
+      "premises": [
+        741,
+        252
+      ]
+    },
+    {
+      "scope": 56,
+      "fact": {
+        "Dead": [
+          2,
+          24
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        742
+      ]
+    },
+    {
+      "scope": 56,
+      "fact": {
+        "Dead": [
+          3,
+          16
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        743
+      ]
+    },
+    {
+      "scope": 56,
+      "fact": {
+        "Dead": [
+          4,
+          12
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        744
+      ]
+    },
+    {
+      "scope": 56,
+      "fact": {
+        "Dead": [
+          6,
+          8
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        745
+      ]
+    },
+    {
+      "scope": 56,
+      "fact": {
+        "Bad": 48
+      },
+      "rule": "Empty",
+      "premises": [
+        144,
+        746,
+        747,
+        748,
+        749
+      ]
+    },
+    {
+      "scope": 56,
+      "fact": "False",
+      "rule": "Conflict",
+      "premises": [
+        750,
+        519
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Member": 29
+      },
+      "rule": {
+        "Discharge": 56
+      },
+      "premises": [
+        751
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 6
+      },
+      "rule": "UnitPair",
+      "premises": [
+        517,
+        738
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          6,
+          9511
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        753
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          6,
+          18719
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        753
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          6,
+          24733
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        753
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          6,
+          38629
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        753
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          6,
+          43759
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        753
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          6,
+          56737
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        753
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Member": 115887
+      },
+      "rule": {
+        "Unique": [
+          2,
+          115887
+        ]
+      },
+      "premises": [
+        137,
+        165,
+        757
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 114094
+      },
+      "rule": "BadSum",
+      "premises": [
+        28,
+        760
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Ban": 196514
+      },
+      "rule": "BadSum",
+      "premises": [
+        73,
+        760
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          114094
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        761
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          2,
+          114094
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        761
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Dead": [
+          1,
+          196514
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        762
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Active": 115891
+      },
+      "rule": "Sum",
+      "premises": [
+        760,
+        738
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Member": 115891
+      },
+      "rule": {
+        "Unique": [
+          1,
+          115891
+        ]
+      },
+      "premises": [
+        766
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": {
+        "Active": 340422
+      },
+      "rule": "Sum",
+      "premises": [
+        2,
+        767
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Member": 16
+      },
+      "rule": "Assumption",
+      "premises": []
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Active": 47
+      },
+      "rule": "Sum",
+      "premises": [
+        769,
+        93
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Member": 47
+      },
+      "rule": {
+        "Unique": [
+          1,
+          47
+        ]
+      },
+      "premises": [
+        770
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Active": 224578
+      },
+      "rule": "Sum",
+      "premises": [
+        2,
+        771
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Member": 112289
+      },
+      "rule": {
+        "Unique": [
+          2,
+          112289
+        ]
+      },
+      "premises": [
+        772
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Ban": 130358
+      },
+      "rule": "BadSum",
+      "premises": [
+        44,
+        773
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Dead": [
+          1,
+          130358
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        774
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Active": 115903
+      },
+      "rule": "Sum",
+      "premises": [
+        769,
+        760
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Member": 115903
+      },
+      "rule": {
+        "Unique": [
+          1,
+          115903
+        ]
+      },
+      "premises": [
+        776
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Ban": 144436
+      },
+      "rule": "BadSum",
+      "premises": [
+        55,
+        777
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Dead": [
+          1,
+          144436
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        778
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Active": 112291
+      },
+      "rule": "Sum",
+      "premises": [
+        773,
+        1
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Member": 112291
+      },
+      "rule": {
+        "Unique": [
+          1,
+          112291
+        ]
+      },
+      "premises": [
+        780
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Active": 112314
+      },
+      "rule": "Sum",
+      "premises": [
+        781,
+        252
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Active": 228178
+      },
+      "rule": "Sum",
+      "premises": [
+        781,
+        760
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Member": 114089
+      },
+      "rule": {
+        "Unique": [
+          2,
+          114089
+        ]
+      },
+      "premises": [
+        783
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Active": 114094
+      },
+      "rule": "Sum",
+      "premises": [
+        784,
+        188
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Member": 57047
+      },
+      "rule": {
+        "Unique": [
+          2,
+          57047
+        ]
+      },
+      "premises": [
+        785,
+        763
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Active": 226378
+      },
+      "rule": "Sum",
+      "premises": [
+        784,
+        773
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Member": 113189
+      },
+      "rule": {
+        "Unique": [
+          2,
+          113189
+        ]
+      },
+      "premises": [
+        787
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Ban": 113474
+      },
+      "rule": "BadSum",
+      "premises": [
+        22,
+        788
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Dead": [
+          3,
+          113474
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        789
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Member": 170211
+      },
+      "rule": {
+        "Unique": [
+          2,
+          170211
+        ]
+      },
+      "premises": [
+        768,
+        790,
+        759
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Active": 394742
+      },
+      "rule": "Sum",
+      "premises": [
+        2,
+        791
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Ban": 88952
+      },
+      "rule": "BadSum",
+      "premises": [
+        52,
+        791
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Member": 197371
+      },
+      "rule": {
+        "Unique": [
+          2,
+          197371
+        ]
+      },
+      "premises": [
+        792
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Dead": [
+          4,
+          88952
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        793
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Ban": 37438
+      },
+      "rule": "BadSum",
+      "premises": [
+        37,
+        794
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Ban": 44476
+      },
+      "rule": "BadSum",
+      "premises": [
+        43,
+        794
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Ban": 57066
+      },
+      "rule": "BadSum",
+      "premises": [
+        50,
+        794
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Dead": [
+          3,
+          37438
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        796
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Dead": [
+          8,
+          44476
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        797
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Dead": [
+          1,
+          57066
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        798
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Member": 56157
+      },
+      "rule": {
+        "Unique": [
+          2,
+          56157
+        ]
+      },
+      "premises": [
+        782,
+        198,
+        799,
+        755
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Bad": 355808
+      },
+      "rule": "Empty",
+      "premises": [
+        210,
+        795,
+        800,
+        156,
+        142
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Ban": 131277
+      },
+      "rule": "BadSum",
+      "premises": [
+        803,
+        2
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Dead": [
+          2,
+          131277
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        804
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Active": 57066
+      },
+      "rule": "Sum",
+      "premises": [
+        786,
+        193
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Member": 28533
+      },
+      "rule": {
+        "Unique": [
+          2,
+          28533
+        ]
+      },
+      "premises": [
+        806,
+        801,
+        155,
+        754
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Active": 170213
+      },
+      "rule": "Sum",
+      "premises": [
+        791,
+        1
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Member": 170213
+      },
+      "rule": {
+        "Unique": [
+          1,
+          170213
+        ]
+      },
+      "premises": [
+        808
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Ban": 87518
+      },
+      "rule": "BadSum",
+      "premises": [
+        51,
+        809
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Dead": [
+          3,
+          87518
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        810
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Bad": 262554
+      },
+      "rule": "Empty",
+      "premises": [
+        805,
+        811,
+        758
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Ban": 65183
+      },
+      "rule": "BadSum",
+      "premises": [
+        812,
+        794
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Dead": [
+          1,
+          65183
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        813
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Bad": 65183
+      },
+      "rule": "Empty",
+      "premises": [
+        814
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Ban": 65179
+      },
+      "rule": "BadSum",
+      "premises": [
+        815,
+        738
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Dead": [
+          2,
+          65179
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        816
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Bad": 130358
+      },
+      "rule": "Empty",
+      "premises": [
+        775,
+        817
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Ban": 74201
+      },
+      "rule": "BadSum",
+      "premises": [
+        818,
+        802
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Dead": [
+          1,
+          74201
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        819
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Bad": 74201
+      },
+      "rule": "Empty",
+      "premises": [
+        820
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Dead": [
+          2,
+          74199
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        821
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Bad": 148398
+      },
+      "rule": "Empty",
+      "premises": [
+        208,
+        822,
+        158,
+        756
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Ban": 36109
+      },
+      "rule": "BadSum",
+      "premises": [
+        823,
+        773
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Dead": [
+          4,
+          36109
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        824
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Bad": 144436
+      },
+      "rule": "Empty",
+      "premises": [
+        779,
+        164,
+        825
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": {
+        "Ban": 28533
+      },
+      "rule": "BadSum",
+      "premises": [
+        826,
+        777
+      ]
+    },
+    {
+      "scope": 57,
+      "fact": "False",
+      "rule": "Conflict",
+      "premises": [
+        827,
+        807
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Member": 8
+      },
+      "rule": "Assumption",
+      "premises": []
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Active": 224539
+      },
+      "rule": "Sum",
+      "premises": [
+        2,
+        829
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Member": 32077
+      },
+      "rule": {
+        "Unique": [
+          7,
+          32077
+        ]
+      },
+      "premises": [
+        830
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Active": 37
+      },
+      "rule": "Sum",
+      "premises": [
+        829,
+        752
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Member": 37
+      },
+      "rule": {
+        "Unique": [
+          1,
+          37
+        ]
+      },
+      "premises": [
+        832
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Active": 41
+      },
+      "rule": "Sum",
+      "premises": [
+        833,
+        738
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Member": 41
+      },
+      "rule": {
+        "Unique": [
+          1,
+          41
+        ]
+      },
+      "premises": [
+        834
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Active": 43
+      },
+      "rule": "Sum",
+      "premises": [
+        835,
+        1
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Member": 43
+      },
+      "rule": {
+        "Unique": [
+          1,
+          43
+        ]
+      },
+      "premises": [
+        836
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Active": 47
+      },
+      "rule": "Sum",
+      "premises": [
+        837,
+        738
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Member": 47
+      },
+      "rule": {
+        "Unique": [
+          1,
+          47
+        ]
+      },
+      "premises": [
+        838
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Active": 224578
+      },
+      "rule": "Sum",
+      "premises": [
+        2,
+        839
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Member": 112289
+      },
+      "rule": {
+        "Unique": [
+          2,
+          112289
+        ]
+      },
+      "premises": [
+        840
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Active": 112291
+      },
+      "rule": "Sum",
+      "premises": [
+        841,
+        1
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Member": 112291
+      },
+      "rule": {
+        "Unique": [
+          1,
+          112291
+        ]
+      },
+      "premises": [
+        842
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Active": 112297
+      },
+      "rule": "Sum",
+      "premises": [
+        841,
+        829
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Member": 112297
+      },
+      "rule": {
+        "Unique": [
+          1,
+          112297
+        ]
+      },
+      "premises": [
+        844
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Active": 112298
+      },
+      "rule": "Sum",
+      "premises": [
+        843,
+        190
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Member": 56149
+      },
+      "rule": {
+        "Unique": [
+          2,
+          56149
+        ]
+      },
+      "premises": [
+        846,
+        167
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Active": 228178
+      },
+      "rule": "Sum",
+      "premises": [
+        843,
+        760
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Member": 114089
+      },
+      "rule": {
+        "Unique": [
+          2,
+          114089
+        ]
+      },
+      "premises": [
+        848
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Active": 112334
+      },
+      "rule": "Sum",
+      "premises": [
+        843,
+        837
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Active": 228188
+      },
+      "rule": "Sum",
+      "premises": [
+        845,
+        767
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Member": 57047
+      },
+      "rule": {
+        "Unique": [
+          4,
+          57047
+        ]
+      },
+      "premises": [
+        851,
+        764
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Ban": 168446
+      },
+      "rule": "BadSum",
+      "premises": [
+        16,
+        852
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Dead": [
+          1,
+          168446
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        853
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Active": 168446
+      },
+      "rule": "Sum",
+      "premises": [
+        847,
+        845
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Member": 84223
+      },
+      "rule": {
+        "Unique": [
+          2,
+          84223
+        ]
+      },
+      "premises": [
+        855,
+        854
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Active": 226378
+      },
+      "rule": "Sum",
+      "premises": [
+        849,
+        841
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Member": 113189
+      },
+      "rule": {
+        "Unique": [
+          2,
+          113189
+        ]
+      },
+      "premises": [
+        857
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Ban": 112334
+      },
+      "rule": "BadSum",
+      "premises": [
+        17,
+        858
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Ban": 113474
+      },
+      "rule": "BadSum",
+      "premises": [
+        22,
+        858
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Dead": [
+          1,
+          112334
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        859
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Dead": [
+          3,
+          113474
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        860
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Member": 56167
+      },
+      "rule": {
+        "Unique": [
+          2,
+          56167
+        ]
+      },
+      "premises": [
+        850,
+        861
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Member": 170211
+      },
+      "rule": {
+        "Unique": [
+          2,
+          170211
+        ]
+      },
+      "premises": [
+        768,
+        862,
+        759
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Active": 394742
+      },
+      "rule": "Sum",
+      "premises": [
+        2,
+        864
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Ban": 88952
+      },
+      "rule": "BadSum",
+      "premises": [
+        52,
+        864
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Member": 197371
+      },
+      "rule": {
+        "Unique": [
+          2,
+          197371
+        ]
+      },
+      "premises": [
+        865
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Dead": [
+          4,
+          88952
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        866
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Ban": 44476
+      },
+      "rule": "BadSum",
+      "premises": [
+        43,
+        867
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Dead": [
+          8,
+          44476
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        869
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Bad": 355808
+      },
+      "rule": "Empty",
+      "premises": [
+        210,
+        868,
+        870,
+        156,
+        142
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Ban": 131277
+      },
+      "rule": "BadSum",
+      "premises": [
+        871,
+        2
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Dead": [
+          2,
+          131277
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        872
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Active": 196514
+      },
+      "rule": "Sum",
+      "premises": [
+        856,
+        843
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Member": 98257
+      },
+      "rule": {
+        "Unique": [
+          2,
+          98257
+        ]
+      },
+      "premises": [
+        874,
+        765
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Active": 56171
+      },
+      "rule": "Sum",
+      "premises": [
+        863,
+        738
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Member": 56171
+      },
+      "rule": {
+        "Unique": [
+          1,
+          56171
+        ]
+      },
+      "premises": [
+        876
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Active": 280702
+      },
+      "rule": "Sum",
+      "premises": [
+        2,
+        877
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Member": 140351
+      },
+      "rule": {
+        "Unique": [
+          2,
+          140351
+        ]
+      },
+      "premises": [
+        878
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Ban": 87518
+      },
+      "rule": "BadSum",
+      "premises": [
+        25,
+        879
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Dead": [
+          3,
+          87518
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        880
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Bad": 262554
+      },
+      "rule": "Empty",
+      "premises": [
+        873,
+        881,
+        758
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Ban": 65183
+      },
+      "rule": "BadSum",
+      "premises": [
+        882,
+        867
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Dead": [
+          1,
+          65183
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        883
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Bad": 65183
+      },
+      "rule": "Empty",
+      "premises": [
+        884
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Ban": 65179
+      },
+      "rule": "BadSum",
+      "premises": [
+        885,
+        738
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Dead": [
+          1,
+          65179
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        886
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Bad": 65179
+      },
+      "rule": "Empty",
+      "premises": [
+        887
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Ban": 65171
+      },
+      "rule": "BadSum",
+      "premises": [
+        888,
+        829
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Dead": [
+          1,
+          65171
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        889
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Bad": 65171
+      },
+      "rule": "Empty",
+      "premises": [
+        890
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Ban": 65167
+      },
+      "rule": "BadSum",
+      "premises": [
+        891,
+        738
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Dead": [
+          2,
+          65167
+        ]
+      },
+      "rule": "Delete",
+      "premises": [
+        892
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Bad": 130334
+      },
+      "rule": "Empty",
+      "premises": [
+        202,
+        893
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": {
+        "Ban": 98257
+      },
+      "rule": "BadSum",
+      "premises": [
+        894,
+        831
+      ]
+    },
+    {
+      "scope": 58,
+      "fact": "False",
+      "rule": "Conflict",
+      "premises": [
+        895,
+        875
+      ]
+    },
+    {
+      "scope": 0,
+      "fact": "False",
+      "rule": {
+        "Join": {
+          "cover": {
+            "Factor": 32
+          },
+          "scopes": [
+            57,
+            58
+          ],
+          "context": 2
+        }
+      },
+      "premises": [
+        186,
+        138,
+        828,
+        896
+      ]
+    }
+  ],
+  "scopes": [
+    {
+      "parent": null,
+      "assumptions": []
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 1
+        },
+        {
+          "Member": 8
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 2
+        },
+        {
+          "Member": 4
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 1
+        },
+        {
+          "Member": 12
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 2
+        },
+        {
+          "Member": 6
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 3
+        },
+        {
+          "Member": 4
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 1
+        },
+        {
+          "Member": 20
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 2
+        },
+        {
+          "Member": 10
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 4
+        },
+        {
+          "Member": 5
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 1
+        },
+        {
+          "Member": 24
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 2
+        },
+        {
+          "Member": 12
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 3
+        },
+        {
+          "Member": 8
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 4
+        },
+        {
+          "Member": 6
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 2
+        },
+        {
+          "Member": 16
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 4
+        },
+        {
+          "Member": 8
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 1
+        },
+        {
+          "Member": 7244
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 2
+        },
+        {
+          "Member": 3622
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 4
+        },
+        {
+          "Member": 1811
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 1
+        },
+        {
+          "Member": 7246
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 2
+        },
+        {
+          "Member": 3623
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 2
+        },
+        {
+          "Member": 3624
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 3
+        },
+        {
+          "Member": 2416
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 4
+        },
+        {
+          "Member": 1812
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 6
+        },
+        {
+          "Member": 1208
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 8
+        },
+        {
+          "Member": 906
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 12
+        },
+        {
+          "Member": 604
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 16
+        },
+        {
+          "Member": 453
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 24
+        },
+        {
+          "Member": 302
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 1
+        },
+        {
+          "Member": 7250
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 2
+        },
+        {
+          "Member": 3625
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 5
+        },
+        {
+          "Member": 1450
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 10
+        },
+        {
+          "Member": 725
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 25
+        },
+        {
+          "Member": 290
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 29
+        },
+        {
+          "Member": 250
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 50
+        },
+        {
+          "Member": 145
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 58
+        },
+        {
+          "Member": 125
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 1
+        },
+        {
+          "Member": 7262
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 2
+        },
+        {
+          "Member": 3631
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 1
+        },
+        {
+          "Member": 7274
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 2
+        },
+        {
+          "Member": 3637
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 2
+        },
+        {
+          "Member": 112267
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 131
+        },
+        {
+          "Member": 1714
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 262
+        },
+        {
+          "Member": 857
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 2
+        },
+        {
+          "Member": 112269
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 3
+        },
+        {
+          "Member": 74846
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 6
+        },
+        {
+          "Member": 37423
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 2
+        },
+        {
+          "Member": 112281
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 3
+        },
+        {
+          "Member": 74854
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 6
+        },
+        {
+          "Member": 37427
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 13
+        },
+        {
+          "Member": 17274
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 26
+        },
+        {
+          "Member": 8637
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 39
+        },
+        {
+          "Member": 5758
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 78
+        },
+        {
+          "Member": 2879
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 2
+        },
+        {
+          "Member": 115887
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 6
+        },
+        {
+          "Member": 38629
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Ban": 4
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Ban": 29
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 2
+        },
+        {
+          "Member": 16
+        }
+      ]
+    },
+    {
+      "parent": 0,
+      "assumptions": [
+        {
+          "Member": 4
+        },
+        {
+          "Member": 8
+        }
+      ]
+    }
+  ],
+  "root": 897
+}

@@ -714,3 +714,83 @@ fn root_probes_cover_small_sums_and_repeat_only_on_progress() {
         Err("not a complete root refutation".into())
     );
 }
+
+#[test]
+fn parallel_root_merges_scopes_and_retains_positive_controls() {
+    // One worker exercises repeated task reuse deterministically as well.
+    for threads in [1, 2, 4, 24] {
+        let mut e = engine(113);
+        let mut s = State::new(&e.p);
+        e.probe_remaining = 2000000;
+        e.cfg.probe_case_events = 2000;
+        e.initialize(&mut s).unwrap();
+        assert_eq!(e.quiesce(&mut s), Propagation::Quiet);
+        assert_eq!(
+            parallel_root::strengthen(&mut e, &mut s, threads).unwrap(),
+            Propagation::Quiet
+        );
+        assert!(s.quiet());
+        counts(&e, &s);
+        assert!(e.metrics.root_parallel_batches > 1);
+        assert!(e.metrics.root_parallel_workers >= threads.min(2));
+        assert!(e.metrics.root_parallel_workers <= threads);
+        assert!(e.metrics.probe_events <= 2000000);
+        assert_eq!(e.probe_remaining + e.metrics.probe_events as usize, 2000000);
+        // Include every imported node, not just a winning dependency closure.
+        let cert = proof::Certificate {
+            maximum: 113,
+            nodes: (0..s.proof.len())
+                .map(|id| s.proof.get(id).clone())
+                .collect(),
+            scopes: s.proof.scopes.clone(),
+            root: 0,
+        };
+        assert_eq!(
+            proof::verify(&cert, false),
+            Err("not a complete root refutation".into())
+        );
+        e.cfg.probes = false;
+        let engine::Outcome::Yes(values) = e.dfs(&mut s) else {
+            panic!("lost positive control")
+        };
+        assert!(validate(113, &values));
+    }
+}
+
+#[test]
+fn parallel_root_respects_shared_budget_and_interruption() {
+    for budget in [0, 1, 13, 1000] {
+        let mut e = engine(113);
+        let mut s = State::new(&e.p);
+        e.initialize(&mut s).unwrap();
+        assert_eq!(e.quiesce(&mut s), Propagation::Quiet);
+        e.probe_remaining = budget;
+        e.cfg.probe_case_events = 1;
+        e.cfg.probe_members = 1;
+        assert_eq!(
+            parallel_root::strengthen(&mut e, &mut s, 24).unwrap(),
+            Propagation::Quiet
+        );
+        counts(&e, &s);
+        assert!(s.quiet());
+        assert_eq!(e.probe_remaining + e.metrics.probe_events as usize, budget);
+        let engine::Outcome::Yes(values) = e.dfs(&mut s) else {
+            panic!("paused probe refuted positive control")
+        };
+        assert!(validate(113, &values));
+    }
+    let mut e = engine(113);
+    let mut s = State::new(&e.p);
+    e.initialize(&mut s).unwrap();
+    assert_eq!(e.quiesce(&mut s), Propagation::Quiet);
+    let before = fingerprint(&s);
+    e.limits
+        .interrupted
+        .store(true, std::sync::atomic::Ordering::Release);
+    assert_eq!(
+        parallel_root::strengthen(&mut e, &mut s, 24).unwrap(),
+        Propagation::Paused
+    );
+    assert_eq!(fingerprint(&s), before);
+    assert_eq!(e.metrics.root_parallel_batches, 0);
+}

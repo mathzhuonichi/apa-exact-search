@@ -1,5 +1,6 @@
 //! Opt-in event engine. The historical engine owns entirely separate state.
 mod engine;
+mod parallel_root;
 mod problem;
 pub mod proof;
 mod runner;

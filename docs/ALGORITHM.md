@@ -1,9 +1,32 @@
 # Algorithm and implementation
 
+This document records the original solver and historical C++/Python designs.
+The latest event-v2 solver is documented in [EVENT_ENGINE.md](EVENT_ENGINE.md).
+
 For a fixed maximum n, the search tracks mandatory members, excluded members,
 required sums, and their complete bounded factor pairs. A required sum must
 have at least one product witness inside the final set. No result is positive
 until the original closure condition is satisfied.
+
+## Maximum deletion (complete-prefix mode)
+
+Let `n=max(A)`, let `M` be the largest previously possible maximum, and put
+`B=A\\{n}`. This mode is enabled only when every maximum in `(M,n)` is already
+excluded, `M` is a mandatory member, and `n>M(M-1)`.
+
+Every sum in `B+B` is below `2n`. A product witness using `n` can therefore
+only be `n*1=n`. If `n` were absent from `B+B`, then `B+B` would be contained
+in `B*B`, so completeness of the excluded prefix would give `max(B)<=M`.
+But `n+M` also needs a product witness. It cannot use `n`, and two factors from
+`B` have product at most `M^2`, contradicting `n+M>M^2`. Hence `n` is in
+`B+B`. If `n` were also in `B*B`, the same reasoning would make `B` a smaller
+counterexample and yield the same contradiction. Therefore every surviving
+search state must satisfy both `n in B+B` and `n not in B*B`.
+
+The implementation represents the additive witnesses `(a,n-a)` by a live
+bitmask. Bans and learned pair nogoods delete bits with rollback, an empty
+domain is a conflict, and a singleton forces both endpoints. Proper factor
+pairs of `n` are installed as root nogoods (or a unary ban for a square).
 
 ## Exact search core
 

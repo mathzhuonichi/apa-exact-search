@@ -2,7 +2,8 @@
 
 The new implementation is an opt-in foundation, selected by `solve-events`.
 The existing `solve` and `campaign` commands retain the previous Rust engine.
-No campaign or later residual maximum was started during this revision.
+The later authorized continuation reached residual maximum 224929; execution
+is now paused for runtime diagnosis. See `docs/HANDOFF.md` for the current state.
 
 The v2 shared-root loop has independently regenerated seed-free NO certificates
 for **218303 and 221969**, using the same configuration for both. These are new
@@ -25,7 +26,7 @@ target/release/apa-exact-search verify-events --proof outputs/112.proof.json
 
 # Enable the redesigned shared-root inference loop.
 target/release/apa-exact-search solve-events --maximum 221969 \
-  --root-strengthen --threads 1 --proof outputs/221969.proof.json
+  --root-strengthen --threads 0 --proof outputs/221969.proof.json
 
 # Required acceptance: both known maxima must produce and replay VERIFIED_NO.
 python tools/accept_events.py --binary target/release/apa-exact-search \
@@ -33,7 +34,9 @@ python tools/accept_events.py --binary target/release/apa-exact-search \
 ```
 
 The `.exe` suffix is needed when invoking the binary directly on Windows.
-`--threads 0` uses all logical processors. Each lane clones the same completed
+`--threads 0` (the default) uses all logical processors for root probe workers
+as well as DFS lanes. `--threads 1` preserves the serial root algorithm for
+controlled comparisons. Each lane clones the same completed
 root and shares immutable factor tables and the root proof prefix. Mutable
 state, learned pairs, and probe facts are private to the lane.
 
@@ -56,7 +59,7 @@ An unfinished root returns UNKNOWN and creates no lanes.
 | Strict maximum row | `(outside_maximum_row, live_count, -sum)` | `--policy strict-maximum-row-first` |
 | Portfolio | Alternating policies by default, deterministic witness rotations/reversal | `--threads`; optional single-policy override |
 | Propagation-only probes | Complete 2–4 witness maximum-row covers and bounded absence probes | `--probes` |
-| Shared-root saturation | Complete 2–8 witness covers across all unresolved rows, small sums first, repeated after progress; renew chains after new members, retry absence probes | `--root-strengthen` |
+| Shared-root saturation | Parallel batches of complete 2–8 witness covers and absence probes against a shared root snapshot; merge proved conclusions, renew chains after new members, repeat after progress | `--root-strengthen`, `--threads` |
 | Six-seed probe | All six overlapping positive seed cases; no absent-group assumptions | `--seed-probe`, with probes, U, and clauses enabled |
 | Prime chains | Pure temporary closure under steps 2 and the tested even member; exact arithmetic proof steps | `--prime-chain-steps`, default 50,000,000 per pass; 0 disables |
 | Universal members | Exactly the stated U, with the n > 2 applicability condition | `--universal-members` |
@@ -90,12 +93,39 @@ paused case, never a refutation. Zero disables the member cap.
 
 DFS still makes one strengthening pass per node. The optional shared-root
 loop scans all unresolved domains with 2 through `--root-probe-width` witnesses,
-in increasing sum order. It propagates each join to quiet, renews bounded prime
+in increasing sum order. The serial path propagates each join to quiet; the
+parallel path propagates each merged batch to quiet. Both renew bounded prime
 chains after acquiring new members, and tries absence of 4 and unassigned Q
 primes again with the stronger root. Any genuine parent change allows another
 round; a round without change stops. The probe event budget and root deadline
 bound this process. Conditional probe state is always rolled back before any
 parent update, and no checkpoint is taken with unfinished parent events.
+
+Parallel workers share immutable factor tables and the frozen proof prefix;
+each owns its mutable state. A factor batch queues up to twice `--threads`
+distinct covers, subject to the shared event budget. At most `--threads`
+workers pull jobs from an atomic queue, immediately taking another cover when
+they finish. Each worker reuses its arrays after rolling back the previous job
+and discarding that job's temporary proof arena. Absence targets use the same
+worker queue. Each cover still examines its complete case list.
+Workers return only parent-scoped conclusions with their proof dependency
+closures. The coordinator remaps both proof IDs and nested scope IDs before
+installing those conclusions. Conclusions from an earlier root snapshot remain
+valid as the root acquires further proved facts. Conditional case state never
+crosses into the root. Temporary worker proofs are discarded after extracting
+the required dependencies; they are not all retained in the shared root.
+Already compacted proof fragments are moved into the parent with ID offsets,
+avoiding a second dependency traversal and copy on the coordinator thread.
+
+Probe event allowances are reserved from the one candidate budget before a
+batch starts; unused events are available to later batches and DFS. Paused and
+unstarted cases remain survivors. Only a complete root contradiction cancels
+the other root workers; errors fail the run and all workers are joined.
+Parallel scheduling changes the inference order and can perform extra work on
+older snapshots, so bounded runs need not match the serial search trajectory.
+Root table construction, prime chains, parent propagation, and final proof
+verification remain serial. Worker count is not a promise of sustained 100%
+CPU utilization, particularly when only a few independent probes are available.
 
 The v2 defaults are 120 seconds for root preparation, 1,000,000 events per
 probe, 2,000 additional probe members, width 8 for root covers, and 200,000,000
@@ -105,7 +135,9 @@ root-width and budget settings are shared across all maxima. There is no
 candidate-specific inference or embedded solution schedule.
 
 Reports include productive root cover sums, successfully discharged absence
-targets, and the number of root rounds. `probe_wall_time` includes strengthening
+targets, and the number of root rounds. `root_parallel_batches` counts probe
+batches and `root_parallel_workers` records the largest worker pool;
+neither is a sampled CPU measurement. `probe_wall_time` includes strengthening
 and the parent propagation/renewed chains it triggers. Counters for members,
 bans, and proof events include temporary probe work; they are not the final
 root set size.
@@ -185,19 +217,75 @@ zero-ID witnesses, event direction, duplicate deletion, random rollback,
 pending-queue rejection, paused probes and unstarted cases, strict-policy
 selection, exhaustive small subsets, all 39 clauses/six-case cover assignments,
 GitHub's positive examples, proof corruption, and portfolio completion.
+The 29-test suite also checks parallel root scope remapping across successive
+snapshots with 1, 2, 4, and 24 workers, task-state reuse, shared event budgets,
+and interruption.
+
+### Local parallel-root measurement (2026-09-21)
+
+The same release binary ran the two known maxima sequentially on the local
+i7-13700 (24 logical processors), once with `--threads 1` and once with
+`--threads 0`. All four runs generated new seed-free NO certificates and passed
+the separate `verify-events` command. Other options matched the acceptance
+configuration, including 200,000,000 total probe events and a one-node DFS limit.
+
+| Maximum | Serial root seconds | Parallel root seconds | Observed speedup | Serial / parallel peak working set |
+|---|---:|---:|---:|---:|
+| 218303 | 63.84 | 29.08 | 2.20x | 7.86 / 2.63 GiB |
+| 221969 | 28.76 | 19.93 | 1.44x | 7.04 / 2.92 GiB |
+
+Process samples every 0.2 seconds observed peak CPU use equivalent to 20.19
+and 21.55 busy logical processors (84% and 90% of this host). Whole-process
+averages were 4.77 and 4.75 processors, approximately 20% of the host, versus
+about one processor for the serial controls. Both parallel runs scheduled
+batches of 24 workers. These are single-run measurements, not sustained full
+utilization or a general scaling guarantee. Serial inference and batch tails
+remain bottlenecks. Parallel probes performed more events (109.3M and 63.1M)
+than serial probes (84.7M and 39.4M), while remaining within the shared budget.
+
+Local raw reports, certificates, process samples, and the measurement script
+are retained under `outputs/parallel-root-benchmark/` (ignored development
+artifacts, not part of the historical evidence bundle). The solver's own
+`peak_memory` field remains null; the working-set figures above were sampled
+externally. No later residual candidate was started by this validation.
+
+### Dynamic queue follow-up
+
+The follow-up replaces one-thread-per-cover batches with a worker queue and
+direct proof-fragment moves. The same two known maxima were run with identical
+limits and external 0.2-second process sampling. Both new NO certificates
+passed independent replay without external lemmas.
+
+| Maximum | Previous parallel root seconds | Queue root seconds | Peak / mean host CPU | Peak working set |
+|---|---:|---:|---:|---:|
+| 218303 | 29.08 | 18.72 | 99.3% / 23.1% | 3.44 GiB |
+| 221969 | 19.93 | 21.37 | 98.7% / 27.6% | 3.54 GiB |
+
+Combined root time decreased from 49.01 to 40.09 seconds, but the second
+candidate became slower: queuing further covers spends more work on the old
+snapshot before new root facts arrive. Probe events were 83.2M and 99.5M,
+respectively, still below the 200M candidate budget. A queue with four covers
+per worker offered no useful improvement over two in these controls; the
+implementation keeps the smaller queue. These observations do not establish
+uniform speedup or sustained full-machine utilization. Root propagation,
+prime-chain passes, and the tail of each snapshot's work still leave idle CPUs.
+Reports, certificates, and samples for the retained queue are in the ignored
+development directory `outputs/parallel-root-queue2/`; earlier experiments are
+kept separately under `outputs/parallel-root-v2/` and `outputs/parallel-root-queue/`.
 
 The 113 examples come from
 [RESULTS.md at research commit 3867395](https://github.com/mathzhuonichi/research/blob/3867395440384a07fae542a85035f7bb423809a1/apa/paper/RESULTS.md).
 The two listed examples are independently validated in tests; the reported
 110,592-example classification is not re-enumerated by this revision.
 
-Both requested large-case acceptance tests now pass with new independently
-replayed certificates. This does not establish performance on the remaining
-candidate sequence or authorize a production campaign. Peak memory is still
+Both requested large-case acceptance tests passed with new independently
+replayed certificates. The subsequent continuation reached 224929 and is
+paused. These tests do not establish performance on the remaining candidate
+sequence or authorize a new campaign. Peak memory is still
 `null` in reports (not sampled); no RSS limit or reservation is introduced.
-The append-only proof arena retains millions of temporary proof nodes before
-extracting a much smaller dependency closure. Proof-storage reduction and
-broader performance evaluation remain future work. The external universal
+Serial probes and DFS retain temporary proof nodes until certificate extraction.
+Parallel root workers export only needed dependency closures between batches.
+Broader performance evaluation remains future work. The external universal
 lemma bundles remain unavailable and their modules remain default-off; neither
 new acceptance proof uses them. The earlier 221969 certificate is retained as
 a separate historical artifact.

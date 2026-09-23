@@ -14,13 +14,14 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--binary', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--threads', type=int, default=0,
+                        help='root workers and DFS lanes; 0 uses all CPUs, 1 is the serial control')
     args = parser.parse_args()
     binary = args.binary.resolve()
     args.output.mkdir(parents=True, exist_ok=True)
     records = []
-    # Shared-root work is single-threaded, so resource use is identical. The
-    # one-node DFS limit makes accidental reliance on an expensive DFS visible.
-    options = ['--threads', '1', '--root-strengthen', '--probes',
+    # The one-node DFS limit makes reliance on an expensive DFS visible.
+    options = ['--threads', str(args.threads), '--root-strengthen', '--probes',
                '--root-seconds', '120', '--seconds', '1', '--node-limit', '1',
                '--prime-chain-steps', '50000000', '--probe-case-events', '1000000',
                '--probe-members', '2000', '--root-probe-width', '8',
