@@ -1,5 +1,14 @@
 # APA exact search
 
+## Million-range continuation (2026-09-23)
+
+The event-v2 campaign is paused at the user's request. Its checkpoint is
+335135, summarized in `progress/STATUS.json` and
+`evidence/events-v2-20260923-continuation/campaign-state-paused.json`. The local
+campaign output directory contains the full per-candidate corpus. It has
+independently replayed every sequential residual through 335135 since the
+225023 checkpoint. Candidate 335177 is next and has not been started. See
+docs/MILLION_CAMPAIGN.md.
 ## Opt-in Rust event engine
 
 The new modular engine is available as `solve-events`; the previous Rust
@@ -7,8 +16,8 @@ engine remains available as `solve` and `campaign`. See
 [the implementation and CLI guide](docs/EVENT_ENGINE.md) and
 [the recorded regression results](evidence/events-v1/README.md).
 Build with `cargo build --release` and run controls with `cargo test`.
-Residual execution is still an explicit operator action; the latest authorized
-continuation is recorded under `evidence/events-v2-optimized-continuation/`.
+Residual execution is still an explicit operator action; the latest continuation
+is recorded under `outputs/20260923-million-campaign/`.
 
 Exact fixed-maximum search for finite sets of positive integers satisfying
 
@@ -23,17 +32,13 @@ use historical seeds, maximum deletion, or prior solver NO results. The
 certificate has passed independent arithmetic replay; it is not a formal
 proof-assistant theorem.
 
-The optimized event-v2 continuation independently excluded the residuals
-through **224929**. Including the first-stage exclusions between residual
-entries, the accepted contiguous exclusion reaches **224929**; **224999** is
-next. Execution is currently paused at the user's request to diagnose the
-runtime difference from the earlier approximately-one-second path. Recent
-slow cases spent their time in shared-root strengthening (not lane search):
-serial propagation, prime-chain passes, proof-fragment merges, and batch tails
-make the cost depend strongly on the candidate. Earlier campaign outcomes
-retain their original evidence levels, and the full million-range problem
-remains unresolved.
-
+The event-v2 continuation has independently excluded residuals through
+**335135**. Including first-stage exclusions between residual entries, the
+accepted contiguous exclusion reaches **335135**; **335177** is next. The user
+has paused execution toward 1,000,000. Earlier campaign outcomes retain their
+original evidence levels, and the full million-range problem remains
+unresolved. The 648-entry predecessor prefix and first-stage exclusions have
+not been re-audited.
 ## Contents
 
 - `src/events/`: the event-v2 solver used for the latest continuation, with
@@ -45,6 +50,7 @@ remains unresolved.
   algorithm references; they are not part of the Rust runtime.
 - `evidence/221969/`: the complete seed-free exclusion certificate, proof note, and standalone checker.
 - `evidence/events-v2-optimized-continuation/`: independently replayed optimized event-engine results through 224929, the resource-bottleneck ledger, and sol analyses.
+- `evidence/events-v2-20260923-continuation/`: selected certificates through 225431 and the latest paused-checkpoint certificate at 335135. The full bulk proof corpus is retained locally under the ignored `outputs/` directory.
 - `progress/`: the exact frozen residual list, a per-entry classification,
   and the authoritative execution status.
 - `evidence/latest/`: roots and records for all nine latest campaign cases,
@@ -85,8 +91,8 @@ cargo build --release
 ## Historical original-solver commands
 
 The commands below describe the original `solve` and `campaign` path. They do
-not represent the paused event-v2 continuation; read [the current handoff](docs/HANDOFF.md)
-before any newly authorized run.
+not represent the active event-v2 continuation; read [the current handoff](docs/HANDOFF.md)
+before any separately launched original-engine run.
 
 Solve one maximum using every logical processor (zero seconds means no time
 limit):

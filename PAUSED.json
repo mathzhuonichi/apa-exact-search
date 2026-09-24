@@ -1,5 +1,7 @@
 {
   "paused": true,
   "status_file": "progress/STATUS.json",
-  "automatic_resume_authorized": false
+  "automatic_resume_authorized": false,
+  "reason": "Paused at the user's request after checkpoint 335135. No campaign processes should run until the user explicitly resumes.",
+  "resume_from": 335177
 }

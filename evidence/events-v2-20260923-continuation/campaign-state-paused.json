@@ -1,0 +1,103 @@
+{
+  "state": "PAUSED",
+  "start_after": 225023,
+  "last_verified_no": 335135,
+  "through": 1000000,
+  "verified_no_count": 1646,
+  "attention": {
+    "maximum": null,
+    "status": "PAUSED",
+    "reason": "User requested pause after independently replayed checkpoint 335135."
+  },
+  "options": [
+    "--threads",
+    "0",
+    "--root-strengthen",
+    "--probes",
+    "--root-seconds",
+    "0",
+    "--seconds",
+    "0",
+    "--node-limit",
+    "0",
+    "--prime-chain-steps",
+    "18446744073709551615",
+    "--probe-case-events",
+    "18446744073709551615",
+    "--probe-members",
+    "0",
+    "--root-probe-width",
+    "8",
+    "--probe-events",
+    "18446744073709551615"
+  ],
+  "case_retries": [
+    {
+      "maximum": 228961,
+      "status": "VERIFIED_NO",
+      "result": "candidates/228961/result.json",
+      "initial_unknown": "candidates/228961/result.initial-unknown-200m.json",
+      "retry_options": [
+        "--root-seconds",
+        "180",
+        "--probe-events",
+        "500000000",
+        "--prime-chain-steps",
+        "100000000"
+      ]
+    }
+  ],
+  "options_history": [
+    {
+      "through": 231571,
+      "options": [
+        "--threads",
+        "0",
+        "--root-strengthen",
+        "--probes",
+        "--root-seconds",
+        "120",
+        "--seconds",
+        "1",
+        "--node-limit",
+        "1",
+        "--prime-chain-steps",
+        "50000000",
+        "--probe-case-events",
+        "1000000",
+        "--probe-members",
+        "2000",
+        "--root-probe-width",
+        "8",
+        "--probe-events",
+        "200000000"
+      ]
+    },
+    {
+      "starting_at": 231841,
+      "reason": "remove search budgets after repeated probe-cap UNKNOWN results",
+      "options": [
+        "--threads",
+        "0",
+        "--root-strengthen",
+        "--probes",
+        "--root-seconds",
+        "0",
+        "--seconds",
+        "0",
+        "--node-limit",
+        "0",
+        "--prime-chain-steps",
+        "18446744073709551615",
+        "--probe-case-events",
+        "18446744073709551615",
+        "--probe-members",
+        "0",
+        "--root-probe-width",
+        "8",
+        "--probe-events",
+        "18446744073709551615"
+      ]
+    }
+  ]
+}

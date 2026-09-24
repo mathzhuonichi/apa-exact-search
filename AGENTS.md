@@ -1,11 +1,18 @@
 # Working with this snapshot
 
+The user has paused the sequential event campaign. No campaign processes
+should run until the user explicitly resumes. Its checkpoint is
+outputs/20260923-million-campaign/state.json; the latest independently
+verified boundary is 335135. Candidate 335177 is next and has not been
+started. See docs/MILLION_CAMPAIGN.md and the per-candidate replay records.
+
 Read `PAUSED.json`, `progress/STATUS.json`, and `docs/HANDOFF.md` first.
 Maximum 221969 has been excluded by the independently replayed seed-free
-arithmetic certificate in `evidence/221969/`. The event-v2 continuation then
-reached maximum 224929. Execution is paused for runtime diagnosis. Do not
-launch solvers, campaigns, or worker goals for later candidates until the user
-explicitly asks to continue.
+arithmetic certificate in `evidence/221969/`. The event-v2 campaign is paused
+at 335135, with candidate 335177 next to resolve. The user previously
+authorized execution through 1,000,000 and has now explicitly paused it. Do
+not start a run unless the user explicitly resumes.
+
 Documentation, export, and static snapshot checks do not resume execution.
 
 The Rust programs in `src/main.rs`, `src/solver.rs`, and `src/portfolio.rs`
@@ -23,9 +30,9 @@ the active runtime. Do not restore those controls unless the user asks.
 The user also clarified that `progress/candidates.txt` is the complete hard
 residual after first-stage rules directly exclude every omitted integer maximum.
 Sequential complete-NO results on this list therefore establish contiguous
-coverage across its gaps. The current contiguous exclusion reaches 224929, and
-224999 is the next unstarted residual maximum. This authorizes the maximum-deletion
-constraint whenever its stated numeric threshold holds.
+coverage across its gaps. The latest verified contiguous exclusion reaches
+335135. Candidate 335177 is the next residual to resolve. This authorizes the maximum-deletion constraint
+whenever its stated numeric threshold holds.
 
 Preserve the distinction between solver NO, independently replayed evidence,
 formal proof, and UNKNOWN. Use the included checksums and actual result

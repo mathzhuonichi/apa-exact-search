@@ -1,6 +1,25 @@
-# Handoff after paused optimized continuation through 224929
+# Handoff after paused million-range continuation
 
-Current execution state: PAUSED_FOR_RUNTIME_DIAGNOSIS.
+## Current execution state
+
+The event-v2 campaign is paused at the user's request. Its last independently
+replayed residual is 335135; the campaign records 1,646 `VERIFIED_NO` results
+after 225023. Candidate 335177 is next and has not been started. No campaign
+processes should run until the user explicitly resumes. The 648-entry
+predecessor prefix and first-stage exclusions remain unaudited. There are no
+unresolved `UNKNOWN` results in the current sequential campaign; earlier
+probe-cap attempts that were retried remain as historical records.
+
+This is a 2026-09-21 historical handoff. The 2026-09-23 continuation first
+paused at 225431 for performance diagnosis; the user later explicitly resumed
+the campaign through 1,000,000. See docs/MILLION_CAMPAIGN.md and
+progress/STATUS.json for the live state.
+
+The historical snapshot described below reached 228961. The current checkpoint
+and pause state are recorded in evidence/events-v2-20260923-continuation/
+campaign-state-paused.json, PAUSED.json, and progress/STATUS.json. The complete
+bulk certificate corpus is in the local ignored outputs directory and is not
+included in the GitHub repository.
 
 The user explicitly authorized continuation with the optimized Rust event-v2
 solver after the 221969 resolution. The optimized `--threads 0`

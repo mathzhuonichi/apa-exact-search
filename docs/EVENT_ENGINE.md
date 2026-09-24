@@ -2,8 +2,10 @@
 
 The new implementation is an opt-in foundation, selected by `solve-events`.
 The existing `solve` and `campaign` commands retain the previous Rust engine.
-The later authorized continuation reached residual maximum 224929; execution
-is now paused for runtime diagnosis. See `docs/HANDOFF.md` for the current state.
+The event-v2 campaign toward 1,000,000 is paused at the user's request. Its
+latest independently verified boundary is 335135; candidate 335177 is next
+and has not been started. Its state is in
+outputs/20260923-million-campaign/state.json. See docs/MILLION_CAMPAIGN.md.
 
 The v2 shared-root loop has independently regenerated seed-free NO certificates
 for **218303 and 221969**, using the same configuration for both. These are new
@@ -34,6 +36,16 @@ python tools/accept_events.py --binary target/release/apa-exact-search \
 ```
 
 The `.exe` suffix is needed when invoking the binary directly on Windows.
+`--complete-prefix-base B` asserts that every maximum strictly between `B` and
+the current maximum has been excluded. It requires `2 <= B < n` and
+`n > B(B-1)`. This enables the checked maximum-deletion consequences:
+`n` must be a sum of two members below `n`, and no proper factor pair of `n`
+may be entirely present. This is an external premise until the older prefix
+is independently re-audited. A dependent certificate reports
+`SOLVER_NO_EXTERNAL_LEMMAS`; replay it with
+`verify-events --allow-external-lemmas`. Without that flag the checker rejects
+the prefix premise.
+
 `--threads 0` (the default) uses all logical processors for root probe workers
 as well as DFS lanes. `--threads 1` preserves the serial root algorithm for
 controlled comparisons. Each lane clones the same completed
@@ -54,6 +66,7 @@ An unfinished root returns UNKNOWN and creates no lanes.
 | Complete factors | Two-pass product enumeration, fixed witness IDs, CSR endpoint and endpoint-sum indices | Always in event engine |
 | Propagation | Affected-domain events, count/XOR/product counters, dense unresolved set, member-pair jobs with fixed endpoints and resumable cursors | Always |
 | Bad products | Both E-before-member and member-before-E; diagonal bans; independent E deletes its product domain and incompatible endpoint-sum witnesses | Always |
+| Complete excluded prefix | Rollback-safe additive maximum witness domain and forbidden proper factor pairs, with independently checked reasons; DFS can branch on the additive domain when it is smaller | `--complete-prefix-base` |
 | Rollback | Undo trail for facts, products, domain counters, dense-set positions and pair adjacency; empty-parent-queue checkpoints; fresh queue epochs and monotonically allocated proof scopes | Always |
 | MRV | `(live_count, outside_maximum_row, -sum)` | `--policy mrv` |
 | Strict maximum row | `(outside_maximum_row, live_count, -sum)` | `--policy strict-maximum-row-first` |
@@ -217,7 +230,7 @@ zero-ID witnesses, event direction, duplicate deletion, random rollback,
 pending-queue rejection, paused probes and unstarted cases, strict-policy
 selection, exhaustive small subsets, all 39 clauses/six-case cover assignments,
 GitHub's positive examples, proof corruption, and portfolio completion.
-The 29-test suite also checks parallel root scope remapping across successive
+The 33-test suite also checks parallel root scope remapping across successive
 snapshots with 1, 2, 4, and 24 workers, task-state reuse, shared event budgets,
 and interruption.
 
@@ -279,9 +292,10 @@ The two listed examples are independently validated in tests; the reported
 110,592-example classification is not re-enumerated by this revision.
 
 Both requested large-case acceptance tests passed with new independently
-replayed certificates. The subsequent continuation reached 224929 and is
-paused. These tests do not establish performance on the remaining candidate
-sequence or authorize a new campaign. Peak memory is still
+replayed certificates. The subsequent continuation reached 225431 and paused
+for performance diagnosis; the user has since explicitly authorized the live
+million-range campaign. These tests do not establish performance guarantees on
+the remaining candidate sequence. Peak memory is still
 `null` in reports (not sampled); no RSS limit or reservation is introduced.
 Serial probes and DFS retain temporary proof nodes until certificate extraction.
 Parallel root workers export only needed dependency closures between batches.
@@ -290,7 +304,13 @@ lemma bundles remain unavailable and their modules remain default-off; neither
 new acceptance proof uses them. The earlier 221969 certificate is retained as
 a separate historical artifact.
 
-Maximum-deletion pruning remains available in the old engine under its
-existing explicit option. It is not silently added to this event engine.
+Maximum-deletion pruning is available in both engines under an explicit option.
+In the event engine the prefix is recorded in the certificate dependency closure
+and remains an external premise. A 225121 diagnostic with this option spent
+8.76 seconds in root preparation, including 7.97 seconds in probe workers;
+preprocessing and final in-process verification together took under 0.1 seconds.
+The dependent NO certificate passed independent replay with the external-premise
+flag. The million-range campaign is paused at 335135; its checkpoint is recorded
+in outputs/20260923-million-campaign/state.json and the tracked evidence snapshot.
 No provenance gate, runtime source hash, or campaign authorization change is
 introduced.

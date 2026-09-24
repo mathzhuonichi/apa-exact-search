@@ -1,4 +1,4 @@
-use super::engine::{Engine, Limits, Metrics, Policy, Propagation, State};
+use super::engine::{Engine, Limits, Metrics, Outcome, Policy, Propagation, State};
 use super::problem::Problem;
 use super::proof::{Fact, Rule};
 use super::*;
@@ -54,7 +54,7 @@ fn fingerprint(s: &State) -> String {
     let mut pairs = s.pairs.iter().collect::<Vec<_>>();
     pairs.sort();
     format!(
-        "{:?}{:?}{:?}{:?}{:?}{:?}{:?}{:?}{:?}{:?}{:?}{:?}{}{}",
+        "{:?}{:?}{:?}{:?}{:?}{:?}{:?}{:?}{:?}{:?}{:?}{:?}{}{}{}",
         s.member,
         s.banned,
         s.bad,
@@ -68,7 +68,8 @@ fn fingerprint(s: &State) -> String {
         s.unresolved,
         pairs,
         s.revision,
-        s.scope
+        s.scope,
+        s.fingerprint_extensions()
     )
 }
 
@@ -793,4 +794,139 @@ fn parallel_root_respects_shared_budget_and_interruption() {
     );
     assert_eq!(fingerprint(&s), before);
     assert_eq!(e.metrics.root_parallel_batches, 0);
+}
+
+#[test]
+fn complete_prefix_mode_preserves_positive_control_and_marks_dependencies() {
+    let yes = run(
+        Config {
+            maximum: 113,
+            complete_prefix_base: Some(2),
+            root_strengthen: true,
+            threads: 2,
+            ..Config::default()
+        },
+        Arc::new(AtomicBool::new(false)),
+    )
+    .unwrap();
+    assert_eq!(yes.status, "YES");
+    assert!(validate(113, &yes.example));
+
+    let no = run(
+        Config {
+            maximum: 4,
+            complete_prefix_base: Some(2),
+            threads: 1,
+            ..Config::default()
+        },
+        Arc::new(AtomicBool::new(false)),
+    )
+    .unwrap();
+    assert_eq!(no.status, "NO");
+    assert_eq!(no.evidence, "SOLVER_NO_EXTERNAL_LEMMAS");
+    let certificate = no.certificate.unwrap();
+    assert_eq!(proof::verify(&certificate, true), Ok(true));
+    assert!(proof::verify(&certificate, false).is_err());
+    assert!(
+        run(
+            Config {
+                maximum: 113,
+                complete_prefix_base: Some(113),
+                ..Config::default()
+            },
+            Arc::new(AtomicBool::new(false)),
+        )
+        .is_err()
+    );
+}
+
+#[test]
+fn additive_maximum_unique_requires_every_other_pair_excluded() {
+    let certificate = proof::Certificate {
+        maximum: 5,
+        scopes: vec![
+            proof::Scope {
+                parent: None,
+                assumptions: vec![],
+            },
+            proof::Scope {
+                parent: Some(0),
+                assumptions: vec![Fact::Ban(2)],
+            },
+        ],
+        nodes: vec![
+            proof::Node {
+                scope: 0,
+                fact: Fact::AdditiveMaximum,
+                rule: Rule::PrefixAdditive { base: 2 },
+                premises: vec![],
+            },
+            proof::Node {
+                scope: 1,
+                fact: Fact::Ban(2),
+                rule: Rule::Assumption,
+                premises: vec![],
+            },
+            proof::Node {
+                scope: 1,
+                fact: Fact::Member(4),
+                rule: Rule::AdditiveUnique { a: 1 },
+                premises: vec![0, 1],
+            },
+        ],
+        root: 2,
+    };
+    assert_eq!(
+        proof::verify(&certificate, true),
+        Err("not a complete root refutation".into())
+    );
+    let mut forged = certificate;
+    forged.nodes[2].premises.pop();
+    assert!(
+        proof::verify(&forged, true)
+            .unwrap_err()
+            .contains("invalid inference")
+    );
+}
+
+#[test]
+fn additive_maximum_conflict_rolls_back_pair_and_ban_deletions() {
+    let mut e = engine(31);
+    let mut s = State::new(&e.p);
+    e.enable_maximum_deletion(&mut s, 3).unwrap();
+    assert_eq!(e.quiesce(&mut s), Propagation::Quiet);
+    let parent = fingerprint(&s);
+    let cp = s.checkpoint();
+
+    // A pair excludes the first additive witness; bans exclude the rest.
+    assume(&mut e, &mut s, Fact::Pair(1, 30)).unwrap();
+    for v in 2..=15 {
+        assume(&mut e, &mut s, Fact::Ban(v)).unwrap();
+    }
+    assert!(matches!(e.quiesce(&mut s), Propagation::Conflict(_)));
+    s.rollback(&e.p, cp);
+    assert_eq!(fingerprint(&s), parent);
+    counts(&e, &s);
+
+    // After rollback, the first witness is live again, so banning the other
+    // values forces 1 before the ordinary sum/product rules find a conflict.
+    for v in 2..=15 {
+        assume(&mut e, &mut s, Fact::Ban(v)).unwrap();
+    }
+    assert!(matches!(e.quiesce(&mut s), Propagation::Conflict(_)));
+    assert!(s.member[1].is_some());
+}
+
+#[test]
+fn additive_maximum_is_a_dfs_branch_when_product_demands_are_absent() {
+    let mut e = engine(31);
+    let mut s = State::new(&e.p);
+    e.enable_maximum_deletion(&mut s, 3).unwrap();
+    assert_eq!(e.quiesce(&mut s), Propagation::Quiet);
+    assert_eq!(e.select(&s), None);
+    e.cfg.node_limit = 1;
+    assert!(matches!(e.dfs(&mut s), Outcome::Unknown));
+    assert_eq!(e.metrics.yes_checks, 0);
+    assert_eq!(e.metrics.full_domain_enumerations, 1);
+    assert_eq!(e.metrics.additive_branches, 1);
 }

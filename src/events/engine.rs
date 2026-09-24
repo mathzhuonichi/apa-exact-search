@@ -26,8 +26,10 @@ pub struct Metrics {
     pub endpoint_occ_visits: u64,
     pub endpoint_sum_occ_visits: u64,
     pub full_domain_enumerations: u64,
+    pub additive_branches: u64,
     pub dirty_domain_events: u64,
     pub low_pair_activations: u64,
+    pub low_pair_word_scans: u64,
     pub new_members: u64,
     pub bans: u64,
     pub bad_products: u64,
@@ -45,6 +47,12 @@ pub struct Metrics {
     pub probe_events: u64,
     pub probe_wall_time: f64,
     pub prime_chain_steps: u64,
+    pub prime_chain_wall_time: f64,
+    pub root_batch_worker_wall_time: f64,
+    pub root_batch_merge_wall_time: f64,
+    pub root_parent_propagation_wall_time: f64,
+    pub root_worker_clone_cpu_time: f64,
+    pub root_worker_fragment_cpu_time: f64,
     pub proof_events: usize,
     pub root_strengthen_rounds: usize,
     pub root_cover_sums: Vec<usize>,
@@ -64,8 +72,10 @@ impl Metrics {
             endpoint_occ_visits,
             endpoint_sum_occ_visits,
             full_domain_enumerations,
+            additive_branches,
             dirty_domain_events,
             low_pair_activations,
+            low_pair_word_scans,
             new_members,
             bans,
             bad_products,
@@ -82,6 +92,8 @@ impl Metrics {
             probe_common_g,
             probe_events
         );
+        self.root_worker_clone_cpu_time += other.root_worker_clone_cpu_time;
+        self.root_worker_fragment_cpu_time += other.root_worker_fragment_cpu_time;
     }
 }
 #[derive(Clone, Debug)]
@@ -90,6 +102,7 @@ enum Event {
     Ban(usize),
     Bad(usize),
     Domain(usize),
+    Additive,
 }
 #[derive(Clone, Debug)]
 struct SumJob {
@@ -108,6 +121,15 @@ enum Undo {
     Pair(usize, usize),
     Insert(usize),
     Remove { s: usize, pos: usize },
+    AdditiveDead(usize),
+    AdditiveSatisfied(Option<usize>),
+}
+#[derive(Clone, Debug)]
+struct AdditiveMaximum {
+    required: Id,
+    dead: Vec<Option<Id>>,
+    live: usize,
+    satisfied: Option<usize>,
 }
 #[derive(Clone, Debug)]
 pub struct Checkpoint {
@@ -123,6 +145,9 @@ pub struct State {
     pub active: Vec<Option<Id>>,
     pub dead: Vec<Option<Id>>,
     pub members: Vec<usize>,
+    member_bits: Vec<u64>,
+    member_words: Vec<usize>,
+    active_bits: Vec<u64>,
     pub bad_values: Vec<usize>,
     pub live_count: Vec<usize>,
     pub xor_live_id: Vec<usize>,
@@ -130,6 +155,7 @@ pub struct State {
     pub unresolved: Vec<usize>,
     position: Vec<Option<usize>>,
     pub pairs: HashMap<(usize, usize), Id>,
+    additive: Option<AdditiveMaximum>,
     adjacency: Vec<Vec<usize>>,
     high: VecDeque<Event>,
     low: VecDeque<SumJob>,
@@ -149,6 +175,9 @@ impl State {
             active: vec![None; p.limit + 1],
             dead: vec![None; p.witness.len()],
             members: vec![],
+            member_bits: vec![0; (p.n + 64) / 64],
+            member_words: vec![],
+            active_bits: vec![0; (p.limit + 64) / 64 + 1],
             bad_values: vec![],
             live_count: (0..=p.limit).map(|s| p.domain(s).len()).collect(),
             xor_live_id: (0..=p.limit)
@@ -158,6 +187,7 @@ impl State {
             unresolved: vec![],
             position: vec![None; p.limit + 1],
             pairs: HashMap::new(),
+            additive: None,
             adjacency: vec![vec![]; p.n + 1],
             high: VecDeque::new(),
             low: VecDeque::new(),
@@ -171,6 +201,13 @@ impl State {
     }
     pub fn quiet(&self) -> bool {
         self.high.is_empty() && self.low.is_empty()
+    }
+    #[cfg(test)]
+    pub(super) fn fingerprint_extensions(&self) -> String {
+        format!(
+            "{:?}{:?}{:?}{:?}",
+            self.member_bits, self.member_words, self.active_bits, self.additive
+        )
     }
     pub fn checkpoint(&self) -> Checkpoint {
         assert!(self.quiet(), "checkpoint requires empty propagation queues");
@@ -189,13 +226,21 @@ impl State {
                 Undo::Member(v) => {
                     self.member[v] = None;
                     assert_eq!(self.members.pop(), Some(v));
+                    let word = v / 64;
+                    self.member_bits[word] &= !(1u64 << (v % 64));
+                    if self.member_bits[word] == 0 {
+                        assert_eq!(self.member_words.pop(), Some(word));
+                    }
                 }
                 Undo::Ban(v) => self.banned[v] = None,
                 Undo::Bad(s) => {
                     self.bad[s] = None;
                     assert_eq!(self.bad_values.pop(), Some(s));
                 }
-                Undo::Active(s) => self.active[s] = None,
+                Undo::Active(s) => {
+                    self.active[s] = None;
+                    self.active_bits[s / 64] &= !(1u64 << (s % 64));
+                }
                 Undo::Kill(id) => {
                     let s = p.witness[id].s;
                     self.dead[id] = None;
@@ -222,6 +267,14 @@ impl State {
                         self.unresolved.push(s);
                     }
                     self.position[s] = Some(pos);
+                }
+                Undo::AdditiveDead(a) => {
+                    let additive = self.additive.as_mut().unwrap();
+                    additive.dead[a] = None;
+                    additive.live += 1;
+                }
+                Undo::AdditiveSatisfied(previous) => {
+                    self.additive.as_mut().unwrap().satisfied = previous;
                 }
             }
         }
@@ -318,6 +371,70 @@ pub struct Engine {
     pub probe_remaining: usize,
 }
 impl Engine {
+    pub fn enable_maximum_deletion(&mut self, s: &mut State, base: usize) -> Result<(), Id> {
+        assert_eq!(s.scope, 0);
+        let n = self.p.n;
+        let required = s.node(Fact::AdditiveMaximum, Rule::PrefixAdditive { base }, vec![]);
+        let satisfied = (1..=n / 2).find(|&a| {
+            s.member[a].is_some() && s.member[n - a].is_some() && !s.pairs.contains_key(&(a, n - a))
+        });
+        s.additive = Some(AdditiveMaximum {
+            required,
+            dead: vec![None; n / 2 + 1],
+            live: n / 2,
+            satisfied,
+        });
+        s.high.push_back(Event::Additive);
+        for id in self.p.domain(n) {
+            let w = self.p.witness[id];
+            if w.e == n {
+                continue;
+            }
+            let proof = s.node(Fact::Pair(w.d, w.e), Rule::PrefixPair { base }, vec![]);
+            self.pair(s, w.d, w.e, proof)?;
+        }
+        Ok(())
+    }
+    fn additive_kill(&mut self, s: &mut State, v: usize, reason: Id) {
+        let n = self.p.n;
+        if v == 0 || v >= n {
+            return;
+        }
+        let a = v.min(n - v);
+        let Some(additive) = s.additive.as_mut() else {
+            return;
+        };
+        if additive.dead[a].is_none() {
+            additive.dead[a] = Some(reason);
+            additive.live -= 1;
+            s.trail.push(Undo::AdditiveDead(a));
+            s.high.push_back(Event::Additive);
+            s.revision += 1;
+        }
+    }
+    fn additive_propagate(&mut self, s: &mut State) -> Result<(), Id> {
+        let Some(additive) = s.additive.as_ref() else {
+            return Ok(());
+        };
+        if additive.satisfied.is_some() || additive.live > 1 {
+            return Ok(());
+        }
+        let required = additive.required;
+        let survivor = (1..=self.p.n / 2).find(|&a| additive.dead[a].is_none());
+        let reasons = std::iter::once(required)
+            .chain(additive.dead.iter().skip(1).filter_map(|&id| id))
+            .collect::<Vec<_>>();
+        let Some(a) = survivor else {
+            return Err(s.node(Fact::False, Rule::AdditiveEmpty, reasons));
+        };
+        for v in [a, self.p.n - a] {
+            if s.member[v].is_none() {
+                let proof = s.node(Fact::Member(v), Rule::AdditiveUnique { a }, reasons.clone());
+                self.force(s, v, proof)?;
+            }
+        }
+        Ok(())
+    }
     pub fn force(&mut self, s: &mut State, v: usize, r: Id) -> Result<(), Id> {
         assert!((1..=self.p.n).contains(&v));
         if let Some(b) = s.banned[v] {
@@ -328,8 +445,25 @@ impl Engine {
         }
         s.member[v] = Some(r);
         s.trail.push(Undo::Member(v));
-        let end = s.members.len();
         s.members.push(v);
+        let word = v / 64;
+        if s.member_bits[word] == 0 {
+            s.member_words.push(word);
+        }
+        s.member_bits[word] |= 1u64 << (v % 64);
+        if v < self.p.n {
+            let complement = self.p.n - v;
+            if s.member[complement].is_some() {
+                let a = v.min(complement);
+                if let Some(additive) = s.additive.as_mut()
+                    && additive.dead[a].is_none()
+                    && additive.satisfied.is_none()
+                {
+                    s.trail.push(Undo::AdditiveSatisfied(None));
+                    additive.satisfied = Some(a);
+                }
+            }
+        }
         s.revision += 1;
         self.metrics.new_members += 1;
         for i in 0..self.p.endpoint.get(v).len() {
@@ -353,7 +487,11 @@ impl Engine {
             }
         }
         s.high.push_back(Event::Member(v));
-        s.low.push_back(SumJob { a: v, next: 0, end });
+        s.low.push_back(SumJob {
+            a: v,
+            next: 0,
+            end: s.member_words.len(),
+        });
         Ok(())
     }
     pub fn ban(&mut self, s: &mut State, v: usize, r: Id) -> Result<(), Id> {
@@ -370,6 +508,7 @@ impl Engine {
             s.high.push_back(Event::Ban(v));
             s.revision += 1;
             self.metrics.bans += 1;
+            self.additive_kill(s, v, r);
         }
         Ok(())
     }
@@ -440,6 +579,9 @@ impl Engine {
         s.adjacency[e].push(d);
         s.trail.push(Undo::Pair(d, e));
         s.revision += 1;
+        if d + e == self.p.n {
+            self.additive_kill(s, d, r);
+        }
         if let Some(m) = s.member[d] {
             let b = s.node(Fact::Ban(e), Rule::UnitPair, vec![r, m]);
             self.ban(s, e, b)?;
@@ -462,6 +604,7 @@ impl Engine {
                 vec![s.member[a].unwrap(), s.member[b].unwrap()],
             );
             s.active[sum] = Some(r);
+            s.active_bits[sum / 64] |= 1u64 << (sum % 64);
             s.trail.push(Undo::Active(sum));
             s.dirty(sum);
             s.revision += 1;
@@ -545,6 +688,7 @@ impl Engine {
     }
     fn event(&mut self, s: &mut State, event: Event) -> Result<(), Id> {
         match event {
+            Event::Additive => self.additive_propagate(s)?,
             Event::Domain(sum) => {
                 s.pending[sum] = 0;
                 self.domain(s, sum)?;
@@ -650,11 +794,23 @@ impl Engine {
                 self.event(s, event)
             } else {
                 let mut job = s.low.pop_front().unwrap();
-                let b = s.members[job.next];
+                let word = s.member_words[job.next];
                 job.next += 1;
-                self.activate(s, job.a, b);
-                self.metrics.low_pair_activations += 1;
-                if job.next <= job.end {
+                self.metrics.low_pair_word_scans += 1;
+                let sum_word = job.a / 64 + word;
+                let shift = job.a % 64;
+                let mut already = s.active_bits[sum_word] >> shift;
+                if shift != 0 {
+                    already |= s.active_bits[sum_word + 1] << (64 - shift);
+                }
+                let mut missing = s.member_bits[word] & !already;
+                while missing != 0 {
+                    let bit = missing.trailing_zeros() as usize;
+                    missing &= missing - 1;
+                    self.activate(s, job.a, word * 64 + bit);
+                    self.metrics.low_pair_activations += 1;
+                }
+                if job.next < job.end {
                     s.low.push_front(job);
                 }
                 Ok(())
@@ -1079,7 +1235,14 @@ impl Engine {
         Propagation::Quiet
     }
     pub fn prime_chains(&mut self, s: &mut State) -> Propagation {
+        let started = Instant::now();
         let mut left = self.cfg.prime_chain_steps;
+        // Each candidate starts a fresh reachability search. Reuse the large
+        // visitation array with generation stamps instead of clearing it for
+        // every candidate even value.
+        let mut known = vec![0u32; self.p.limit + 1];
+        let mut generation = 0u32;
+        let mut queue = VecDeque::new();
         for e in (2..=self.p.n).step_by(2) {
             if left == 0 || self.limits.stopped() {
                 break;
@@ -1087,12 +1250,16 @@ impl Engine {
             if s.banned[e].is_some() || s.member[e].is_some() {
                 continue;
             }
-            let mut known = vec![false; self.p.limit + 1];
-            let mut queue = VecDeque::new();
+            if generation == u32::MAX {
+                known.fill(0);
+                generation = 0;
+            }
+            generation += 1;
+            queue.clear();
             let mut reasons = vec![];
             for &a in &s.members {
                 if a % 2 == 1 {
-                    known[a] = true;
+                    known[a] = generation;
                     queue.push_back(a);
                     reasons.push(s.member[a].unwrap());
                 }
@@ -1111,11 +1278,11 @@ impl Engine {
                     if !self.p.prime[p] {
                         continue;
                     }
-                    if known[p] {
+                    if known[p] == generation {
                         continue;
                     }
                     steps.push((a, h, p));
-                    known[p] = true;
+                    known[p] = generation;
                     if p > self.p.n {
                         terminal = true;
                         break 'chain;
@@ -1138,15 +1305,19 @@ impl Engine {
                     reasons,
                 );
                 if let Err(id) = self.ban(s, e, r) {
+                    self.metrics.prime_chain_wall_time += started.elapsed().as_secs_f64();
                     return Propagation::Conflict(id);
                 }
                 let r = self.quiesce(s);
                 if r != Propagation::Quiet {
+                    self.metrics.prime_chain_wall_time += started.elapsed().as_secs_f64();
                     return r;
                 }
             }
         }
-        self.quiesce(s)
+        let result = self.quiesce(s);
+        self.metrics.prime_chain_wall_time += started.elapsed().as_secs_f64();
+        result
     }
     pub fn dfs(&mut self, s: &mut State) -> Outcome {
         self.metrics.nodes += 1;
@@ -1168,7 +1339,13 @@ impl Engine {
         if self.limits.stopped() {
             return Outcome::Unknown;
         }
-        let Some(sum) = self.select(s) else {
+        let product_sum = self.select(s);
+        let additive = s.additive.as_ref().is_some_and(|a| {
+            a.satisfied.is_none()
+                && a.live > 1
+                && product_sum.is_none_or(|sum| a.live < s.live_count[sum])
+        });
+        if product_sum.is_none() && !additive {
             self.metrics.yes_checks += 1;
             let mut values = s.members.clone();
             values.sort_unstable();
@@ -1177,13 +1354,25 @@ impl Engine {
             } else {
                 Outcome::Error("raw YES validation failed".into())
             };
-        };
+        }
         self.metrics.full_domain_enumerations += 1;
-        let mut options = self
-            .p
-            .domain(sum)
-            .filter(|&id| s.dead[id].is_none())
-            .collect::<Vec<_>>();
+        let mut options = if additive {
+            self.metrics.additive_branches += 1;
+            let a = s.additive.as_ref().unwrap();
+            (1..=self.p.n / 2)
+                .filter(|&v| a.dead[v].is_none())
+                .map(|v| (v, self.p.n - v))
+                .collect::<Vec<_>>()
+        } else {
+            self.p
+                .domain(product_sum.unwrap())
+                .filter(|&id| s.dead[id].is_none())
+                .map(|id| {
+                    let w = self.p.witness[id];
+                    (w.d, w.e)
+                })
+                .collect::<Vec<_>>()
+        };
         if self.lane % 4 >= 2 {
             options.reverse();
         }
@@ -1191,23 +1380,25 @@ impl Engine {
         if len > 0 {
             options.rotate_left(self.lane % len);
         }
-        for id in options {
+        for (d, e) in options {
             match self.quiesce(s) {
                 Propagation::Conflict(id) => return Outcome::No(id),
                 Propagation::Paused => return Outcome::Unknown,
                 _ => {}
             }
-            if s.dead[id].is_some() {
+            if additive && s.additive.as_ref().unwrap().dead[d].is_some() {
                 continue;
             }
-            let w = self.p.witness[id];
+            if !additive && self.p.pair_id(d, e).is_some_and(|id| s.dead[id].is_some()) {
+                continue;
+            }
             let cp = s.checkpoint();
             let child = s
                 .proof
-                .enter(s.scope, vec![Fact::Member(w.d), Fact::Member(w.e)]);
+                .enter(s.scope, vec![Fact::Member(d), Fact::Member(e)]);
             s.scope = child;
             let mut initial = Ok(());
-            for v in [w.d, w.e] {
+            for v in [d, e] {
                 let r = s.node(Fact::Member(v), Rule::Assumption, vec![]);
                 initial = self.force(s, v, r);
                 if initial.is_err() {
@@ -1227,8 +1418,8 @@ impl Engine {
             s.rollback(&self.p, cp);
             match result {
                 Outcome::No(id) => {
-                    let r = s.node(Fact::Pair(w.d, w.e), Rule::Discharge(child), vec![id]);
-                    if let Err(id) = self.pair(s, w.d, w.e, r) {
+                    let r = s.node(Fact::Pair(d, e), Rule::Discharge(child), vec![id]);
+                    if let Err(id) = self.pair(s, d, e, r) {
                         return Outcome::No(id);
                     }
                 }

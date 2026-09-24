@@ -13,6 +13,9 @@ use std::time::{Duration, Instant};
 pub struct Config {
     #[arg(long)]
     pub maximum: usize,
+    /// Assert that every maximum strictly between this base and maximum is excluded.
+    #[arg(long)]
+    pub complete_prefix_base: Option<usize>,
     /// Common portfolio search deadline; root preparation is timed separately.
     #[arg(long, default_value_t = 30.0)]
     pub seconds: f64,
@@ -71,6 +74,7 @@ impl Default for Config {
     fn default() -> Self {
         Self {
             maximum: 113,
+            complete_prefix_base: None,
             seconds: 30.0,
             root_seconds: 120.0,
             threads: 0,
@@ -214,6 +218,16 @@ pub(super) fn accept(report: &mut Report, outcome: Outcome, cert: Option<Certifi
 }
 
 pub fn run(cfg: Config, interrupted: Arc<AtomicBool>) -> Result<Report, String> {
+    if let Some(base) = cfg.complete_prefix_base {
+        let threshold = base
+            .checked_mul(base.saturating_sub(1))
+            .ok_or("complete-prefix threshold overflow")?;
+        if base < 2 || base >= cfg.maximum || cfg.maximum <= threshold {
+            return Err(format!(
+                "complete-prefix-base requires 2 <= base < maximum and maximum > base*(base-1) = {threshold}"
+            ));
+        }
+    }
     if cfg.root_strengthen && cfg.root_probe_width < 2 {
         return Err("root-probe-width must be at least two".into());
     }
@@ -271,7 +285,13 @@ pub fn run(cfg: Config, interrupted: Arc<AtomicBool>) -> Result<Report, String> 
     } else {
         let result = match prep.initialize(&mut root) {
             Err(id) => Propagation::Conflict(id),
-            Ok(()) => prep.quiesce(&mut root),
+            Ok(()) => match cfg.complete_prefix_base {
+                Some(base) => match prep.enable_maximum_deletion(&mut root, base) {
+                    Err(id) => Propagation::Conflict(id),
+                    Ok(()) => prep.quiesce(&mut root),
+                },
+                None => prep.quiesce(&mut root),
+            },
         };
         let result = if result == Propagation::Quiet {
             prep.prime_chains(&mut root)

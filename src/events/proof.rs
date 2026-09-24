@@ -13,6 +13,7 @@ pub enum Fact {
     Active(usize),
     Dead(usize, usize),
     Pair(usize, usize),
+    AdditiveMaximum,
     False,
 }
 
@@ -47,6 +48,16 @@ pub enum Rule {
         candidate: usize,
         steps: Vec<(usize, usize, usize)>,
     },
+    PrefixAdditive {
+        base: usize,
+    },
+    PrefixPair {
+        base: usize,
+    },
+    AdditiveUnique {
+        a: usize,
+    },
+    AdditiveEmpty,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -293,6 +304,32 @@ fn clause(p: usize, q: usize) -> bool {
     let b = GROUPS.iter().position(|g| g.contains(&q));
     a.is_some() && b.is_some() && a != b
 }
+fn prefix_valid(n: usize, base: usize) -> bool {
+    base >= 2
+        && base < n
+        && base
+            .checked_mul(base - 1)
+            .is_some_and(|threshold| n > threshold)
+}
+fn additive_cover_excluded(facts: &[&Fact], n: usize, survivor: Option<usize>) -> bool {
+    let banned: HashSet<_> = facts
+        .iter()
+        .filter_map(|f| match f {
+            Fact::Ban(v) => Some(*v),
+            _ => None,
+        })
+        .collect();
+    let pairs: HashSet<_> = facts
+        .iter()
+        .filter_map(|f| match f {
+            Fact::Pair(d, e) => Some((*d, *e)),
+            _ => None,
+        })
+        .collect();
+    (1..=n / 2)
+        .filter(|a| Some(*a) != survivor)
+        .all(|a| banned.contains(&a) || banned.contains(&(n - a)) || pairs.contains(&(a, n - a)))
+}
 
 /// External universal lemmas are explicit trust inputs, never silently certified.
 /// Returns whether the dependency closure actually uses an external lemma.
@@ -338,11 +375,15 @@ pub fn verify(cert: &Certificate, allow_external_lemmas: bool) -> Result<bool, S
                     && (!matches!(node.fact, Fact::Dead(..))
                         || d.checked_mul(e).is_some_and(|p| (2..=2 * n).contains(&p)))
             }
-            Fact::False => true,
+            Fact::AdditiveMaximum | Fact::False => true,
         };
         let trusted_rule = matches!(
             node.rule,
-            Rule::Universal(_) | Rule::PrimeClause(..) | Rule::EvenBound
+            Rule::Universal(_)
+                | Rule::PrimeClause(..)
+                | Rule::EvenBound
+                | Rule::PrefixAdditive { .. }
+                | Rule::PrefixPair { .. }
         ) || matches!(
             node.rule,
             Rule::Join {
@@ -379,6 +420,31 @@ pub fn verify(cert: &Certificate, allow_external_lemmas: bool) -> Result<bool, S
                     facts.is_empty()
                         && U.contains(v)
                         && (node.fact == Fact::Member(*v) || (*v > n && node.fact == Fact::False))
+                }
+                Rule::PrefixAdditive { base } => {
+                    node.scope == 0
+                        && facts.is_empty()
+                        && prefix_valid(n, *base)
+                        && node.fact == Fact::AdditiveMaximum
+                }
+                Rule::PrefixPair { base } => {
+                    node.scope == 0
+                        && facts.is_empty()
+                        && prefix_valid(n, *base)
+                        && matches!(node.fact, Fact::Pair(d,e) if d>=1 && d<=e && e<n && d.checked_mul(e)==Some(n))
+                }
+                Rule::AdditiveUnique { a } => {
+                    all_local()
+                        && (1..=n / 2).contains(a)
+                        && has(Fact::AdditiveMaximum)
+                        && additive_cover_excluded(&facts, n, Some(*a))
+                        && matches!(node.fact, Fact::Member(v) if v==*a || v==n-*a)
+                }
+                Rule::AdditiveEmpty => {
+                    all_local()
+                        && node.fact == Fact::False
+                        && has(Fact::AdditiveMaximum)
+                        && additive_cover_excluded(&facts, n, None)
                 }
                 Rule::PrimeClause(p, q) => {
                     all_local()

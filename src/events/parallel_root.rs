@@ -50,7 +50,9 @@ fn probe(worker: &mut Engine, state: &mut State, snapshot: &State, job: Job) -> 
         || state.delta(&cp).into_values().collect::<Vec<_>>(),
         |id| vec![id],
     );
+    let fragment_started = Instant::now();
     let (proof, roots) = state.proof.fragment(&roots, snapshot.proof.scopes.len());
+    worker.metrics.root_worker_fragment_cpu_time += fragment_started.elapsed().as_secs_f64();
     state.rollback(&worker.p, cp);
     state.proof = snapshot.proof.clone();
     Result {
@@ -74,6 +76,7 @@ fn batch(
     let workers = threads.min(jobs.len());
     e.metrics.root_parallel_workers = e.metrics.root_parallel_workers.max(workers);
     let next = AtomicUsize::new(0);
+    let workers_started = Instant::now();
     let results = std::thread::scope(|scope| {
         let mut handles = vec![];
         let mut failure = None;
@@ -94,7 +97,10 @@ fn batch(
                 .spawn_scoped(scope, move || {
                     let cancel = Arc::clone(&worker.limits.cancel);
                     std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {
+                        let clone_started = Instant::now();
                         let mut state = snapshot.clone();
+                        worker.metrics.root_worker_clone_cpu_time +=
+                            clone_started.elapsed().as_secs_f64();
                         let mut results = vec![];
                         while !worker.limits.stopped() {
                             let index = next.fetch_add(1, Ordering::Relaxed);
@@ -136,18 +142,21 @@ fn batch(
             Err,
         )
     })?;
+    e.metrics.root_batch_worker_wall_time += workers_started.elapsed().as_secs_f64();
     for result in &results {
         e.probe_remaining -= result.metrics.probe_events as usize;
         e.metrics.add_probe_work(&result.metrics);
     }
     // Import the complete contradiction before considering cancellation or
     // propagating other results, which may already have been interrupted.
+    let merge_started = Instant::now();
     let mut results = results;
     if let Some(index) = results.iter().position(|result| result.conflict) {
         let result = results.swap_remove(index);
         let roots = s
             .proof
             .append_fragment(result.proof, result.roots, shared_scopes);
+        e.metrics.root_batch_merge_wall_time += merge_started.elapsed().as_secs_f64();
         return Ok(Propagation::Conflict(roots[0]));
     }
     for result in results {
@@ -159,6 +168,7 @@ fn batch(
             assert_eq!(s.proof.get(id).scope, 0);
             let fact = s.proof.get(id).fact.clone();
             if let Err(id) = e.apply(s, fact, id) {
+                e.metrics.root_batch_merge_wall_time += merge_started.elapsed().as_secs_f64();
                 return Ok(Propagation::Conflict(id));
             }
         }
@@ -169,7 +179,11 @@ fn batch(
             }
         }
     }
-    Ok(e.quiesce(s))
+    e.metrics.root_batch_merge_wall_time += merge_started.elapsed().as_secs_f64();
+    let propagate_started = Instant::now();
+    let result = e.quiesce(s);
+    e.metrics.root_parent_propagation_wall_time += propagate_started.elapsed().as_secs_f64();
+    Ok(result)
 }
 
 pub(super) fn strengthen(
