@@ -2,6 +2,6 @@
   "paused": true,
   "status_file": "progress/STATUS.json",
   "automatic_resume_authorized": false,
-  "reason": "Paused at the user's request after checkpoint 335135. No campaign processes should run until the user explicitly resumes.",
-  "resume_from": 335177
+  "reason": "User requested pause for GitHub export. The latest independently replayed NO is 370039 (2,303 since 225023). Candidate 370169 was interrupted before the solver returned; it is not classified as NO or solver UNKNOWN and must be retried on resume.",
+  "resume_from": 370169
 }

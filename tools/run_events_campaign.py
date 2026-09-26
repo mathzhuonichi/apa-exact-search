@@ -6,11 +6,14 @@ The campaign state is written after each completed maximum and can be resumed.
 
 import argparse
 import json
+import math
 import os
 from pathlib import Path
 import subprocess
 import time
 
+
+CANDIDATE_TIMEOUT_SECONDS = 600
 
 OPTIONS = [
     '--threads',
@@ -42,18 +45,31 @@ def save(path, record):
     os.replace(temporary, path)
 
 
-def run_one(binary, output, maximum):
+def run_one(binary, output, maximum, timeout_seconds):
     folder = output / 'candidates' / str(maximum)
     folder.mkdir(parents=True, exist_ok=True)
     proof = folder / 'proof.json'
     result = folder / 'result.json'
     with (folder / 'stdout.log').open('w', encoding='utf-8') as stdout, \
             (folder / 'stderr.log').open('w', encoding='utf-8') as stderr:
-        completed = subprocess.run(
-            [str(binary), 'solve-events', '--maximum', str(maximum), *OPTIONS,
-             '--proof', str(proof), '--output', str(result)],
-            stdout=stdout, stderr=stderr, check=False,
-        )
+        try:
+            completed = subprocess.run(
+                [str(binary), 'solve-events', '--maximum', str(maximum), *OPTIONS,
+                 '--proof', str(proof), '--output', str(result)],
+                stdout=stdout, stderr=stderr, check=False,
+                timeout=timeout_seconds,
+            )
+        except subprocess.TimeoutExpired:
+            reason = f'candidate exceeded {timeout_seconds:g}s wall timeout; solver result was not returned'
+            save(folder / 'timeout.json', {
+                'maximum': maximum,
+                'status': 'UNKNOWN',
+                'kind': 'external_wall_timeout',
+                'wall_timeout_seconds': timeout_seconds,
+                'solver_returned_result': False,
+                'reason': reason,
+            })
+            return 'UNKNOWN', reason
     if completed.returncode or not result.exists():
         return 'ERROR', f'solver exit {completed.returncode}; inspect {folder}'
     try:
@@ -84,7 +100,11 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--start-after', type=int, required=True)
     parser.add_argument('--through', type=int, default=1_000_000)
+    parser.add_argument('--candidate-timeout-seconds', type=float,
+                        default=CANDIDATE_TIMEOUT_SECONDS)
     args = parser.parse_args()
+    if not math.isfinite(args.candidate_timeout_seconds) or args.candidate_timeout_seconds <= 0:
+        parser.error('candidate-timeout-seconds must be finite and positive')
     binary = args.binary.resolve()
     candidates = [int(line) for line in args.candidates.read_text(encoding='utf-8').splitlines() if line.strip()]
     if candidates != sorted(set(candidates)) or candidates[-1] > 1_000_000:
@@ -95,6 +115,10 @@ def main():
         state = json.loads(state_path.read_text(encoding='utf-8'))
         if state['start_after'] != args.start_after or state['through'] != args.through:
             parser.error('resume options differ from the existing campaign')
+        if (state.get('candidate_timeout_seconds') is not None and
+                state['candidate_timeout_seconds'] != args.candidate_timeout_seconds):
+            parser.error('candidate timeout differs from the recorded campaign configuration')
+        state['candidate_timeout_seconds'] = args.candidate_timeout_seconds
         if state['state'] == 'PAUSED':
             # Launching this runner is an explicit resume action. Continue from
             # the last independently replayed checkpoint; an interrupted
@@ -115,6 +139,7 @@ def main():
             'state': 'RUNNING', 'start_after': args.start_after,
             'last_verified_no': args.start_after, 'through': args.through,
             'verified_no_count': 0, 'attention': None, 'options': OPTIONS,
+            'candidate_timeout_seconds': args.candidate_timeout_seconds,
         }
         save(state_path, state)
     if state['options'] != OPTIONS:
@@ -123,10 +148,20 @@ def main():
         if maximum <= state['last_verified_no'] or maximum > args.through:
             continue
         started = time.monotonic()
-        status, reason = run_one(binary, args.output, maximum)
+        status, reason = run_one(
+            binary, args.output, maximum, args.candidate_timeout_seconds)
         if status != 'NO':
             state.update(state='ATTENTION', attention={'maximum': maximum, 'status': status, 'reason': reason})
             save(state_path, state)
+            pause_path = state_path.parent.parent.parent / 'PAUSED.json'
+            pause = json.loads(pause_path.read_text(encoding='utf-8')) if pause_path.exists() else {}
+            pause.update(
+                paused=True,
+                automatic_resume_authorized=False,
+                reason=f'Campaign paused at {maximum} after {status}: {reason}',
+                resume_from=maximum,
+            )
+            save(pause_path, pause)
             print(json.dumps(state['attention']), flush=True)
             return 1
         state['last_verified_no'] = maximum

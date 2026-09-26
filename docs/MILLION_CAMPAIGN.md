@@ -9,9 +9,11 @@ universal lemmas; every new NO requires an event certificate and a separate
 
 ## Current pause
 
-The user paused the campaign on 2026-09-24. The last independently replayed
-residual is 335135; the checkpoint records 1,646 `VERIFIED_NO` results after
-225023. Candidate 335177 is next and has not been started. The 648-entry
+The user paused the campaign on 2026-09-26 for export. The last independently
+replayed residual is 370039; the checkpoint records 2,303 `VERIFIED_NO` results
+after 225023. Candidate 370169 was interrupted before the solver returned and
+must be retried on resume. It is not a solver `UNKNOWN` or a completed result.
+The runner uses a 600-second external wall timeout per candidate. The 648-entry
 predecessor prefix and first-stage exclusions have not been re-audited, so they
 remain a separate requirement for a final million-range claim.
 
@@ -47,24 +49,24 @@ residuals through 228887 using its recorded options. The initial
 228961 attempt exhausted the 200M probe cap with 14 cases unstarted; a
 500M-cap retry completed at 171.3M events and passed independent replay. The
 original UNKNOWN is preserved beside the verified result in
-candidates/228961/attempts.json. The campaign later advanced through 335135
-before the user paused it. Its state records 1,646 verified results since
-225023 and identifies 335177 as the next unstarted residual. The runner stops
-at the first UNKNOWN, YES, solver error, or replay failure, and records the
-attention case. The seven complete results and certificates through 225431,
-plus the latest certificate for 335135, are retained under
+candidates/228961/attempts.json. The campaign later advanced through 370039
+before the user paused it. Its state records 2,303 verified results since
+225023 and identifies 370169 as the interrupted residual to retry. The runner
+stops at the first UNKNOWN, YES, solver error, or replay failure, and records
+the attention case. The seven complete results and certificates through
+225431, plus the latest certificate for 370039, are retained under
 `evidence/events-v2-20260923-continuation/`. The complete local bulk corpus is
-3.23 GB and is not tracked in Git; the published classification and checkpoint
-summarize the intervening independently replayed results, but those
-per-candidate proofs cannot all be replayed from this repository alone.
+not tracked in Git; the published classification and checkpoint summarize the
+intervening independently replayed results, but those per-candidate proofs
+cannot all be replayed from this repository alone.
 
 The campaign state is the authority for the continuation checkpoint.
 progress/STATUS.json records the verified boundary and pause state. The prior
 evidence ledger describes the earlier snapshot through 224929; do not use it to
 infer the current boundary. Launching the runner again is an explicit resume
-action; it resumes from the checkpoint at 335135 and starts with 335177.
-Do not report a larger contiguous boundary until the corresponding replay log
-and result have been checked.
+action; it resumes after 370039 and retries 370169 first. Do not report a larger
+contiguous boundary until the corresponding replay log and result have been
+checked.
 
 ## Root-cause comparison
 

@@ -1,13 +1,13 @@
 {
   "state": "PAUSED",
   "start_after": 225023,
-  "last_verified_no": 335135,
+  "last_verified_no": 370039,
   "through": 1000000,
-  "verified_no_count": 1646,
+  "verified_no_count": 2303,
   "attention": {
-    "maximum": null,
+    "maximum": 370169,
     "status": "PAUSED",
-    "reason": "User requested pause after independently replayed checkpoint 335135."
+    "reason": "User requested pause for GitHub export. Candidate 370169 was interrupted before the solver returned and is not classified as NO, YES, or solver UNKNOWN; retry it on resume."
   },
   "options": [
     "--threads",
@@ -99,5 +99,6 @@
         "18446744073709551615"
       ]
     }
-  ]
+  ],
+  "candidate_timeout_seconds": 600.0
 }

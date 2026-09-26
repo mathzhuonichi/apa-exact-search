@@ -3,12 +3,14 @@
 ## Current execution state
 
 The event-v2 campaign is paused at the user's request. Its last independently
-replayed residual is 335135; the campaign records 1,646 `VERIFIED_NO` results
-after 225023. Candidate 335177 is next and has not been started. No campaign
-processes should run until the user explicitly resumes. The 648-entry
-predecessor prefix and first-stage exclusions remain unaudited. There are no
-unresolved `UNKNOWN` results in the current sequential campaign; earlier
-probe-cap attempts that were retried remain as historical records.
+replayed residual is 370039; the campaign records 2,303 `VERIFIED_NO` results
+after 225023. Candidate 370169 was interrupted before the solver returned and
+must be retried on resume; it is not classified as `NO` or solver `UNKNOWN`.
+No campaign processes should run until the user explicitly resumes. The
+648-entry predecessor prefix and first-stage exclusions remain unaudited.
+There are no solver `UNKNOWN` results in the current sequential campaign;
+earlier probe-cap attempts that were retried remain as historical records.
+The runner uses a 600-second external wall timeout per candidate.
 
 This is a 2026-09-21 historical handoff. The 2026-09-23 continuation first
 paused at 225431 for performance diagnosis; the user later explicitly resumed
