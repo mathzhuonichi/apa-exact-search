@@ -1,0 +1,420 @@
+{
+  "seconds": 2.932,
+  "certificates": 51,
+  "nodes": 347020,
+  "passed": 51,
+  "records": [
+    {
+      "path": "evidence/events-v1/257.proof.json",
+      "maximum": 257,
+      "nodes": 79,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2/218303.proof.json",
+      "maximum": 218303,
+      "nodes": 6693,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2/221969.proof.json",
+      "maximum": 221969,
+      "nodes": 5715,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-20260923-continuation/candidates/224999/proof.json",
+      "maximum": 224999,
+      "nodes": 10631,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-20260923-continuation/candidates/225023/proof.json",
+      "maximum": 225023,
+      "nodes": 10677,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-20260923-continuation/candidates/225121/proof.json",
+      "maximum": 225121,
+      "nodes": 18075,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-20260923-continuation/candidates/225181/proof.json",
+      "maximum": 225181,
+      "nodes": 3673,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-20260923-continuation/candidates/225187/proof.json",
+      "maximum": 225187,
+      "nodes": 6393,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-20260923-continuation/candidates/225413/proof.json",
+      "maximum": 225413,
+      "nodes": 7137,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-20260923-continuation/candidates/225431/proof.json",
+      "maximum": 225431,
+      "nodes": 9468,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-20260923-continuation/candidates/335135/proof.json",
+      "maximum": 335135,
+      "nodes": 2343,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-20260923-continuation/candidates/370039/proof.json",
+      "maximum": 370039,
+      "nodes": 2647,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-continuation/20260921-192505/candidates/222077/proof.json",
+      "maximum": 222077,
+      "nodes": 4913,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-continuation/20260921-192505/candidates/222179/proof.json",
+      "maximum": 222179,
+      "nodes": 2528,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-continuation/20260921-192505/candidates/222209/proof.json",
+      "maximum": 222209,
+      "nodes": 1527,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-continuation/20260921-192505/candidates/222223/proof.json",
+      "maximum": 222223,
+      "nodes": 6157,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-continuation/20260921-192505/candidates/222437/proof.json",
+      "maximum": 222437,
+      "nodes": 2478,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-continuation/20260921-192505/candidates/222443/proof.json",
+      "maximum": 222443,
+      "nodes": 5955,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-195426/candidates/222473/proof.json",
+      "maximum": 222473,
+      "nodes": 8032,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-195545/candidates/222559/proof.json",
+      "maximum": 222559,
+      "nodes": 9967,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-195644/candidates/222665/proof.json",
+      "maximum": 222665,
+      "nodes": 3790,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-200402/candidates/222679/proof.json",
+      "maximum": 222679,
+      "nodes": 11336,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-200757/candidates/222731/proof.json",
+      "maximum": 222731,
+      "nodes": 10814,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-201148/candidates/222733/proof.json",
+      "maximum": 222733,
+      "nodes": 13153,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-201426/candidates/222739/proof.json",
+      "maximum": 222739,
+      "nodes": 10818,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-201641/candidates/222743/proof.json",
+      "maximum": 222743,
+      "nodes": 8786,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-201816/candidates/222751/proof.json",
+      "maximum": 222751,
+      "nodes": 3003,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-202035/candidates/222803/proof.json",
+      "maximum": 222803,
+      "nodes": 2605,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-202246/candidates/222863/proof.json",
+      "maximum": 222863,
+      "nodes": 4093,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-202402/candidates/222893/proof.json",
+      "maximum": 222893,
+      "nodes": 2454,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-202526/candidates/222953/proof.json",
+      "maximum": 222953,
+      "nodes": 5989,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-202636/candidates/223073/proof.json",
+      "maximum": 223073,
+      "nodes": 8627,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-202752/candidates/223159/proof.json",
+      "maximum": 223159,
+      "nodes": 5217,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-202859/candidates/223385/proof.json",
+      "maximum": 223385,
+      "nodes": 4441,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-203030/candidates/223445/proof.json",
+      "maximum": 223445,
+      "nodes": 5744,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-203134/candidates/223723/proof.json",
+      "maximum": 223723,
+      "nodes": 19434,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-203304/candidates/223761/proof.json",
+      "maximum": 223761,
+      "nodes": 4081,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-203616/candidates/223789/proof.json",
+      "maximum": 223789,
+      "nodes": 6456,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-203811/candidates/223801/proof.json",
+      "maximum": 223801,
+      "nodes": 7099,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-204106/candidates/223859/proof.json",
+      "maximum": 223859,
+      "nodes": 9441,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-204335/candidates/223949/proof.json",
+      "maximum": 223949,
+      "nodes": 11679,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-204512/candidates/223981/proof.json",
+      "maximum": 223981,
+      "nodes": 6572,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-204708/candidates/224071/proof.json",
+      "maximum": 224071,
+      "nodes": 7978,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-204921/candidates/224075/proof.json",
+      "maximum": 224075,
+      "nodes": 3546,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-205153/candidates/224329/proof.json",
+      "maximum": 224329,
+      "nodes": 13740,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-205322/candidates/224375/proof.json",
+      "maximum": 224375,
+      "nodes": 6015,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-205519/candidates/224473/proof.json",
+      "maximum": 224473,
+      "nodes": 5596,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-205629/candidates/224531/proof.json",
+      "maximum": 224531,
+      "nodes": 898,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-205817/candidates/224771/proof.json",
+      "maximum": 224771,
+      "nodes": 3411,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-210006/candidates/224869/proof.json",
+      "maximum": 224869,
+      "nodes": 10206,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    },
+    {
+      "path": "evidence/events-v2-optimized-continuation/20260921-210204/candidates/224929/proof.json",
+      "maximum": 224929,
+      "nodes": 4910,
+      "exit_code": 0,
+      "result": "VERIFIED_NO",
+      "error": ""
+    }
+  ],
+  "audit_date": "2026-09-26",
+  "upstream_revision": "f4a7e20",
+  "method": "verify-events without allow-external-lemmas; existing certificates only",
+  "campaign_launched": false
+}

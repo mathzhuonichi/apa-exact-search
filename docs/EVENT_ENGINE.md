@@ -3,9 +3,9 @@
 The new implementation is an opt-in foundation, selected by `solve-events`.
 The existing `solve` and `campaign` commands retain the previous Rust engine.
 The event-v2 campaign toward 1,000,000 is paused at the user's request. Its
-latest independently verified boundary is 335135; candidate 335177 is next
-and has not been started. Its state is in
-outputs/20260923-million-campaign/state.json. See docs/MILLION_CAMPAIGN.md.
+published replay checkpoint is 370039; candidate 370169 was interrupted
+before the solver returned and must be retried. Its exported state is in
+evidence/events-v2-20260923-continuation/campaign-state-paused.json. See docs/MILLION_CAMPAIGN.md.
 
 The v2 shared-root loop has independently regenerated seed-free NO certificates
 for **218303 and 221969**, using the same configuration for both. These are new
@@ -310,7 +310,7 @@ and remains an external premise. A 225121 diagnostic with this option spent
 8.76 seconds in root preparation, including 7.97 seconds in probe workers;
 preprocessing and final in-process verification together took under 0.1 seconds.
 The dependent NO certificate passed independent replay with the external-premise
-flag. The million-range campaign is paused at 335135; its checkpoint is recorded
+flag. The million-range campaign is paused at 370039; its checkpoint is recorded
 in outputs/20260923-million-campaign/state.json and the tracked evidence snapshot.
 No provenance gate, runtime source hash, or campaign authorization change is
 introduced.

@@ -153,10 +153,12 @@ impl State {
         const SEEDS: [usize; 21] = [
             1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 31, 43, 47, 53, 61, 71, 73, 83, 103, 109, 113,
         ];
+        // The membership lemma for 1 requires a member greater than 2.
+        // At maximum 2, the valid singleton {2} must remain available.
         let mut state = Self::empty(maximum);
         for value in SEEDS
             .into_iter()
-            .filter(|v| *v <= maximum)
+            .filter(|v| *v <= maximum && (maximum > 2 || *v == 2))
             .chain(std::iter::once(maximum))
         {
             state.insert_root_member(value)?;
@@ -367,6 +369,9 @@ impl State {
         problem: &Problem,
         complete_prefix_base: usize,
     ) -> Result<(), String> {
+        if problem.maximum <= 2 {
+            return Err("maximum-deletion requires maximum > 2".into());
+        }
         let threshold = complete_prefix_base
             .checked_mul(complete_prefix_base.saturating_sub(1))
             .ok_or("complete-prefix threshold overflow")?;
@@ -451,11 +456,12 @@ impl State {
 
     pub fn validate(&self, maximum: usize) -> Result<(), String> {
         if self.member.len() != maximum + 1
-            || self.member[1] == 0
+            || maximum < 2
+            || (maximum > 2 && self.member[1] == 0)
             || self.member[2] == 0
             || self.member[maximum] == 0
         {
-            return Err("state must force 1, 2, and the maximum".into());
+            return Err("state must force 2 and the maximum, and also 1 when maximum > 2".into());
         }
         Ok(())
     }
@@ -1392,6 +1398,63 @@ fn mix64(mut value: u64) -> u64 {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    fn run_small_control(state: State, maximum: usize) -> LaneReport {
+        Solver::new(
+            Arc::new(Problem::new(maximum)),
+            LaneConfig {
+                lane: 0,
+                lookahead: 1,
+                order: DemandOrder::Insertion,
+                compatibility: Compatibility::None,
+                reverse_witnesses: false,
+                learn_nogoods: true,
+                early_prime_filter: true,
+                rotation: 0,
+            },
+            0.0,
+            Arc::new(AtomicBool::new(false)),
+            Arc::new(AtomicBool::new(false)),
+        )
+        .run(state)
+    }
+
+    #[test]
+    fn maximum_two_preserves_the_valid_singleton() {
+        let problem = Problem::new(2);
+        for state in [
+            State::seeded(2).unwrap(),
+            State::prepared(&problem).unwrap(),
+        ] {
+            let report = run_small_control(state, 2);
+            assert_eq!(report.outcome, LaneOutcome::Yes);
+            assert_eq!(report.example, vec![2]);
+            assert!(crate::events::validate(2, &report.example));
+        }
+    }
+
+    #[test]
+    fn maximum_two_loaded_root_preserves_explicit_assumptions() {
+        let path = std::env::temp_dir().join(format!(
+            "apa-original-singleton-control-{}.state.txt",
+            std::process::id()
+        ));
+        fs::write(&path, "F 2\nB 1\n").unwrap();
+        let singleton = State::from_file(2, &path).unwrap();
+        fs::write(&path, "F 1\nF 2\n").unwrap();
+        let forced_one = State::from_file(2, &path).unwrap();
+        fs::remove_file(path).unwrap();
+        assert_eq!(run_small_control(singleton, 2).outcome, LaneOutcome::Yes);
+        assert_eq!(run_small_control(forced_one, 2).outcome, LaneOutcome::No);
+    }
+
+    #[test]
+    fn maximum_deletion_rejects_the_singleton_case() {
+        let problem = Problem::new(2);
+        let mut state = State::seeded(2).unwrap();
+        assert!(state.enable_maximum_deletion(&problem, 1).is_err());
+        assert!(!state.maximum_deletion);
+    }
 
     #[test]
     fn seeded_state_has_required_members() {

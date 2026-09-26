@@ -12,13 +12,15 @@ until the original closure condition is satisfied.
 
 Let `n=max(A)`, let `M` be the largest previously possible maximum, and put
 `B=A\\{n}`. This mode is enabled only when every maximum in `(M,n)` is already
-excluded, `M` is a mandatory member, and `n>M(M-1)`.
+excluded, `M >= 2`, and `n>M(M-1)`.
 
 Every sum in `B+B` is below `2n`. A product witness using `n` can therefore
 only be `n*1=n`. If `n` were absent from `B+B`, then `B+B` would be contained
 in `B*B`, so completeness of the excluded prefix would give `max(B)<=M`.
-But `n+M` also needs a product witness. It cannot use `n`, and two factors from
-`B` have product at most `M^2`, contradicting `n+M>M^2`. Hence `n` is in
+Put `m=max(B)`, so `2 <= m <= M`. The sum `n+m` also needs a product witness.
+It lies strictly between `n` and `2n`, so it cannot use `n`. Its two factors
+from `B` have product at most `m^2`, contradicting
+`n > M(M-1) >= m(m-1)`. Hence `n` is in
 `B+B`. If `n` were also in `B*B`, the same reasoning would make `B` a smaller
 counterexample and yield the same contradiction. Therefore every surviving
 search state must satisfy both `n in B+B` and `n not in B*B`.

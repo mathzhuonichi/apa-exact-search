@@ -48,6 +48,17 @@ def save(path, record):
 def run_one(binary, output, maximum, timeout_seconds):
     folder = output / 'candidates' / str(maximum)
     folder.mkdir(parents=True, exist_ok=True)
+    # A successful exit must not make an earlier attempt's result or proof
+    # eligible for acceptance. Preserve old evidence before creating this run.
+    previous = [folder / name for name in (
+        'proof.json', 'result.json', 'stdout.log', 'stderr.log',
+        'verify.log', 'verify-stderr.log', 'timeout.json',
+    ) if (folder / name).exists()]
+    if previous:
+        archive = folder / 'attempts' / str(time.time_ns())
+        archive.mkdir(parents=True, exist_ok=False)
+        for path in previous:
+            path.rename(archive / path.name)
     proof = folder / 'proof.json'
     result = folder / 'result.json'
     with (folder / 'stdout.log').open('w', encoding='utf-8') as stdout, \
@@ -76,12 +87,26 @@ def run_one(binary, output, maximum, timeout_seconds):
         report = json.loads(result.read_text(encoding='utf-8'))
     except (OSError, ValueError) as error:
         return 'ERROR', f'invalid result for {maximum}: {error}'
+    if not isinstance(report, dict):
+        return 'ERROR', f'invalid result object for {maximum}'
+    config = report.get('config')
+    if not isinstance(config, dict) or config.get('maximum') != maximum:
+        return 'ERROR', f'result does not identify requested maximum {maximum}'
     status = report.get('status')
     evidence = report.get('evidence')
-    if status != 'NO' or evidence != 'VERIFIED_NO' or report.get('scope') != 'complete_original_problem':
+    if status != 'NO':
         return status or 'ERROR', f'{evidence}: {report.get("reason")}'
+    if evidence != 'VERIFIED_NO' or report.get('scope') != 'complete_original_problem':
+        return 'ERROR', f'NO lacks unconditional complete-root evidence: {evidence}, scope={report.get("scope")}'
     if not proof.exists():
         return 'ERROR', f'missing proof for {maximum}'
+    try:
+        certificate = json.loads(proof.read_text(encoding='utf-8'))
+    except (OSError, ValueError) as error:
+        return 'ERROR', f'invalid proof for {maximum}: {error}'
+    if not isinstance(certificate, dict) or certificate.get('maximum') != maximum:
+        return 'ERROR', f'proof does not identify requested maximum {maximum}'
+    del certificate
     with (folder / 'verify.log').open('w', encoding='utf-8') as verify, \
             (folder / 'verify-stderr.log').open('w', encoding='utf-8') as verify_error:
         replay = subprocess.run(

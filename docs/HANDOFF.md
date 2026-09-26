@@ -1,5 +1,10 @@
 # Handoff after paused million-range continuation
 
+The [2026-09-26 local mathematical audit](MATHEMATICAL_AUDIT_20260926.md)
+records the corrected singleton boundary and campaign acceptance defects,
+51 successful event-certificate replays, and the remaining evidence limits.
+The fixes do not resume the campaign or change its historical classifications.
+
 ## Current execution state
 
 The event-v2 campaign is paused at the user's request. Its last independently

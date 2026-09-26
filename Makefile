@@ -11,6 +11,7 @@ check:
 	cargo fmt --check
 	cargo check
 	cargo test
+	python3 -m unittest discover -s tools -p 'test_*.py'
 syntax:
 	$(CXX) -std=c++17 -fsyntax-only src/fixed_max_factor_branch_v11_20260920.cpp
 	$(CXX) -std=c++17 -fsyntax-only src/fixed_max_unary_propagation_20260920.cpp

@@ -930,3 +930,121 @@ fn additive_maximum_is_a_dfs_branch_when_product_demands_are_absent() {
     assert_eq!(e.metrics.full_domain_enumerations, 1);
     assert_eq!(e.metrics.additive_branches, 1);
 }
+
+// Independent audit: each fact is checked against an explicit arithmetic model,
+// rather than against the engine's own proof rules or counters.
+#[test]
+fn audit_known_models_preserved_by_mixed_events_and_rollback() {
+    let smaller = vec![
+        1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 16, 17, 19, 21, 23, 25, 27, 29, 31, 35, 37, 39, 41,
+        43, 45, 47, 49, 53, 55, 59, 61, 67, 71, 73, 77, 79, 83, 89, 91, 97, 99, 101, 103, 107, 109,
+        113,
+    ];
+    let larger = (1..=13)
+        .chain([15, 16, 17])
+        .chain((19..=109).step_by(2))
+        .chain([113])
+        .collect::<Vec<_>>();
+    for model in [smaller, larger] {
+        assert!(validate(113, &model));
+        let mut member = [false; 114];
+        let mut product = [false; 227];
+        let mut sum = [false; 227];
+        for &a in &model {
+            member[a] = true;
+            for &b in &model {
+                if a * b <= 226 {
+                    product[a * b] = true;
+                }
+                sum[a + b] = true;
+            }
+        }
+        let check = |e: &Engine, s: &State| {
+            for (v, &present) in member.iter().enumerate().skip(1) {
+                assert!(s.member[v].is_none() || present, "unsound member {v}");
+                assert!(s.banned[v].is_none() || !present, "unsound ban {v}");
+            }
+            for v in 2..=226 {
+                assert!(s.bad[v].is_none() || !product[v], "unsound bad product {v}");
+                assert!(s.active[v].is_none() || sum[v], "unsound active sum {v}");
+            }
+            for &(d, f) in s.pairs.keys() {
+                assert!(!member[d] || !member[f], "unsound nogood {d},{f}");
+            }
+            for (id, w) in e.p.witness.iter().enumerate() {
+                assert!(
+                    s.dead[id].is_none() || !member[w.d] || !member[w.e],
+                    "unsound deletion {},{}",
+                    w.d,
+                    w.e
+                );
+            }
+        };
+        let mut rng = 0x20260926u64;
+        let mut rand = || {
+            rng = rng
+                .wrapping_mul(6364136223846793005)
+                .wrapping_add(1442695040888963407);
+            rng
+        };
+        for trial in 0..120 {
+            let mut e = engine(113);
+            e.cfg.probe_members = 1 + (trial % 7);
+            e.cfg.probe_case_events = 1 + (trial % 31);
+            e.cfg.prime_chain_steps = 3000;
+            let mut s = State::new(&e.p);
+            e.initialize(&mut s).unwrap();
+            if trial % 2 == 0 {
+                e.enable_maximum_deletion(&mut s, 2).unwrap();
+            }
+            assert_eq!(e.quiesce(&mut s), Propagation::Quiet);
+            check(&e, &s);
+            let parent = fingerprint(&s);
+            let cp = s.checkpoint();
+            for step in 0..24 {
+                let v = 1 + (rand() as usize % 113);
+                let w = 1 + (rand() as usize % 113);
+                let t = 2 + (rand() as usize % 225);
+                let f = match step % 4 {
+                    0 => {
+                        if member[v] {
+                            Fact::Member(v)
+                        } else {
+                            Fact::Ban(v)
+                        }
+                    }
+                    1 if !member[v] || !member[w] => Fact::Pair(v, w),
+                    2 if !product[t] => Fact::Bad(t),
+                    _ => {
+                        if member[w] {
+                            Fact::Member(w)
+                        } else {
+                            Fact::Ban(w)
+                        }
+                    }
+                };
+                assert!(assume(&mut e, &mut s, f).is_ok());
+                let mut budget = rand() as usize % 13;
+                assert!(!matches!(
+                    e.propagate(&mut s, &mut budget),
+                    Propagation::Conflict(_)
+                ));
+                check(&e, &s);
+            }
+            s.rollback(&e.p, cp);
+            assert_eq!(fingerprint(&s), parent);
+            counts(&e, &s);
+            assert_eq!(e.prime_chains(&mut s), Propagation::Quiet);
+            check(&e, &s);
+            if trial % 20 == 0 {
+                e.probe_remaining = 3000;
+                assert_eq!(
+                    parallel_root::strengthen(&mut e, &mut s, 4).unwrap(),
+                    Propagation::Quiet
+                );
+                check(&e, &s);
+                counts(&e, &s);
+            }
+        }
+    }
+}

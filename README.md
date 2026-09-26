@@ -1,14 +1,16 @@
 # APA exact search
 
-## Million-range continuation (2026-09-23)
+## Paused checkpoint (2026-09-26)
 
-The event-v2 campaign is paused at the user's request. Its checkpoint is
-335135, summarized in `progress/STATUS.json` and
-`evidence/events-v2-20260923-continuation/campaign-state-paused.json`. The local
-campaign output directory contains the full per-candidate corpus. It has
-independently replayed every sequential residual through 335135 since the
-225023 checkpoint. Candidate 335177 is next and has not been started. See
-docs/MILLION_CAMPAIGN.md.
+The published event-v2 checkpoint records replayed results through **370039**,
+including 2,303 `VERIFIED_NO` results after 225023. Candidate **370169** was
+interrupted before the solver returned and must be retried on resume. It is
+neither NO nor solver UNKNOWN; 370279 is the next never-started entry. Read
+`progress/STATUS.json` and `docs/MILLION_CAMPAIGN.md`.
+
+The [local mathematical audit](docs/MATHEMATICAL_AUDIT_20260926.md) records
+confirmed corrections, certificate replay, and limits of the available evidence.
+
 ## Opt-in Rust event engine
 
 The new modular engine is available as `solve-events`; the previous Rust
@@ -25,6 +27,10 @@ Exact fixed-maximum search for finite sets of positive integers satisfying
 A+A\subseteq A\cdot A,\qquad \max A=n.
 \]
 
+The solver interface includes the exceptional singleton `{2}` at maximum 2.
+All solutions with maximum greater than 2 have at least two elements and must
+contain 1 and 2; the research problem concerns that nontrivial range.
+
 **Maximum 221969 has been excluded.** The single-candidate research is complete.
 The [self-contained arithmetic proof](evidence/221969/README.md) and its
 independent checker start only from 1, 2, and the assumed maximum. They do not
@@ -32,13 +38,11 @@ use historical seeds, maximum deletion, or prior solver NO results. The
 certificate has passed independent arithmetic replay; it is not a formal
 proof-assistant theorem.
 
-The event-v2 continuation has independently excluded residuals through
-**335135**. Including first-stage exclusions between residual entries, the
-accepted contiguous exclusion reaches **335135**; **335177** is next. The user
-has paused execution toward 1,000,000. Earlier campaign outcomes retain their
-original evidence levels, and the full million-range problem remains
-unresolved. The 648-entry predecessor prefix and first-stage exclusions have
-not been re-audited.
+The recorded event-v2 continuation reaches **370039**. Extending this to
+contiguous integer exclusion also relies on the first-stage exclusions and
+older prefix, which have not been re-audited here. Execution toward 1,000,000
+remains paused. The full million-range problem remains unresolved.
+
 ## Contents
 
 - `src/events/`: the event-v2 solver used for the latest continuation, with
@@ -50,7 +54,7 @@ not been re-audited.
   algorithm references; they are not part of the Rust runtime.
 - `evidence/221969/`: the complete seed-free exclusion certificate, proof note, and standalone checker.
 - `evidence/events-v2-optimized-continuation/`: independently replayed optimized event-engine results through 224929, the resource-bottleneck ledger, and sol analyses.
-- `evidence/events-v2-20260923-continuation/`: selected certificates through 225431 and the latest paused-checkpoint certificate at 335135. The full bulk proof corpus is retained locally under the ignored `outputs/` directory.
+- `evidence/events-v2-20260923-continuation/`: selected certificates through 225431 and checkpoint certificates at 335135 and 370039. The full bulk proof corpus remains on the originating machine and is not included in this checkout.
 - `progress/`: the exact frozen residual list, a per-entry classification,
   and the authoritative execution status.
 - `evidence/latest/`: roots and records for all nine latest campaign cases,
@@ -78,9 +82,9 @@ make check
 make rust-build
 ```
 
-`make check` formats, type-checks, and tests the Rust implementation without
-starting a search. The historical snapshot checker is not part of the active
-runtime or build path.
+`make check` checks formatting, type-checks Rust, runs bounded Rust controls,
+and tests campaign acceptance with fake subprocesses. It starts no campaign.
+The historical snapshot checker is not part of the active runtime or build path.
 
 Build the optimized executable without starting a search:
 
