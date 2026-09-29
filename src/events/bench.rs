@@ -278,3 +278,42 @@ fn bench_parallel_root() {
         m.prime_chain_wall_time
     );
 }
+
+/// Resident memory of the factor tables and one fresh search state; nothing
+/// is assumed or propagated, so no maximum is examined. Zero-filled state
+/// arrays become resident only as a search writes them, so a full search also
+/// uses up to the state's allocated size plus its proof arena.
+#[test]
+#[ignore]
+fn bench_memory_footprint() {
+    let rss = || {
+        std::fs::read_to_string("/proc/self/status")
+            .ok()
+            .and_then(|s| {
+                s.lines()
+                    .find(|l| l.starts_with("VmRSS:"))
+                    .and_then(|l| l.split_whitespace().nth(1)?.parse::<f64>().ok())
+            })
+            .map_or(f64::NAN, |kb| kb / 1024.0)
+    };
+    let n: usize = std::env::var("BENCH_N")
+        .ok()
+        .and_then(|v| v.parse().ok())
+        .unwrap_or(370000);
+    let before = rss();
+    let p = Problem::new(n).unwrap();
+    let tables = rss();
+    let s = State::new(&p);
+    let state = rss();
+    let chains = super::engine::ChainSearch::new(&p);
+    let all = rss();
+    println!(
+        "MEMORY n={n} witnesses={} tables={:.0}MB state={:.0}MB chain_scratch={:.0}MB total={:.0}MB",
+        p.witness.len(),
+        tables - before,
+        state - tables,
+        all - state,
+        all - before
+    );
+    drop((s, chains));
+}

@@ -68,6 +68,59 @@ action; it resumes after 370039 and retries 370169 first. Do not report a larger
 contiguous boundary until the corresponding replay log and result have been
 checked.
 
+## Candidate-parallel execution (2026-09-29)
+
+Within one maximum, root strengthening is a dependency chain: each productive
+probe changes the root used by the next. The recorded unlimited-budget runs used
+one root worker per batch, and speculative batches can recover only part of the
+idle processors. The runner therefore parallelizes across maxima. Each residual
+is still an independent problem with its own certificate and replay; only the
+scheduling changes.
+
+`tools/run_events_campaign.py` now keeps up to `--jobs` maxima in flight
+(default: every available processor) and gives each solver
+`--threads-per-candidate` threads (default: the processors divided among the
+jobs, so one each when every processor runs a job). Acceptance is unchanged and
+strictly ordered:
+
+- candidates start in residual order and at most `--lookahead` (default 1000)
+  beyond the first unaccepted residual;
+- a result is accepted, and the checkpoint written, only after every earlier
+  residual was accepted, with the same fresh-evidence, `VERIFIED_NO`, complete
+  scope, identity, and separate `verify-events` checks as before;
+- when a candidate returns anything other than NO, later running candidates
+  are cancelled (their folders record `cancelled.json`), earlier ones finish,
+  and the campaign stops at the first non-NO in residual order;
+- a cancelled or unaccepted result never advances the checkpoint, and resuming
+  reruns every residual after the checkpoint with fresh evidence.
+
+`--jobs 1` reproduces the previous runner, including the all-processor solver
+command. The recorded `options` are unchanged; the resource settings are
+recorded separately in `execution`, and each change is appended to
+`execution_history` with the checkpoint at which it took effect. Several jobs
+run the documented one-thread root algorithm per maximum, so search trajectories
+differ from the multi-thread path while acceptance requirements do not.
+
+Validation on this 4-processor cloud machine, without running any residual:
+
+- 21 runner tests with fake subprocesses, including a randomized comparison of
+  150 concurrent schedules with sequential acceptance, earliest-failure
+  reporting, cancellation of only later candidates, lookahead, and resource
+  recording;
+- a CPU-bound stand-in solver over 16 maxima took 17.49 seconds with one job
+  (0.97 busy processors) and 4.42 seconds with four (3.81 busy processors);
+- the release binary over maxima 115-600 accepted all 486 with independently
+  replayed `VERIFIED_NO` using one or four jobs (3.57 and 1.28 seconds), and a
+  list containing 113 stopped at that validated YES with 112 as the checkpoint;
+- the previous and new binaries agreed on all maxima 1-600 with the campaign
+  options and one thread.
+
+Memory is per process: at n = 1,000,000 the factor tables are about 670 MB, the
+state allocates up to about 410 MB, and the proof arena grows with the search.
+Four concurrent processes are expected to fit in 16 GB; lower `--jobs` if a
+future range needs more memory. No residual timing on this machine has been
+measured yet.
+
 ## Root-cause comparison
 
 Historical small-range results are mixed. In the 128k–140k factor-branch
