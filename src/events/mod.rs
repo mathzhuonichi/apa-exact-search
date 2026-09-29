@@ -52,3 +52,5 @@ pub fn validate(n: usize, values: &[usize]) -> bool {
             .all(|&b| a.checked_add(b).is_some_and(|s| products.contains(&s)))
     })
 }
+#[cfg(test)]
+mod bench;

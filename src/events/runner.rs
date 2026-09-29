@@ -48,6 +48,11 @@ pub struct Config {
     /// Largest complete factor cover examined during shared-root strengthening.
     #[arg(long, default_value_t = 8)]
     pub root_probe_width: usize,
+    /// Run shared-root probes that would each take the whole remaining budget
+    /// one at a time instead of speculatively in parallel. Both commit the
+    /// same results; this only disables the parallel speculation.
+    #[arg(long)]
+    pub no_root_speculation: bool,
     /// Probe all six overlapping seed alternatives; requires U and prime clauses.
     #[arg(long)]
     pub seed_probe: bool,
@@ -86,6 +91,7 @@ impl Default for Config {
             root_strengthen: false,
             probe_members: 2000,
             root_probe_width: 8,
+            no_root_speculation: false,
             seed_probe: false,
             probe_case_events: 1000000,
             probe_node_events: 12000,
@@ -255,6 +261,7 @@ pub fn run(cfg: Config, interrupted: Arc<AtomicBool>) -> Result<Report, String> 
             deadline: root_deadline,
             cancel: Arc::clone(&cancel),
             interrupted: Arc::clone(&interrupted),
+            horizon: None,
         },
         cfg.probe_events,
     );
@@ -345,6 +352,7 @@ pub fn run(cfg: Config, interrupted: Arc<AtomicBool>) -> Result<Report, String> 
                 deadline: search_deadline,
                 cancel: Arc::clone(&cancel),
                 interrupted: Arc::clone(&interrupted),
+                horizon: None,
             },
             allowance,
         );
