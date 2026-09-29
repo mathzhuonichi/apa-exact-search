@@ -68,6 +68,19 @@ action; it resumes after 370039 and retries 370169 first. Do not report a larger
 contiguous boundary until the corresponding replay log and result have been
 checked.
 
+## Resumed run, block 1 (2026-09-29)
+
+The user resumed the campaign with the concurrent runner. The first 1000
+residuals after 370039, namely 370169 through 425663, were each accepted as a
+fresh `VERIFIED_NO` with an independent replay, in residual order (see
+`evidence/events-v2-concurrent/block-001/checkpoint.json`). 370169, the
+interrupted candidate, was retried first and verified. One solver was killed by
+the container's 14.3 GB memory limit at 372923 while four jobs ran; that was a
+resource event and not a result, and it was retried and verified with three jobs
+of two threads each. A container restart later interrupted in-flight candidates,
+which were rerun. `progress/STATUS.json` and `progress/classification.csv` are
+not updated by this change; the checkpoint file is authoritative for this block.
+
 ## Candidate-parallel execution (2026-09-29)
 
 Within one maximum, root strengthening is a dependency chain: each productive

@@ -1,7 +1,7 @@
 {
-  "paused": true,
+  "paused": false,
   "status_file": "progress/STATUS.json",
   "automatic_resume_authorized": false,
-  "reason": "User requested pause for GitHub export. The latest independently replayed NO is 370039 (2,303 since 225023). Candidate 370169 was interrupted before the solver returned; it is not classified as NO or solver UNKNOWN and must be retried on resume.",
-  "resume_from": 370169
+  "reason": "Resumed by the user on 2026-09-29 with the concurrent runner; block 1 (370169 through 425663) is verified. See evidence/events-v2-concurrent/.",
+  "resume_from": null
 }
