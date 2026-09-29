@@ -195,7 +195,9 @@ residual candidate and no acceptance control was run for it.
   budget is not exhausted.
 - **Retained worker states.** Root probe workers no longer clone the whole
   root state for each batch. A retained state is synchronized from the root's
-  undo entries since the previous batch.
+  undo entries since the previous batch. Retained states release the shared
+  proof prefix between batches, so freezing the root appends in place rather
+  than copying every earlier proof node (a debug assertion checks this).
 - **Speculative root batches.** The campaign options set unlimited
   `--probe-case-events` and `--probe-events`. The first queued job then reserves
   the entire remaining budget, so every batch had one job; the 335135 and 370039
@@ -206,7 +208,9 @@ residual candidate and no acceptance control was run for it.
   productive commit discards later results, which are then offered again on the
   new root. The committed trajectory is therefore the same as one-job batches.
   A contradiction found by any job is a complete root refutation and is
-  imported immediately. Discarded work is reported in
+  imported immediately; in a speculative batch only the refuting job is
+  charged to the budget. After a deadline or interruption no further
+  speculative result is committed, as no further one-job batch would start. Discarded work is reported in
   `root_discarded_jobs` and `root_discarded_events` and does not consume the
   probe budget. `root_speculative_batches` counts these batches and
   `root_worker_sync_cpu_time` records state synchronization. Batches with
@@ -221,10 +225,31 @@ at n = 370,039 (3.5 GB for 24 threads) and about 410 MB near n = 1,000,000
 (9.7 GB), excluding proof arenas. Fewer `--threads` or `--no-root-speculation`
 reduce this.
 
-Tests compare the chain search with a plain closure, replay path-only chain
-proofs through the independent checker, compare synchronized worker states with
-the root, and require identical root facts, proof arena, budget use, and
-productive jobs with and without speculation under unlimited and finite budgets.
+Mathematical soundness does not rest on these changes: every NO is still
+replayed by the unchanged independent checker, and every YES is validated
+directly. The changes are tested for completeness and exactness instead:
+
+- every quiescent state reached by randomized nested probes, covers, and prime
+  chains is checked to be closed under each propagation rule against the raw
+  arithmetic tables, and every proof node created, including cached deletion
+  steps of rolled-back scopes, passes the independent checker;
+- the chain search agrees with a plain closure for every even candidate, and
+  path-only chain proofs pass the checker;
+- synchronized worker states equal the root, bit windows match naive
+  extraction at every offset, and speculation reproduces the root facts, proof
+  arena, budget use, and productive jobs of one-job batches under unlimited and
+  finite budgets;
+- refutations found in speculative batches, including budgets near a single
+  job's use, give checkable certificates with exact budget accounting;
+- deliberate faults (a skipped scan word, an unrecorded proof cache, a missing
+  chain premise, and the earlier speculative budget charge) each fail a test.
+
+The previous and new release binaries were also compared on every maximum from
+1 to 600 under the default, finite-budget root-strengthening, and unlimited
+campaign options, and from 7 to 600 with `--complete-prefix-base 3` under the
+finite and unlimited options (2,988 runs each). All statuses and evidence
+classes agreed: without the prefix, 598 `VERIFIED_NO` and the two validated YES
+maxima, 2 and 113, in each configuration.
 
 The ignored tests in `src/events/bench.rs` measure synthetic workloads. They
 never make the maximum a member, so they decide nothing about any maximum. They

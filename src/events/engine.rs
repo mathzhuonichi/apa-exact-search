@@ -1672,7 +1672,7 @@ impl Engine {
 }
 
 /// Bits `start..start+64` of a little-endian bitset; positions outside it are 0.
-fn window(bits: &[u64], start: isize) -> u64 {
+pub(super) fn window(bits: &[u64], start: isize) -> u64 {
     let word = start.div_euclid(64);
     let shift = start.rem_euclid(64) as u32;
     let get = |w: isize| {

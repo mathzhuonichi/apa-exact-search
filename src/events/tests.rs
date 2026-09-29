@@ -1330,3 +1330,262 @@ fn speculative_root_batches_reproduce_the_serial_trajectory() {
     }
     assert!(compared >= 9 && speculative > 6 && discarded > 0);
 }
+
+// Every quiescent state must be closed under each propagation rule. This is
+// checked directly against the arithmetic tables, independently of the event
+// order and of the bitsets and caches used to reach the fixpoint.
+fn assert_closed(e: &Engine, s: &State) {
+    let (n, limit) = (e.p.n, e.p.limit);
+    let members = (1..=n)
+        .filter(|&v| s.member[v].is_some())
+        .collect::<Vec<_>>();
+    for v in 1..=n {
+        assert!(
+            s.member[v].is_none() || s.banned[v].is_none(),
+            "member and ban {v}"
+        );
+        if s.banned[v].is_some() {
+            for &id in e.p.endpoint.get(v) {
+                assert!(s.dead[id].is_some(), "ban {v} kept a witness");
+            }
+        }
+    }
+    for (i, &a) in members.iter().enumerate() {
+        for &b in &members[i..] {
+            assert!(s.active[a + b].is_some(), "sum {a}+{b} inactive");
+        }
+    }
+    for (id, w) in e.p.witness.iter().enumerate() {
+        let both = s.member[w.d].is_some() && s.member[w.e].is_some();
+        assert!(
+            !(both && s.dead[id].is_some()),
+            "dead product {}*{}",
+            w.d,
+            w.e
+        );
+    }
+    for sum in 2..=limit {
+        let domain = e.p.domain(sum);
+        assert!(
+            s.active[sum].is_none() || s.bad[sum].is_none(),
+            "active bad {sum}"
+        );
+        if s.bad[sum].is_some() {
+            assert_eq!(s.product_count[sum], 0);
+            assert!(
+                domain.clone().all(|id| s.dead[id].is_some()),
+                "bad {sum} product"
+            );
+            for &id in e.p.endpoint_sum.get(sum) {
+                assert!(s.dead[id].is_some(), "bad {sum} sum witness");
+            }
+            if sum % 2 == 0 && sum / 2 <= n {
+                assert!(s.banned[sum / 2].is_some(), "bad {sum} half");
+            }
+            for &a in &members {
+                if a < sum && sum - a <= n {
+                    assert!(s.banned[sum - a].is_some(), "bad {sum} minus member {a}");
+                }
+            }
+        }
+        if s.live_count[sum] == 0 && !domain.is_empty() {
+            assert!(s.bad[sum].is_some(), "empty {sum} not bad");
+        }
+        let unresolved = s.unresolved.contains(&sum);
+        if s.active[sum].is_some() {
+            assert!(
+                s.product_count[sum] > 0 || s.live_count[sum] >= 2,
+                "unique {sum}"
+            );
+            assert_eq!(unresolved, s.product_count[sum] == 0, "unresolved {sum}");
+        } else {
+            assert!(!unresolved, "inactive unresolved {sum}");
+        }
+    }
+    for &(d, f) in s.pairs.keys() {
+        assert!(d < f);
+        if let Some(id) = e.p.pair_id(d, f) {
+            assert!(s.dead[id].is_some(), "pair {d},{f} witness");
+        }
+        assert!(
+            s.member[d].is_none() || s.banned[f].is_some(),
+            "pair {d},{f}"
+        );
+        assert!(
+            s.member[f].is_none() || s.banned[d].is_some(),
+            "pair {f},{d}"
+        );
+    }
+}
+
+#[test]
+fn quiescent_states_are_closed_and_every_proof_node_checks() {
+    let mut rng = 0x00c1_05ed_u64;
+    let mut rand = move |m: usize| {
+        rng = rng
+            .wrapping_mul(6364136223846793005)
+            .wrapping_add(1442695040888963407);
+        (rng >> 33) as usize % m
+    };
+    let (mut closed, mut refuted) = (0, 0);
+    for (n, initialized) in [
+        (113, true),
+        (60, false),
+        (200, false),
+        (700, false),
+        (3000, false),
+    ] {
+        let mut e = engine(n);
+        e.cfg.probe_members = 0;
+        e.cfg.prime_chain_steps = 100000;
+        let mut s = State::new(&e.p);
+        if initialized {
+            e.initialize(&mut s).unwrap();
+        } else {
+            // Checkable synthetic premises: a child scope assuming 1 and 2.
+            let scope = s.proof.enter(0, vec![Fact::Member(1), Fact::Member(2)]);
+            s.scope = scope;
+            for v in [1, 2] {
+                assume(&mut e, &mut s, Fact::Member(v)).unwrap();
+            }
+        }
+        assert_eq!(e.quiesce(&mut s), Propagation::Quiet);
+        assert_closed(&e, &s);
+        assert_eq!(e.prime_chains(&mut s), Propagation::Quiet);
+        assert_closed(&e, &s);
+        let base = fingerprint(&s);
+        for _ in 0..60 {
+            let cp = s.checkpoint();
+            let facts = (0..1 + rand(3))
+                .map(|_| {
+                    let v = 3 + rand(n - 2);
+                    if rand(3) == 0 {
+                        Fact::Member(v)
+                    } else {
+                        Fact::Ban(v)
+                    }
+                })
+                .filter(|f| matches!(f, Fact::Member(v) | Fact::Ban(v) if s.member[*v].is_none() && s.banned[*v].is_none()))
+                .collect::<Vec<_>>();
+            if facts.is_empty() {
+                continue;
+            }
+            let child = s.proof.enter(s.scope, facts.clone());
+            s.scope = child;
+            let mut result = Propagation::Quiet;
+            for f in facts {
+                if let Err(id) = assume(&mut e, &mut s, f) {
+                    result = Propagation::Conflict(id);
+                    break;
+                }
+            }
+            if result == Propagation::Quiet {
+                result = e.quiesce(&mut s);
+            }
+            if result == Propagation::Quiet {
+                assert_closed(&e, &s);
+                closed += 1;
+                // Nested cover and absence probes create and discard cached
+                // deletion proofs in grandchild scopes.
+                if let Some(sum) = e.select(&s) {
+                    let (cases, ctx) = e.cover_context(&mut s, sum);
+                    let r = e.cover(&mut s, proof::Cover::Factor(sum), cases, ctx, 200000);
+                    result = match r {
+                        Err(id) => Propagation::Conflict(id),
+                        Ok(()) => e.quiesce(&mut s),
+                    };
+                }
+                if result == Propagation::Quiet {
+                    assert_closed(&e, &s);
+                    result = e.prime_chains(&mut s);
+                }
+                if result == Propagation::Quiet {
+                    assert_closed(&e, &s);
+                }
+            }
+            if let Propagation::Conflict(id) = result {
+                refuted += 1;
+                assert_eq!(s.proof.get(id).fact, Fact::False);
+            }
+            s.rollback(&e.p, cp);
+            assert_eq!(fingerprint(&s), base);
+        }
+        // All nodes, including those of rolled-back and refuted scopes, must
+        // satisfy the independent checker's rules.
+        let cert = proof::Certificate {
+            maximum: n,
+            nodes: (0..s.proof.len())
+                .map(|id| s.proof.get(id).clone())
+                .collect(),
+            scopes: s.proof.scopes.clone(),
+            root: 0,
+        };
+        assert_eq!(
+            proof::verify(&cert, false),
+            Err("not a complete root refutation".into()),
+            "n={n}"
+        );
+    }
+    assert!(
+        closed >= 100 && refuted >= 20,
+        "closed {closed}, refuted {refuted}"
+    );
+}
+
+// Roots refuted during parallel strengthening must yield checkable complete
+// refutations and exact budget accounting, including speculative batches in
+// which several jobs each reserved the whole remaining budget.
+#[test]
+fn parallel_root_refutations_check_and_budgets_balance() {
+    let mut refuted = 0;
+    for n in 115..=420 {
+        for (case_events, budget) in [
+            (usize::MAX, usize::MAX),
+            (4000, 12000),
+            (usize::MAX, 50000),
+            (usize::MAX, 2400),
+            (usize::MAX, 1600),
+        ] {
+            let mut e = engine(n);
+            e.cfg.probe_case_events = case_events;
+            e.cfg.probe_members = 0;
+            e.probe_remaining = budget;
+            let mut s = State::new(&e.p);
+            if e.initialize(&mut s).is_err()
+                || e.quiesce(&mut s) != Propagation::Quiet
+                || e.prime_chains(&mut s) != Propagation::Quiet
+            {
+                break;
+            }
+            let result = parallel_root::strengthen(&mut e, &mut s, 4).unwrap();
+            assert_eq!(e.probe_remaining + e.metrics.probe_events as usize, budget);
+            if let Propagation::Conflict(id) = result {
+                refuted += 1;
+                let cert = s.proof.certificate(n, id);
+                assert_eq!(proof::verify(&cert, false), Ok(false), "n={n}");
+            }
+        }
+    }
+    assert!(refuted >= 3, "only {refuted} refutations");
+}
+
+#[test]
+fn bit_windows_match_naive_extraction_at_every_offset() {
+    let mut rng = 0x0b17_5eed_u64;
+    let bits = (0..5)
+        .map(|_| {
+            rng = rng.wrapping_mul(6364136223846793005).wrapping_add(1);
+            rng
+        })
+        .collect::<Vec<_>>();
+    let bit = |i: isize| {
+        usize::try_from(i)
+            .ok()
+            .filter(|&i| i < 64 * bits.len())
+            .is_some_and(|i| bits[i / 64] >> (i % 64) & 1 == 1)
+    };
+    for start in -200..(64 * bits.len() as isize + 70) {
+        let expected = (0..64).fold(0u64, |w, b| w | (u64::from(bit(start + b)) << b));
+        assert_eq!(engine::window(&bits, start), expected, "start={start}");
+    }
+}

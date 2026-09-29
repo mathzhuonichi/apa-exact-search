@@ -154,6 +154,9 @@ fn batch(
     threads: usize,
     speculative: bool,
 ) -> std::result::Result<(Propagation, usize), String> {
+    // Retained states release the shared prefix after each batch, so freezing
+    // appends in place instead of copying every earlier proof node.
+    debug_assert_eq!(Arc::strong_count(&s.proof.prefix), 1);
     let changes = s.freeze_changes();
     let shared_scopes = s.proof.scopes.len();
     e.metrics.root_parallel_batches += 1;
@@ -262,7 +265,15 @@ fn batch(
         results.sort_by_key(|(index, _)| *index);
         failure.map_or(Ok((results, states, prepare)), Err)
     })?;
-    *pool = states;
+    // Keep retained states' mutable arrays but not the snapshot's proof arena;
+    // they receive the next snapshot's arena when synchronized.
+    *pool = states
+        .into_iter()
+        .map(|mut state| {
+            state.proof = Arena::new();
+            state
+        })
+        .collect();
     e.metrics.root_worker_clone_cpu_time += prepare.root_worker_clone_cpu_time;
     e.metrics.root_worker_sync_cpu_time += prepare.root_worker_sync_cpu_time;
     e.metrics.root_batch_worker_wall_time += workers_started.elapsed().as_secs_f64();
@@ -272,11 +283,19 @@ fn batch(
     // propagating other results, which may already have been interrupted. A
     // contradiction on an earlier snapshot still refutes the current root.
     if let Some(position) = results.iter().position(|(_, result)| result.conflict) {
-        for (_, result) in &results {
-            e.probe_remaining -= result.metrics.probe_events as usize;
-            e.metrics.add_probe_work(&result.metrics);
-        }
         let (_, result) = results.swap_remove(position);
+        // Ordinary reservations fit the budget together. Speculative jobs each
+        // reserved the whole remainder, so only the refuting job is charged.
+        let charged = std::iter::once(&result).chain(results.iter().map(|(_, r)| r));
+        for (i, other) in charged.enumerate() {
+            if speculative && i > 0 {
+                e.metrics.root_discarded_events += other.metrics.probe_events;
+                e.metrics.root_discarded_jobs += 1;
+            } else {
+                e.probe_remaining -= other.metrics.probe_events as usize;
+                e.metrics.add_probe_work(&other.metrics);
+            }
+        }
         let roots = s
             .proof
             .append_fragment(result.proof, result.roots, shared_scopes);
@@ -314,7 +333,9 @@ fn batch(
         let used = result.metrics.probe_events as usize;
         let (allowance, remaining) = (jobs[index].1, e.probe_remaining);
         let exact = allowance >= remaining && (allowance == remaining || used < remaining);
-        if s.revision != base || !exact {
+        // One-job batches would not have started this job after a stop.
+        let stopped = index > 0 && e.limits.stopped();
+        if s.revision != base || !exact || stopped {
             e.metrics.root_discarded_events += used as u64;
             break;
         }
