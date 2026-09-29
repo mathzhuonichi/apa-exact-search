@@ -8,6 +8,7 @@ result needs a fresh complete-scope `VERIFIED_NO` and a separate
 | Block | Residuals after 370039 | Count | Checkpoint |
 |---|---|---:|---|
 | 1 | 370169 through 425663 | 1000 | `block-001/checkpoint.json` |
+| 2 | 425687 through 479783 | 1000 | `block-002/checkpoint.json` |
 
 Each checkpoint lists, per maximum, the result and proof SHA-256, proof size,
 event counts, solver threads and root time. Only sample certificates are

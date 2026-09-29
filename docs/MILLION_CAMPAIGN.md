@@ -81,6 +81,12 @@ of two threads each. A container restart later interrupted in-flight candidates,
 which were rerun. `progress/STATUS.json` and `progress/classification.csv` are
 not updated by this change; the checkpoint file is authoritative for this block.
 
+Block 2 continues contiguously: 425687 through 479783, 1000 residuals accepted in
+residual order with fresh `VERIFIED_NO` results and independent replays
+(`evidence/events-v2-concurrent/block-002/checkpoint.json`), with no resource
+events. Through block 2 the concurrent run has verified 2000 residuals after
+370039.
+
 ## Candidate-parallel execution (2026-09-29)
 
 Within one maximum, root strengthening is a dependency chain: each productive
