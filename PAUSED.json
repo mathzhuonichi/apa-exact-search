@@ -1,7 +1,7 @@
 {
-  "paused": false,
+  "paused": true,
   "status_file": "progress/STATUS.json",
-  "automatic_resume_authorized": true,
-  "reason": "Resumed by the user on 2026-09-29 with the concurrent runner. The user approved relaunching an interrupted RUNNING campaign from its checkpoint on session start (.claude/hooks/session-start.sh); the runner sets this flag to false whenever it stops. Block 1 (370169 through 425663) and block 2 (425687 through 479783) are verified; see evidence/events-v2-concurrent/.",
-  "resume_from": null
+  "automatic_resume_authorized": false,
+  "reason": "Stopped by the user on 2026-09-30 for handoff after verifying 2651 residuals through 514547; the next residual to resolve is 514651. See docs/MILLION_CAMPAIGN.md (Handoff) and evidence/events-v2-concurrent/. Do not resume until the new owner explicitly decides to.",
+  "resume_from": 514651
 }

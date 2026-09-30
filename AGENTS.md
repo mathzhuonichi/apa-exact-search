@@ -1,19 +1,23 @@
 # Working with this snapshot
 
-The user has paused the sequential event campaign. No campaign processes
-should run until the user explicitly resumes. Its published checkpoint is
-evidence/events-v2-20260923-continuation/campaign-state-paused.json; it records
-replayed results through 370039. The full outputs corpus remains on the
-originating machine. Candidate 370169 was interrupted before the solver returned
-and must be retried; it is not a completed NO or solver UNKNOWN. See
+The user has stopped the sequential event campaign and handed it over. No
+campaign processes should run until the user explicitly resumes. The latest
+verified boundary is 514547 (2651 residuals verified after 370039 by the
+concurrent runner); the next residual to resolve is 514651. Its records are
+evidence/events-v2-concurrent/ and the Handoff section of
+docs/MILLION_CAMPAIGN.md. The earlier published checkpoint,
+evidence/events-v2-20260923-continuation/campaign-state-paused.json, records
+replayed results through 370039. The full outputs corpus (about 6.6 GB for the
+concurrent run) is not in the repository. Candidates in flight at the stop were
+terminated; they are not completed NOs or solver UNKNOWNs and must be rerun. See
 docs/MILLION_CAMPAIGN.md and the per-candidate replay records.
 
 Read `PAUSED.json`, `progress/STATUS.json`, and `docs/HANDOFF.md` first.
 Maximum 221969 has been excluded by the independently replayed seed-free
-arithmetic certificate in `evidence/221969/`. The event-v2 campaign is paused
-at 370039, with candidate 370169 next to resolve. The user previously
-authorized execution through 1,000,000 and has now explicitly paused it. Do
-not start a run unless the user explicitly resumes.
+arithmetic certificate in `evidence/221969/`. The event-v2 campaign is stopped
+at 514547, with candidate 514651 next to resolve. The user previously
+authorized execution through 1,000,000 and has now stopped it and handed it
+over. Do not start a run unless the user explicitly resumes.
 
 Documentation, export, and static snapshot checks do not resume execution.
 
@@ -33,8 +37,8 @@ The user also clarified that `progress/candidates.txt` is the complete hard
 residual after first-stage rules directly exclude every omitted integer maximum.
 Sequential complete-NO results on this list therefore establish contiguous
 coverage across its gaps. The reported contiguous exclusion reaches
-370039, conditional on the unrechecked first-stage and older-prefix evidence.
-Candidate 370169 is the next residual to resolve. This authorizes the
+514547, conditional on the unrechecked first-stage and older-prefix evidence.
+Candidate 514651 is the next residual to resolve. This authorizes the
 maximum-deletion constraint whenever its stated numeric threshold holds.
 
 Preserve the distinction between solver NO, independently replayed evidence,

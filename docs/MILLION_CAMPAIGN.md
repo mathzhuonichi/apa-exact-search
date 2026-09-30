@@ -105,6 +105,54 @@ checkout does nothing. `tools/test_session_start_hook.sh` checks these cases
 against fake campaigns. A hook runs when a session starts; it cannot restart a
 runner inside a session that stays open after the container has restarted.
 
+## Handoff (2026-09-30)
+
+The user stopped the concurrent run so that others can continue. **The verified
+boundary is 514547 (2651 residuals verified after 370039); the next residual to
+resolve is 514651, with 11,870 residuals remaining through 999965.** No solver
+returned YES or UNKNOWN. The only non-NO event was a kernel memory kill at
+372923 (a resource event, retried and verified). In-flight candidates at the stop
+were terminated; they are not results and must be rerun.
+
+Evidence: `evidence/events-v2-concurrent/block-001`, `block-002`, and
+`block-003-partial` (651 of 1000) list per-maximum SHA-256 hashes, sizes, and
+metrics, with three replayed sample certificates each. **The full certificate
+corpus (about 6.6 GB) and `state.json` were in the git-ignored
+`outputs/20260929-concurrent/` on the cloud container and are not in the
+repository**; only the checkpoints and sample certificates are. Anyone who needs
+the per-maximum certificates must regenerate them or copy that directory before
+the container is reclaimed.
+
+To continue from the boundary in a fresh output directory:
+
+```sh
+cargo build --release
+python3 tools/run_events_campaign.py --binary target/release/apa-exact-search \
+  --candidates progress/candidates.txt --output outputs/<new-run> \
+  --start-after 514547 --jobs 3 --threads-per-candidate 2
+```
+
+Practical notes from this run on a 4-processor, 16 GB container with a 14.3 GB
+memory limit:
+
+- three jobs of two threads each were stable (about 1.3 GB per solver near
+  500,000); four concurrent solvers were killed once for memory. Memory per
+  solver grows with the maximum and with the proof arena of a hard candidate
+  (a solver near 370,000 reached 5 GB), so lower `--jobs` on smaller machines;
+- typical maxima near 500,000 took about 20-30 seconds of solver time each, and
+  the slowest in a block about 330 seconds, under three-way sharing; throughput
+  was about 4-6 maxima per minute, and cost per maximum is expected to grow with
+  the maximum (unmeasured near 1,000,000);
+- the runner's 600-second per-candidate wall timeout would record an UNKNOWN
+  for a slow candidate near one million; raise
+  `--candidate-timeout-seconds` if that happens and rerun.
+
+`PAUSED.json` has `paused: true` and `automatic_resume_authorized: false`, so the
+session-start hook (below) does nothing. The hook and its settings are specific to
+the `outputs/20260929-concurrent` run and to this repository's cloud sessions;
+remove `.claude/settings.json` or change the hook's paths for a different run.
+Launching the runner is itself the resume action.
+
 ## Candidate-parallel execution (2026-09-29)
 
 Within one maximum, root strengthening is a dependency chain: each productive
