@@ -87,6 +87,24 @@ residual order with fresh `VERIFIED_NO` results and independent replays
 events. Through block 2 the concurrent run has verified 2000 residuals after
 370039.
 
+## Automatic relaunch after container restarts (2026-09-30)
+
+Container restarts kill the runner but leave `state.json` and the certificates
+on disk. `.claude/hooks/session-start.sh` (registered in `.claude/settings.json`)
+relaunches an interrupted campaign when a remote session starts. It never starts
+a new campaign and never resumes past a stop: it acts only when `state.json` is
+`RUNNING` with no attention case, `PAUSED.json` has `paused: false` and
+`automatic_resume_authorized: true`, and no runner process is alive (checked
+under a lock, so simultaneous hooks start only one). The runner sets
+`automatic_resume_authorized` to false whenever it stops, so a YES, UNKNOWN, or
+solver error is never resumed automatically, and setting it to false or
+`paused` to true disables the hook. Resumption reruns every residual after the
+checkpoint with fresh evidence. The hook is skipped outside remote sessions and
+when `outputs/20260929-concurrent/state.json` does not exist, so a fresh
+checkout does nothing. `tools/test_session_start_hook.sh` checks these cases
+against fake campaigns. A hook runs when a session starts; it cannot restart a
+runner inside a session that stays open after the container has restarted.
+
 ## Candidate-parallel execution (2026-09-29)
 
 Within one maximum, root strengthening is a dependency chain: each productive

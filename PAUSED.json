@@ -1,7 +1,7 @@
 {
   "paused": false,
   "status_file": "progress/STATUS.json",
-  "automatic_resume_authorized": false,
-  "reason": "Resumed by the user on 2026-09-29 with the concurrent runner; block 1 (370169 through 425663) is verified. See evidence/events-v2-concurrent/.",
+  "automatic_resume_authorized": true,
+  "reason": "Resumed by the user on 2026-09-29 with the concurrent runner. The user approved relaunching an interrupted RUNNING campaign from its checkpoint on session start (.claude/hooks/session-start.sh); the runner sets this flag to false whenever it stops. Block 1 (370169 through 425663) and block 2 (425687 through 479783) are verified; see evidence/events-v2-concurrent/.",
   "resume_from": null
 }
