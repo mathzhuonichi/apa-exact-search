@@ -17,6 +17,7 @@ fn engine(n: usize) -> Engine {
             deadline: None,
             cancel: Arc::new(AtomicBool::new(false)),
             interrupted: Arc::new(AtomicBool::new(false)),
+            horizon: None,
         },
         metrics: Metrics::default(),
         probe_remaining: 240000,
@@ -54,14 +55,13 @@ fn fingerprint(s: &State) -> String {
     let mut pairs = s.pairs.iter().collect::<Vec<_>>();
     pairs.sort();
     format!(
-        "{:?}{:?}{:?}{:?}{:?}{:?}{:?}{:?}{:?}{:?}{:?}{:?}{}{}{}",
+        "{:?}{:?}{:?}{:?}{:?}{:?}{:?}{:?}{:?}{:?}{:?}{}{}{}",
         s.member,
         s.banned,
         s.bad,
         s.active,
         s.dead,
         s.members,
-        s.bad_values,
         s.live_count,
         s.xor_live_id,
         s.product_count,
@@ -333,7 +333,9 @@ fn unstarted_and_paused_probes_do_not_become_refutations() {
     assert!(r.delta.contains_key(&Fact::Ban(v)));
     assert_eq!(before, fingerprint(&s));
     let sum = e.select(&s).unwrap();
-    let (cases, ctx) = e.cover_context(&s, sum);
+    let (cases, ctx) = e.cover_context(&mut s, sum);
+    // The context may cache materialized deletion proofs; facts are unchanged.
+    let before = fingerprint(&s);
     let count = cases.len();
     e.cover(&mut s, proof::Cover::Factor(sum), cases, ctx, 0)
         .unwrap();
@@ -1046,5 +1048,544 @@ fn audit_known_models_preserved_by_mixed_events_and_rollback() {
                 counts(&e, &s);
             }
         }
+    }
+}
+
+// The word-parallel chain search must find a terminal exactly when the plain
+// closure of odd members under steps 2 and e does, and return a valid path.
+#[test]
+fn prime_chain_search_matches_naive_closure_and_returns_a_valid_path() {
+    use std::collections::{HashSet, VecDeque};
+    fn naive(e: &Engine, s: &State, candidate: usize) -> bool {
+        let n = e.p.n;
+        let mut known = s
+            .members
+            .iter()
+            .copied()
+            .filter(|a| a % 2 == 1)
+            .collect::<HashSet<_>>();
+        let mut queue = known.iter().copied().collect::<VecDeque<_>>();
+        while let Some(a) = queue.pop_front() {
+            for h in [2, candidate] {
+                let p = a + h;
+                if !e.p.prime[p] || !known.insert(p) {
+                    continue;
+                }
+                if p > n || s.banned[p].is_some() {
+                    return true;
+                }
+                queue.push_back(p);
+            }
+        }
+        false
+    }
+    let mut states = vec![];
+    let mut e = engine(113);
+    let mut s = State::new(&e.p);
+    e.initialize(&mut s).unwrap();
+    assert_eq!(e.quiesce(&mut s), Propagation::Quiet);
+    states.push((e, s));
+    let mut rng = 0x7e57_c4a1u64;
+    for n in [60, 200, 1000, 5000] {
+        for _ in 0..6 {
+            let mut e = engine(n);
+            let mut s = State::new(&e.p);
+            let mut ok = true;
+            for v in [1, 2] {
+                ok &= assume(&mut e, &mut s, Fact::Member(v)).is_ok();
+            }
+            for _ in 0..(n / 20).max(4) {
+                rng = rng.wrapping_mul(6364136223846793005).wrapping_add(1);
+                let v = 3 + (rng >> 33) as usize % (n - 2);
+                let f = if rng & (1 << 20) == 0 {
+                    Fact::Member(v)
+                } else {
+                    Fact::Ban(v)
+                };
+                if s.member[v].is_some() || s.banned[v].is_some() {
+                    continue;
+                }
+                ok &= assume(&mut e, &mut s, f).is_ok();
+            }
+            if ok && e.quiesce(&mut s) == Propagation::Quiet {
+                states.push((e, s));
+            }
+        }
+    }
+    let mut found = 0;
+    let mut tested = 0;
+    for (mut e, s) in states {
+        let n = e.p.n;
+        let mut search = engine::ChainSearch::new(&e.p);
+        for candidate in (2..=n).step_by(2) {
+            if s.member[candidate].is_some() || s.banned[candidate].is_some() {
+                continue;
+            }
+            tested += 1;
+            let mut left = usize::MAX;
+            let chain = e.prime_chain(&s, &mut search, candidate, &mut left);
+            assert_eq!(
+                chain.is_some(),
+                naive(&e, &s, candidate),
+                "n={n} e={candidate}"
+            );
+            let Some(steps) = chain else { continue };
+            found += 1;
+            let mut known = HashSet::from([steps[0].0]);
+            assert!(s.member[steps[0].0].is_some());
+            for (i, &(a, h, p)) in steps.iter().enumerate() {
+                assert!(known.contains(&a) && (h == 2 || h == candidate) && a + h == p);
+                assert!(e.p.prime[p]);
+                let terminal = p > n || s.banned[p].is_some();
+                assert_eq!(terminal, i + 1 == steps.len());
+                known.insert(p);
+            }
+        }
+    }
+    assert!(found > 0 && tested > found, "found {found} of {tested}");
+}
+
+#[test]
+fn path_only_prime_chain_proofs_pass_the_independent_checker() {
+    let mut chains = 0;
+    for n in 100..=400 {
+        let mut e = engine(n);
+        let mut s = State::new(&e.p);
+        let result = match e.initialize(&mut s) {
+            Err(id) => Propagation::Conflict(id),
+            Ok(()) => match e.quiesce(&mut s) {
+                Propagation::Quiet => e.prime_chains(&mut s),
+                other => other,
+            },
+        };
+        let used = (0..s.proof.len())
+            .filter(|&id| matches!(s.proof.get(id).rule, Rule::PrimeChain { .. }))
+            .count();
+        chains += used;
+        let cert = proof::Certificate {
+            maximum: n,
+            nodes: (0..s.proof.len())
+                .map(|id| s.proof.get(id).clone())
+                .collect(),
+            scopes: s.proof.scopes.clone(),
+            root: match result {
+                Propagation::Conflict(id) => id,
+                _ => 0,
+            },
+        };
+        match result {
+            Propagation::Conflict(_) => assert_eq!(proof::verify(&cert, false), Ok(false)),
+            _ => assert_eq!(
+                proof::verify(&cert, false),
+                Err("not a complete root refutation".into())
+            ),
+        }
+    }
+    assert!(chains > 0);
+}
+
+// Roots used to exercise parallel machinery: real initialized roots and
+// synthetic ones that assume small members without making n a member.
+fn exercise_roots() -> Vec<(Engine, State)> {
+    let example = [
+        1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 16, 17, 19, 21, 23, 25, 27, 29, 31, 35, 37, 39, 41,
+        43, 45, 47, 49, 53, 55, 59, 61, 67, 71, 73, 77, 79, 83, 89, 91, 97, 99, 101, 103, 107, 109,
+        113,
+    ];
+    let mut roots = vec![];
+    for (n, members, additive) in [
+        (113, &[][..], false),
+        (31, &[1, 2][..], true),
+        (160, &[1, 2][..], false),
+        (300, &example[..12], false),
+        (500, &example[..], true),
+    ] {
+        let mut e = engine(n);
+        let mut s = State::new(&e.p);
+        let mut ok = if members.is_empty() {
+            e.initialize(&mut s).is_ok()
+        } else {
+            members
+                .iter()
+                .all(|&v| assume(&mut e, &mut s, Fact::Member(v)).is_ok())
+        };
+        if additive {
+            ok &= e.enable_maximum_deletion(&mut s, 3).is_ok();
+        }
+        assert!(ok && e.quiesce(&mut s) == Propagation::Quiet, "n={n}");
+        roots.push((e, s));
+    }
+    roots
+}
+
+// A retained worker copy must equal the root after replaying the root's undo
+// entries, including after it has probed and rolled back its own changes.
+#[test]
+fn worker_sync_replays_root_changes_exactly() {
+    let mut synced = 0;
+    for (mut e, mut root) in exercise_roots() {
+        let n = e.p.n;
+        root.freeze_changes();
+        let mut copy = root.clone();
+        let mut rng = 0x005e_ed0f_5eed_u64 + n as u64;
+        for round in 0..40 {
+            // The worker's own probes are rolled back before the next sync.
+            let v = 3 + (round * 7) % (n - 3);
+            if copy.member[v].is_none() && copy.banned[v].is_none() {
+                e.probe(&mut copy, vec![Fact::Ban(v)], 5000);
+                let cp = copy.checkpoint();
+                if let Some(sum) = e.select(&copy)
+                    && copy.product_count[sum] == 0
+                {
+                    let (cases, ctx) = e.cover_context(&mut copy, sum);
+                    let _ = e.cover(&mut copy, proof::Cover::Factor(sum), cases, ctx, 5000);
+                    let _ = e.quiesce(&mut copy);
+                }
+                copy.rollback(&e.p, cp);
+                copy.proof = root.proof.clone();
+            }
+            let cp = root.checkpoint();
+            rng = rng.wrapping_mul(6364136223846793005).wrapping_add(1);
+            let v = 3 + (rng >> 33) as usize % (n - 3);
+            let w = 3 + (rng >> 13) as usize % (n - 3);
+            let f = match rng % 4 {
+                0 | 1 => Fact::Ban(v),
+                2 => Fact::Member(v),
+                _ => Fact::Pair(v, w),
+            };
+            if assume(&mut e, &mut root, f).is_err() || e.quiesce(&mut root) != Propagation::Quiet {
+                root.rollback(&e.p, cp);
+                continue;
+            }
+            let changes = root.freeze_changes();
+            copy.sync_from(&e.p, &root, &changes);
+            assert_eq!(
+                fingerprint(&copy),
+                fingerprint(&root),
+                "n={n} round={round}"
+            );
+            counts(&e, &copy);
+            synced += 1;
+        }
+    }
+    assert!(synced >= 60, "only {synced} synchronized rounds");
+}
+
+// A job that reserves the whole remaining budget used to run alone. Speculative
+// batches must reproduce that trajectory exactly while running its successors
+// in parallel: same root facts, proof arena, budget use, and productive jobs.
+// Finite budgets also exercise the transition back to ordinary batches.
+#[test]
+fn speculative_root_batches_reproduce_the_serial_trajectory() {
+    let (mut speculative, mut discarded, mut compared) = (0, 0, 0);
+    for (case_events, budget) in [(usize::MAX, usize::MAX), (3000, 9000), (40000, 100000)] {
+        let run = |e: &mut Engine, s: &mut State, speculate: bool| {
+            e.cfg.no_root_speculation = !speculate;
+            e.cfg.probe_case_events = case_events;
+            e.cfg.probe_members = 0;
+            e.probe_remaining = budget;
+            parallel_root::strengthen(e, s, 4).unwrap()
+        };
+        for ((mut serial, mut serial_state), (mut parallel, mut parallel_state)) in
+            exercise_roots().into_iter().zip(exercise_roots())
+        {
+            let n = serial.p.n;
+            let serial_result = run(&mut serial, &mut serial_state, false);
+            let parallel_result = run(&mut parallel, &mut parallel_state, true);
+            assert_eq!(serial.metrics.root_speculative_batches, 0);
+            speculative += parallel.metrics.root_speculative_batches;
+            discarded += parallel.metrics.root_discarded_jobs;
+            match (serial_result, parallel_result) {
+                (Propagation::Conflict(_), Propagation::Conflict(_)) => {}
+                (a, b) => {
+                    assert_eq!((a, b), (Propagation::Quiet, Propagation::Quiet), "n={n}");
+                    compared += 1;
+                    assert_eq!(
+                        fingerprint(&serial_state),
+                        fingerprint(&parallel_state),
+                        "n={n}"
+                    );
+                    assert_eq!(serial_state.proof.len(), parallel_state.proof.len());
+                    assert_eq!(serial.probe_remaining, parallel.probe_remaining, "n={n}");
+                    assert_eq!(serial.metrics.probe_events, parallel.metrics.probe_events);
+                    assert_eq!(
+                        serial.metrics.root_cover_sums,
+                        parallel.metrics.root_cover_sums
+                    );
+                    assert_eq!(
+                        serial.metrics.root_forced_absences,
+                        parallel.metrics.root_forced_absences
+                    );
+                    assert_eq!(
+                        serial.metrics.root_strengthen_rounds,
+                        parallel.metrics.root_strengthen_rounds
+                    );
+                    assert!(
+                        parallel.metrics.root_parallel_batches
+                            <= serial.metrics.root_parallel_batches
+                    );
+                }
+            }
+        }
+    }
+    assert!(compared >= 9 && speculative > 6 && discarded > 0);
+}
+
+// Every quiescent state must be closed under each propagation rule. This is
+// checked directly against the arithmetic tables, independently of the event
+// order and of the bitsets and caches used to reach the fixpoint.
+fn assert_closed(e: &Engine, s: &State) {
+    let (n, limit) = (e.p.n, e.p.limit);
+    let members = (1..=n)
+        .filter(|&v| s.member[v].is_some())
+        .collect::<Vec<_>>();
+    for v in 1..=n {
+        assert!(
+            s.member[v].is_none() || s.banned[v].is_none(),
+            "member and ban {v}"
+        );
+        if s.banned[v].is_some() {
+            for &id in e.p.endpoint.get(v) {
+                assert!(s.dead[id].is_some(), "ban {v} kept a witness");
+            }
+        }
+    }
+    for (i, &a) in members.iter().enumerate() {
+        for &b in &members[i..] {
+            assert!(s.active[a + b].is_some(), "sum {a}+{b} inactive");
+        }
+    }
+    for (id, w) in e.p.witness.iter().enumerate() {
+        let both = s.member[w.d].is_some() && s.member[w.e].is_some();
+        assert!(
+            !(both && s.dead[id].is_some()),
+            "dead product {}*{}",
+            w.d,
+            w.e
+        );
+    }
+    for sum in 2..=limit {
+        let domain = e.p.domain(sum);
+        assert!(
+            s.active[sum].is_none() || s.bad[sum].is_none(),
+            "active bad {sum}"
+        );
+        if s.bad[sum].is_some() {
+            assert_eq!(s.product_count[sum], 0);
+            assert!(
+                domain.clone().all(|id| s.dead[id].is_some()),
+                "bad {sum} product"
+            );
+            for &id in e.p.endpoint_sum.get(sum) {
+                assert!(s.dead[id].is_some(), "bad {sum} sum witness");
+            }
+            if sum % 2 == 0 && sum / 2 <= n {
+                assert!(s.banned[sum / 2].is_some(), "bad {sum} half");
+            }
+            for &a in &members {
+                if a < sum && sum - a <= n {
+                    assert!(s.banned[sum - a].is_some(), "bad {sum} minus member {a}");
+                }
+            }
+        }
+        if s.live_count[sum] == 0 && !domain.is_empty() {
+            assert!(s.bad[sum].is_some(), "empty {sum} not bad");
+        }
+        let unresolved = s.unresolved.contains(&sum);
+        if s.active[sum].is_some() {
+            assert!(
+                s.product_count[sum] > 0 || s.live_count[sum] >= 2,
+                "unique {sum}"
+            );
+            assert_eq!(unresolved, s.product_count[sum] == 0, "unresolved {sum}");
+        } else {
+            assert!(!unresolved, "inactive unresolved {sum}");
+        }
+    }
+    for &(d, f) in s.pairs.keys() {
+        assert!(d < f);
+        if let Some(id) = e.p.pair_id(d, f) {
+            assert!(s.dead[id].is_some(), "pair {d},{f} witness");
+        }
+        assert!(
+            s.member[d].is_none() || s.banned[f].is_some(),
+            "pair {d},{f}"
+        );
+        assert!(
+            s.member[f].is_none() || s.banned[d].is_some(),
+            "pair {f},{d}"
+        );
+    }
+}
+
+#[test]
+fn quiescent_states_are_closed_and_every_proof_node_checks() {
+    let mut rng = 0x00c1_05ed_u64;
+    let mut rand = move |m: usize| {
+        rng = rng
+            .wrapping_mul(6364136223846793005)
+            .wrapping_add(1442695040888963407);
+        (rng >> 33) as usize % m
+    };
+    let (mut closed, mut refuted) = (0, 0);
+    for (n, initialized) in [
+        (113, true),
+        (60, false),
+        (200, false),
+        (700, false),
+        (3000, false),
+    ] {
+        let mut e = engine(n);
+        e.cfg.probe_members = 0;
+        e.cfg.prime_chain_steps = 100000;
+        let mut s = State::new(&e.p);
+        if initialized {
+            e.initialize(&mut s).unwrap();
+        } else {
+            // Checkable synthetic premises: a child scope assuming 1 and 2.
+            let scope = s.proof.enter(0, vec![Fact::Member(1), Fact::Member(2)]);
+            s.scope = scope;
+            for v in [1, 2] {
+                assume(&mut e, &mut s, Fact::Member(v)).unwrap();
+            }
+        }
+        assert_eq!(e.quiesce(&mut s), Propagation::Quiet);
+        assert_closed(&e, &s);
+        assert_eq!(e.prime_chains(&mut s), Propagation::Quiet);
+        assert_closed(&e, &s);
+        let base = fingerprint(&s);
+        for _ in 0..60 {
+            let cp = s.checkpoint();
+            let facts = (0..1 + rand(3))
+                .map(|_| {
+                    let v = 3 + rand(n - 2);
+                    if rand(3) == 0 {
+                        Fact::Member(v)
+                    } else {
+                        Fact::Ban(v)
+                    }
+                })
+                .filter(|f| matches!(f, Fact::Member(v) | Fact::Ban(v) if s.member[*v].is_none() && s.banned[*v].is_none()))
+                .collect::<Vec<_>>();
+            if facts.is_empty() {
+                continue;
+            }
+            let child = s.proof.enter(s.scope, facts.clone());
+            s.scope = child;
+            let mut result = Propagation::Quiet;
+            for f in facts {
+                if let Err(id) = assume(&mut e, &mut s, f) {
+                    result = Propagation::Conflict(id);
+                    break;
+                }
+            }
+            if result == Propagation::Quiet {
+                result = e.quiesce(&mut s);
+            }
+            if result == Propagation::Quiet {
+                assert_closed(&e, &s);
+                closed += 1;
+                // Nested cover and absence probes create and discard cached
+                // deletion proofs in grandchild scopes.
+                if let Some(sum) = e.select(&s) {
+                    let (cases, ctx) = e.cover_context(&mut s, sum);
+                    let r = e.cover(&mut s, proof::Cover::Factor(sum), cases, ctx, 200000);
+                    result = match r {
+                        Err(id) => Propagation::Conflict(id),
+                        Ok(()) => e.quiesce(&mut s),
+                    };
+                }
+                if result == Propagation::Quiet {
+                    assert_closed(&e, &s);
+                    result = e.prime_chains(&mut s);
+                }
+                if result == Propagation::Quiet {
+                    assert_closed(&e, &s);
+                }
+            }
+            if let Propagation::Conflict(id) = result {
+                refuted += 1;
+                assert_eq!(s.proof.get(id).fact, Fact::False);
+            }
+            s.rollback(&e.p, cp);
+            assert_eq!(fingerprint(&s), base);
+        }
+        // All nodes, including those of rolled-back and refuted scopes, must
+        // satisfy the independent checker's rules.
+        let cert = proof::Certificate {
+            maximum: n,
+            nodes: (0..s.proof.len())
+                .map(|id| s.proof.get(id).clone())
+                .collect(),
+            scopes: s.proof.scopes.clone(),
+            root: 0,
+        };
+        assert_eq!(
+            proof::verify(&cert, false),
+            Err("not a complete root refutation".into()),
+            "n={n}"
+        );
+    }
+    assert!(
+        closed >= 100 && refuted >= 20,
+        "closed {closed}, refuted {refuted}"
+    );
+}
+
+// Roots refuted during parallel strengthening must yield checkable complete
+// refutations and exact budget accounting, including speculative batches in
+// which several jobs each reserved the whole remaining budget.
+#[test]
+fn parallel_root_refutations_check_and_budgets_balance() {
+    let mut refuted = 0;
+    for n in 115..=420 {
+        for (case_events, budget) in [
+            (usize::MAX, usize::MAX),
+            (4000, 12000),
+            (usize::MAX, 50000),
+            (usize::MAX, 2400),
+            (usize::MAX, 1600),
+        ] {
+            let mut e = engine(n);
+            e.cfg.probe_case_events = case_events;
+            e.cfg.probe_members = 0;
+            e.probe_remaining = budget;
+            let mut s = State::new(&e.p);
+            if e.initialize(&mut s).is_err()
+                || e.quiesce(&mut s) != Propagation::Quiet
+                || e.prime_chains(&mut s) != Propagation::Quiet
+            {
+                break;
+            }
+            let result = parallel_root::strengthen(&mut e, &mut s, 4).unwrap();
+            assert_eq!(e.probe_remaining + e.metrics.probe_events as usize, budget);
+            if let Propagation::Conflict(id) = result {
+                refuted += 1;
+                let cert = s.proof.certificate(n, id);
+                assert_eq!(proof::verify(&cert, false), Ok(false), "n={n}");
+            }
+        }
+    }
+    assert!(refuted >= 3, "only {refuted} refutations");
+}
+
+#[test]
+fn bit_windows_match_naive_extraction_at_every_offset() {
+    let mut rng = 0x0b17_5eed_u64;
+    let bits = (0..5)
+        .map(|_| {
+            rng = rng.wrapping_mul(6364136223846793005).wrapping_add(1);
+            rng
+        })
+        .collect::<Vec<_>>();
+    let bit = |i: isize| {
+        usize::try_from(i)
+            .ok()
+            .filter(|&i| i < 64 * bits.len())
+            .is_some_and(|i| bits[i / 64] >> (i % 64) & 1 == 1)
+    };
+    for start in -200..(64 * bits.len() as isize + 70) {
+        let expected = (0..64).fold(0u64, |w, b| w | (u64::from(bit(start + b)) << b));
+        assert_eq!(engine::window(&bits, start), expected, "start={start}");
     }
 }

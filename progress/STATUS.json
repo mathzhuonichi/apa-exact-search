@@ -179,5 +179,11 @@
   "candidate_timeout_seconds": 600.0,
   "interrupted_candidates": [
     370169
-  ]
+  ],
+  "later_checkpoint": {
+    "note": "This file still records the 2026-09-26 pause at 370039. A later concurrent run verified 2651 further residuals; the authoritative record is evidence/events-v2-concurrent/ and the Handoff section of docs/MILLION_CAMPAIGN.md.",
+    "contiguous_maximum_excluded_through_after_concurrent_run": 514547,
+    "next_residual_to_resolve": 514651,
+    "run_state": "PAUSED_BY_USER"
+  }
 }

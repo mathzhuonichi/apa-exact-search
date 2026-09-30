@@ -64,7 +64,7 @@ An unfinished root returns UNKNOWN and creates no lanes.
 | Module | Implementation | Selection |
 |---|---|---|
 | Complete factors | Two-pass product enumeration, fixed witness IDs, CSR endpoint and endpoint-sum indices | Always in event engine |
-| Propagation | Affected-domain events, count/XOR/product counters, dense unresolved set, member-pair jobs with fixed endpoints and resumable cursors | Always |
+| Propagation | Affected-domain events, count/XOR/product counters, dense unresolved set, member-pair jobs with fixed endpoints and resumable cursors; word-parallel impossible-product bans over bad-sum, open-value and reversed-member bitsets | Always |
 | Bad products | Both E-before-member and member-before-E; diagonal bans; independent E deletes its product domain and incompatible endpoint-sum witnesses | Always |
 | Complete excluded prefix | Rollback-safe additive maximum witness domain and forbidden proper factor pairs, with independently checked reasons; DFS can branch on the additive domain when it is smaller | `--complete-prefix-base` |
 | Rollback | Undo trail for facts, products, domain counters, dense-set positions and pair adjacency; empty-parent-queue checkpoints; fresh queue epochs and monotonically allocated proof scopes | Always |
@@ -72,16 +72,19 @@ An unfinished root returns UNKNOWN and creates no lanes.
 | Strict maximum row | `(outside_maximum_row, live_count, -sum)` | `--policy strict-maximum-row-first` |
 | Portfolio | Alternating policies by default, deterministic witness rotations/reversal | `--threads`; optional single-policy override |
 | Propagation-only probes | Complete 2–4 witness maximum-row covers and bounded absence probes | `--probes` |
-| Shared-root saturation | Parallel batches of complete 2–8 witness covers and absence probes against a shared root snapshot; merge proved conclusions, renew chains after new members, repeat after progress | `--root-strengthen`, `--threads` |
+| Shared-root saturation | Parallel batches of complete 2–8 witness covers and absence probes against a shared root snapshot; merge proved conclusions, renew chains after new members, repeat after progress; retained worker states; speculative batches committed in serial order when each job would reserve the whole remaining budget | `--root-strengthen`, `--threads`; `--no-root-speculation` runs such jobs one per batch |
 | Six-seed probe | All six overlapping positive seed cases; no absent-group assumptions | `--seed-probe`, with probes, U, and clauses enabled |
-| Prime chains | Pure temporary closure under steps 2 and the tested even member; exact arithmetic proof steps | `--prime-chain-steps`, default 50,000,000 per pass; 0 disables |
+| Prime chains | Pure temporary closure under steps 2 and the tested even member; word-parallel first step; proof records only the path from one member to the terminal prime | `--prime-chain-steps`, default 50,000,000 per pass; 0 disables |
 | Universal members | Exactly the stated U, with the n > 2 applicability condition | `--universal-members` |
 | Prime clauses | Exactly 39 cross-group positive clauses | `--prime-clauses` |
 | Small even bound | At least seven members in `{2,4,...,384}` | `--even-bound` |
-| Proofs | Scoped arithmetic DAG, dependency extraction, independent trial-division replay | Always constructed; `--proof` writes the certificate |
+| Proofs | Scoped arithmetic DAG, dependency extraction, independent trial-division replay; witness-deletion steps materialized only when a proof uses them | Always constructed; `--proof` writes the certificate |
 
-`dead[wid] == None` is the single authoritative alive flag; a dead witness
-stores its first proof ID. A separate Boolean is unnecessary. Count and XOR
+`dead[wid] == None` is the single authoritative alive flag. A dead witness
+stores the proof ID of its first deletion: either a `Dead` node or the premise
+of the one-step `Delete` rule (an endpoint ban, the pair nogood, or the bad
+product or sum). The `Dead` node is created only when a proof uses it, and that
+cached node is recorded on the undo trail. A separate Boolean is unnecessary. Count and XOR
 updates occur only on the first deletion. Product counts are updated through
 endpoint incidence when a member is inserted, including square witnesses once.
 There is no second `done` truth source or repeated scan of historical demands.
@@ -168,6 +171,115 @@ cannot. Subsequent siblings may use that nogood, and its proof remains in the
 append-only arena. The final empty-domain proof enumerates all original
 factor pairs, including those removed before branching. Checkpoint rollback
 also handles probes interrupted with partially consumed low-priority jobs.
+
+### Performance revision (2026-09-29)
+
+This revision changes execution cost, not the inference rules, the proof
+vocabulary, or the independent checker. The campaign remained paused; no
+residual candidate and no acceptance control was run for it.
+
+- **Lazy deletion proofs.** Deleting a witness previously allocated a
+  `Dead`/`Delete` proof node for every kill (tens of millions per candidate in
+  the recorded runs). A deletion now stores its reason; the one-premise step is
+  created when an empty-domain, unique-witness, conflict, or cover proof uses
+  it. Certificates contain the same kinds of steps.
+- **Impossible-product bans.** A new member `a` bans each open `v` with `a+v`
+  bad, and a new bad sum bans `sum-a` for each member `a`. These scans iterated
+  over every bad sum or every member. They now combine 64-value words of a
+  bad-sum bitset, an open-value bitset, and a reversed member bitset.
+- **Prime chains.** The first step from all odd members is taken word-parallel
+  on a prime bitset, and a search stops at its first terminal prime. The ban's
+  certificate records only the path from one member to that terminal, with the
+  member, 2, and the terminal ban as premises, instead of every odd member and
+  every prime reached. The set of banned candidates is unchanged when the step
+  budget is not exhausted.
+- **Retained worker states.** Root probe workers no longer clone the whole
+  root state for each batch. A retained state is synchronized from the root's
+  undo entries since the previous batch. Retained states release the shared
+  proof prefix between batches, so freezing the root appends in place rather
+  than copying every earlier proof node (a debug assertion checks this).
+- **Speculative root batches.** The campaign options set unlimited
+  `--probe-case-events` and `--probe-events`. The first queued job then reserves
+  the entire remaining budget, so every batch had one job; the 335135 and 370039
+  records show `root_parallel_workers: 1`. Such batches now run up to
+  `--threads` successors in parallel against the same snapshot. Results are
+  committed in queue order only while the root is unchanged and each job would
+  again have reserved, and not exhausted, the remaining budget. The first
+  productive commit discards later results, which are then offered again on the
+  new root. The committed trajectory is therefore the same as one-job batches.
+  A contradiction found by any job is a complete root refutation and is
+  imported immediately; in a speculative batch only the refuting job is
+  charged to the budget. After a deadline or interruption no further
+  speculative result is committed, as no further one-job batch would start. Discarded work is reported in
+  `root_discarded_jobs` and `root_discarded_events` and does not consume the
+  probe budget. `root_speculative_batches` counts these batches and
+  `root_worker_sync_cpu_time` records state synchronization. Batches with
+  ordinary finite reservations keep their previous semantics.
+  `--no-root-speculation` restores one-job batches for comparison.
+
+Retained worker states keep up to `--threads` copies of the root state alive
+throughout shared-root strengthening, not only during each batch. Parallel
+unlimited-budget runs therefore use more memory than the one-worker batches
+recorded for 335135 and 370039. From the table sizes, one copy is about 150 MB
+at n = 370,039 (3.5 GB for 24 threads) and about 410 MB near n = 1,000,000
+(9.7 GB), excluding proof arenas. Fewer `--threads` or `--no-root-speculation`
+reduce this.
+
+Mathematical soundness does not rest on these changes: every NO is still
+replayed by the unchanged independent checker, and every YES is validated
+directly. The changes are tested for completeness and exactness instead:
+
+- every quiescent state reached by randomized nested probes, covers, and prime
+  chains is checked to be closed under each propagation rule against the raw
+  arithmetic tables, and every proof node created, including cached deletion
+  steps of rolled-back scopes, passes the independent checker;
+- the chain search agrees with a plain closure for every even candidate, and
+  path-only chain proofs pass the checker;
+- synchronized worker states equal the root, bit windows match naive
+  extraction at every offset, and speculation reproduces the root facts, proof
+  arena, budget use, and productive jobs of one-job batches under unlimited and
+  finite budgets;
+- refutations found in speculative batches, including budgets near a single
+  job's use, give checkable certificates with exact budget accounting;
+- deliberate faults (a skipped scan word, an unrecorded proof cache, a missing
+  chain premise, and the earlier speculative budget charge) each fail a test.
+
+The previous and new release binaries were also compared on every maximum from
+1 to 600 under the default, finite-budget root-strengthening, and unlimited
+campaign options, and from 7 to 600 with `--complete-prefix-base 3` under the
+finite and unlimited options (2,988 runs each). All statuses and evidence
+classes agreed: without the prefix, 598 `VERIFIED_NO` and the two validated YES
+maxima, 2 and 113, in each configuration.
+
+The ignored tests in `src/events/bench.rs` measure synthetic workloads. They
+never make the maximum a member, so they decide nothing about any maximum. They
+run with `cargo test --release bench_ -- --ignored --nocapture`, optionally with
+`BENCH_N`, `BENCH_BAN`, `BENCH_MEMBERS`, `BENCH_SEED`, `BENCH_THREADS`,
+`BENCH_NOSPEC`, `BENCH_EVERY`, `BENCH_CAP`, and `BENCH_BANMOD`. On a
+4-processor cloud container:
+
+| Synthetic workload | Before | After |
+|---|---:|---:|
+| 302 uncapped probes, n = 30,000 | 5.25 s | 2.12 s |
+| 302 uncapped probes, n = 60,000 | 11.90 s | 3.44 s |
+| 301 uncapped probes, n = 150,000 | 40.92 s | 16.51 s |
+| Chain search, 74,999 candidates, 500 odd members | 0.69 s | 0.51 s |
+| Chain search, 74,999 candidates, 1,250 odd members | 1.55 s | 0.61 s |
+| Chain search, 59,999 candidates, 3,750 odd members | 1.12 s | 0.002 s |
+| Parallel root, unlimited budgets, 4 threads, n = 150,000 | 0.60 s | 0.29 s |
+| The same with a smaller seed set | 0.53 s | 0.18 s |
+
+The "before" probe and root timings use the unmodified previous commit; the
+chain-search baseline is the previous algorithm run inside the same benchmark.
+
+The uncapped probe benchmark produced the same probe outcomes and derived fact
+sets before and after (identical digests). The chain searches banned the same
+candidates. The root benchmarks committed the same probe events; there the
+previous code ran 32 and 48 one-worker batches, and the new code ran 8 and 12
+four-worker batches. No synthetic root job was productive, which is the most
+favorable case for speculation. These are single synthetic measurements, not
+residual candidate timings. The known acceptance controls should be rerun before
+this revision is used for further campaign work.
 
 ## Proof and result meanings
 

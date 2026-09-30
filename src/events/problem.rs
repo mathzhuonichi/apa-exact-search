@@ -49,6 +49,7 @@ pub struct Problem {
     pub endpoint: Csr,
     pub endpoint_sum: Csr,
     pub prime: Vec<bool>,
+    pub prime_bits: Vec<u64>,
 }
 
 impl Problem {
@@ -105,6 +106,10 @@ impl Problem {
                 }
             }
         }
+        let mut prime_bits = vec![0u64; limit / 64 + 1];
+        for (v, _) in prime.iter().enumerate().filter(|(_, is_prime)| **is_prime) {
+            prime_bits[v / 64] |= 1u64 << (v % 64);
+        }
         Ok(Self {
             n,
             limit,
@@ -113,6 +118,7 @@ impl Problem {
             endpoint,
             endpoint_sum,
             prime,
+            prime_bits,
         })
     }
     pub fn domain(&self, s: usize) -> Range<usize> {

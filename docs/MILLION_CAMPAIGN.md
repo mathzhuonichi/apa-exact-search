@@ -68,6 +68,144 @@ action; it resumes after 370039 and retries 370169 first. Do not report a larger
 contiguous boundary until the corresponding replay log and result have been
 checked.
 
+## Resumed run, block 1 (2026-09-29)
+
+The user resumed the campaign with the concurrent runner. The first 1000
+residuals after 370039, namely 370169 through 425663, were each accepted as a
+fresh `VERIFIED_NO` with an independent replay, in residual order (see
+`evidence/events-v2-concurrent/block-001/checkpoint.json`). 370169, the
+interrupted candidate, was retried first and verified. One solver was killed by
+the container's 14.3 GB memory limit at 372923 while four jobs ran; that was a
+resource event and not a result, and it was retried and verified with three jobs
+of two threads each. A container restart later interrupted in-flight candidates,
+which were rerun. `progress/STATUS.json` and `progress/classification.csv` are
+not updated by this change; the checkpoint file is authoritative for this block.
+
+Block 2 continues contiguously: 425687 through 479783, 1000 residuals accepted in
+residual order with fresh `VERIFIED_NO` results and independent replays
+(`evidence/events-v2-concurrent/block-002/checkpoint.json`), with no resource
+events. Through block 2 the concurrent run has verified 2000 residuals after
+370039.
+
+## Automatic relaunch after container restarts (2026-09-30)
+
+Container restarts kill the runner but leave `state.json` and the certificates
+on disk. `.claude/hooks/session-start.sh` (registered in `.claude/settings.json`)
+relaunches an interrupted campaign when a remote session starts. It never starts
+a new campaign and never resumes past a stop: it acts only when `state.json` is
+`RUNNING` with no attention case, `PAUSED.json` has `paused: false` and
+`automatic_resume_authorized: true`, and no runner process is alive (checked
+under a lock, so simultaneous hooks start only one). The runner sets
+`automatic_resume_authorized` to false whenever it stops, so a YES, UNKNOWN, or
+solver error is never resumed automatically, and setting it to false or
+`paused` to true disables the hook. Resumption reruns every residual after the
+checkpoint with fresh evidence. The hook is skipped outside remote sessions and
+when `outputs/20260929-concurrent/state.json` does not exist, so a fresh
+checkout does nothing. `tools/test_session_start_hook.sh` checks these cases
+against fake campaigns. A hook runs when a session starts; it cannot restart a
+runner inside a session that stays open after the container has restarted.
+
+## Handoff (2026-09-30)
+
+The user stopped the concurrent run so that others can continue. **The verified
+boundary is 514547 (2651 residuals verified after 370039); the next residual to
+resolve is 514651, with 11,870 residuals remaining through 999965.** No solver
+returned YES or UNKNOWN. The only non-NO event was a kernel memory kill at
+372923 (a resource event, retried and verified). In-flight candidates at the stop
+were terminated; they are not results and must be rerun.
+
+Evidence: `evidence/events-v2-concurrent/block-001`, `block-002`, and
+`block-003-partial` (651 of 1000) list per-maximum SHA-256 hashes, sizes, and
+metrics, with three replayed sample certificates each. **The full certificate
+corpus (about 6.6 GB) and `state.json` were in the git-ignored
+`outputs/20260929-concurrent/` on the cloud container and are not in the
+repository**; only the checkpoints and sample certificates are. Anyone who needs
+the per-maximum certificates must regenerate them or copy that directory before
+the container is reclaimed.
+
+To continue from the boundary in a fresh output directory:
+
+```sh
+cargo build --release
+python3 tools/run_events_campaign.py --binary target/release/apa-exact-search \
+  --candidates progress/candidates.txt --output outputs/<new-run> \
+  --start-after 514547 --jobs 3 --threads-per-candidate 2
+```
+
+Practical notes from this run on a 4-processor, 16 GB container with a 14.3 GB
+memory limit:
+
+- three jobs of two threads each were stable (about 1.3 GB per solver near
+  500,000); four concurrent solvers were killed once for memory. Memory per
+  solver grows with the maximum and with the proof arena of a hard candidate
+  (a solver near 370,000 reached 5 GB), so lower `--jobs` on smaller machines;
+- typical maxima near 500,000 took about 20-30 seconds of solver time each, and
+  the slowest in a block about 330 seconds, under three-way sharing; throughput
+  was about 4-6 maxima per minute, and cost per maximum is expected to grow with
+  the maximum (unmeasured near 1,000,000);
+- the runner's 600-second per-candidate wall timeout would record an UNKNOWN
+  for a slow candidate near one million; raise
+  `--candidate-timeout-seconds` if that happens and rerun.
+
+`PAUSED.json` has `paused: true` and `automatic_resume_authorized: false`, so the
+session-start hook (below) does nothing. The hook and its settings are specific to
+the `outputs/20260929-concurrent` run and to this repository's cloud sessions;
+remove `.claude/settings.json` or change the hook's paths for a different run.
+Launching the runner is itself the resume action.
+
+## Candidate-parallel execution (2026-09-29)
+
+Within one maximum, root strengthening is a dependency chain: each productive
+probe changes the root used by the next. The recorded unlimited-budget runs used
+one root worker per batch, and speculative batches can recover only part of the
+idle processors. The runner therefore parallelizes across maxima. Each residual
+is still an independent problem with its own certificate and replay; only the
+scheduling changes.
+
+`tools/run_events_campaign.py` now keeps up to `--jobs` maxima in flight
+(default: every available processor) and gives each solver
+`--threads-per-candidate` threads (default: the processors divided among the
+jobs, so one each when every processor runs a job). Acceptance is unchanged and
+strictly ordered:
+
+- candidates start in residual order and at most `--lookahead` (default 1000)
+  beyond the first unaccepted residual;
+- a result is accepted, and the checkpoint written, only after every earlier
+  residual was accepted, with the same fresh-evidence, `VERIFIED_NO`, complete
+  scope, identity, and separate `verify-events` checks as before;
+- when a candidate returns anything other than NO, later running candidates
+  are cancelled (their folders record `cancelled.json`), earlier ones finish,
+  and the campaign stops at the first non-NO in residual order;
+- a cancelled or unaccepted result never advances the checkpoint, and resuming
+  reruns every residual after the checkpoint with fresh evidence.
+
+`--jobs 1` reproduces the previous runner, including the all-processor solver
+command. The recorded `options` are unchanged; the resource settings are
+recorded separately in `execution`, and each change is appended to
+`execution_history` with the checkpoint at which it took effect. Several jobs
+run the documented one-thread root algorithm per maximum, so search trajectories
+differ from the multi-thread path while acceptance requirements do not.
+
+Validation on this 4-processor cloud machine, without running any residual:
+
+- 21 runner tests with fake subprocesses, including a randomized comparison of
+  150 concurrent schedules with sequential acceptance, earliest-failure
+  reporting, cancellation of only later candidates, lookahead, and resource
+  recording;
+- a CPU-bound stand-in solver over 16 maxima took 17.49 seconds with one job
+  (0.97 busy processors) and 4.42 seconds with four (3.81 busy processors);
+- the release binary over maxima 115-600 accepted all 486 with independently
+  replayed `VERIFIED_NO` using one or four jobs (3.57 and 1.28 seconds), and a
+  list containing 113 stopped at that validated YES with 112 as the checkpoint;
+- the previous and new binaries agreed on all maxima 1-600 with the campaign
+  options and one thread.
+
+Memory is per process: at n = 1,000,000 the factor tables are about 670 MB, the
+state allocates up to about 410 MB, and the proof arena grows with the search.
+Four concurrent processes are expected to fit in 16 GB; lower `--jobs` if a
+future range needs more memory. No residual timing on this machine has been
+measured yet.
+
 ## Root-cause comparison
 
 Historical small-range results are mixed. In the 128k–140k factor-branch

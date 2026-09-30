@@ -6,7 +6,7 @@ use serde::Serialize;
 use std::collections::{BTreeMap, HashMap, VecDeque};
 use std::sync::{
     Arc,
-    atomic::{AtomicBool, Ordering},
+    atomic::{AtomicBool, AtomicUsize, Ordering},
 };
 use std::time::Instant;
 
@@ -59,6 +59,13 @@ pub struct Metrics {
     pub root_forced_absences: Vec<usize>,
     pub root_parallel_batches: usize,
     pub root_parallel_workers: usize,
+    /// Batches run speculatively in serial commit order.
+    pub root_speculative_batches: usize,
+    /// Speculative jobs discarded because an earlier job changed the root.
+    pub root_discarded_jobs: usize,
+    /// Probe events spent by discarded jobs; they do not consume the budget.
+    pub root_discarded_events: u64,
+    pub root_worker_sync_cpu_time: f64,
 }
 impl Metrics {
     pub(super) fn add_probe_work(&mut self, other: &Self) {
@@ -93,6 +100,7 @@ impl Metrics {
             probe_events
         );
         self.root_worker_clone_cpu_time += other.root_worker_clone_cpu_time;
+        self.root_worker_sync_cpu_time += other.root_worker_sync_cpu_time;
         self.root_worker_fragment_cpu_time += other.root_worker_fragment_cpu_time;
     }
 }
@@ -111,7 +119,7 @@ struct SumJob {
     end: usize,
 }
 #[derive(Clone, Debug)]
-enum Undo {
+pub(super) enum Undo {
     Member(usize),
     Ban(usize),
     Bad(usize),
@@ -121,6 +129,7 @@ enum Undo {
     Pair(usize, usize),
     Insert(usize),
     Remove { s: usize, pos: usize },
+    DeadProof(usize, Id),
     AdditiveDead(usize),
     AdditiveSatisfied(Option<usize>),
 }
@@ -147,8 +156,12 @@ pub struct State {
     pub members: Vec<usize>,
     member_bits: Vec<u64>,
     member_words: Vec<usize>,
+    /// Bit `n - v` is set exactly when `v` is a member.
+    reversed_member_bits: Vec<u64>,
     active_bits: Vec<u64>,
-    pub bad_values: Vec<usize>,
+    bad_bits: Vec<u64>,
+    /// Values that cannot receive a new ban: 0, values above `n`, and bans.
+    closed_bits: Vec<u64>,
     pub live_count: Vec<usize>,
     pub xor_live_id: Vec<usize>,
     pub product_count: Vec<usize>,
@@ -177,8 +190,16 @@ impl State {
             members: vec![],
             member_bits: vec![0; (p.n + 64) / 64],
             member_words: vec![],
+            reversed_member_bits: vec![0; (p.n + 64) / 64],
             active_bits: vec![0; (p.limit + 64) / 64 + 1],
-            bad_values: vec![],
+            bad_bits: vec![0; (p.limit + 64) / 64 + 1],
+            closed_bits: {
+                let mut bits = vec![!0u64; (p.n + 64) / 64];
+                for v in 1..=p.n {
+                    bits[v / 64] &= !(1u64 << (v % 64));
+                }
+                bits
+            },
             live_count: (0..=p.limit).map(|s| p.domain(s).len()).collect(),
             xor_live_id: (0..=p.limit)
                 .map(|s| p.domain(s).fold(0, |a, b| a ^ b))
@@ -205,8 +226,16 @@ impl State {
     #[cfg(test)]
     pub(super) fn fingerprint_extensions(&self) -> String {
         format!(
-            "{:?}{:?}{:?}{:?}",
-            self.member_bits, self.member_words, self.active_bits, self.additive
+            "{:?}{:?}{:?}{:?}{:?}{:?}{:?}{:?}{:?}",
+            self.member_bits,
+            self.member_words,
+            self.reversed_member_bits,
+            self.active_bits,
+            self.bad_bits,
+            self.closed_bits,
+            self.additive,
+            self.position,
+            self.adjacency
         )
     }
     pub fn checkpoint(&self) -> Checkpoint {
@@ -231,11 +260,16 @@ impl State {
                     if self.member_bits[word] == 0 {
                         assert_eq!(self.member_words.pop(), Some(word));
                     }
+                    let r = p.n - v;
+                    self.reversed_member_bits[r / 64] &= !(1u64 << (r % 64));
                 }
-                Undo::Ban(v) => self.banned[v] = None,
+                Undo::Ban(v) => {
+                    self.banned[v] = None;
+                    self.closed_bits[v / 64] &= !(1u64 << (v % 64));
+                }
                 Undo::Bad(s) => {
                     self.bad[s] = None;
-                    assert_eq!(self.bad_values.pop(), Some(s));
+                    self.bad_bits[s / 64] &= !(1u64 << (s % 64));
                 }
                 Undo::Active(s) => {
                     self.active[s] = None;
@@ -247,6 +281,7 @@ impl State {
                     self.live_count[s] += 1;
                     self.xor_live_id[s] ^= id;
                 }
+                Undo::DeadProof(id, reason) => self.dead[id] = Some(reason),
                 Undo::Product(s) => self.product_count[s] -= 1,
                 Undo::Pair(d, e) => {
                     self.pairs.remove(&(d, e));
@@ -308,13 +343,94 @@ impl State {
     pub fn node(&mut self, fact: Fact, rule: Rule, premises: Vec<Id>) -> Id {
         self.proof.add(self.scope, fact, rule, premises)
     }
+    /// Proof of `Dead(d,e)` for a deleted witness. A deletion records only its
+    /// reason; the one-premise `Delete` step is created when a proof first uses
+    /// it and cached with an undo entry, so rollback restores the bare reason.
+    pub(super) fn dead_proof(&mut self, p: &Problem, id: usize) -> Id {
+        let reason = self.dead[id].expect("proof of a live witness deletion");
+        let w = p.witness[id];
+        if self.proof.get(reason).fact == Fact::Dead(w.d, w.e) {
+            return reason;
+        }
+        let proof = self.node(Fact::Dead(w.d, w.e), Rule::Delete, vec![reason]);
+        self.dead[id] = Some(proof);
+        self.trail.push(Undo::DeadProof(id, reason));
+        proof
+    }
     fn conflict(&mut self, premises: Vec<Id>) -> Id {
         self.node(Fact::False, Rule::Conflict, premises)
     }
     pub fn freeze(&mut self) {
+        self.freeze_changes();
+    }
+    /// Freeze the proof prefix and return the undo entries recorded since the
+    /// previous freeze; `sync_from` replays them into an older copy.
+    pub(super) fn freeze_changes(&mut self) -> Vec<Undo> {
         assert!(self.quiet());
-        self.trail.clear();
         self.proof.freeze();
+        std::mem::take(&mut self.trail)
+    }
+    /// Bring a quiet copy of an earlier frozen snapshot up to date with `root`.
+    /// `changes` are the root's undo entries since that snapshot, so every slot
+    /// they name is copied from `root`; small ordered vectors are copied whole.
+    /// Queue marks, the epoch, and the empty trail remain this copy's own.
+    pub(super) fn sync_from(&mut self, p: &Problem, root: &State, changes: &[Undo]) {
+        assert!(self.quiet() && root.quiet() && self.trail.is_empty());
+        let mut unresolved = false;
+        let mut additive = false;
+        for undo in changes {
+            match *undo {
+                Undo::Member(v) => {
+                    self.member[v] = root.member[v];
+                    self.member_bits[v / 64] = root.member_bits[v / 64];
+                    let r = p.n - v;
+                    self.reversed_member_bits[r / 64] = root.reversed_member_bits[r / 64];
+                }
+                Undo::Ban(v) => {
+                    self.banned[v] = root.banned[v];
+                    self.closed_bits[v / 64] = root.closed_bits[v / 64];
+                }
+                Undo::Bad(s) => {
+                    self.bad[s] = root.bad[s];
+                    self.bad_bits[s / 64] = root.bad_bits[s / 64];
+                }
+                Undo::Active(s) => {
+                    self.active[s] = root.active[s];
+                    self.active_bits[s / 64] = root.active_bits[s / 64];
+                }
+                Undo::Kill(id) | Undo::DeadProof(id, _) => {
+                    self.dead[id] = root.dead[id];
+                    let s = p.witness[id].s;
+                    self.live_count[s] = root.live_count[s];
+                    self.xor_live_id[s] = root.xor_live_id[s];
+                }
+                Undo::Product(s) => self.product_count[s] = root.product_count[s],
+                Undo::Pair(d, e) => {
+                    self.pairs.insert((d, e), root.pairs[&(d, e)]);
+                    self.adjacency[d].clone_from(&root.adjacency[d]);
+                    self.adjacency[e].clone_from(&root.adjacency[e]);
+                }
+                Undo::Insert(s) | Undo::Remove { s, .. } => {
+                    self.position[s] = root.position[s];
+                    unresolved = true;
+                }
+                Undo::AdditiveDead(_) | Undo::AdditiveSatisfied(_) => additive = true,
+            }
+        }
+        self.members.clone_from(&root.members);
+        self.member_words.clone_from(&root.member_words);
+        if unresolved {
+            self.unresolved.clone_from(&root.unresolved);
+            for (i, &s) in root.unresolved.iter().enumerate() {
+                self.position[s] = Some(i);
+            }
+        }
+        if additive {
+            self.additive.clone_from(&root.additive);
+        }
+        self.revision = root.revision;
+        self.scope = root.scope;
+        self.proof.clone_from(&root.proof);
     }
     pub(super) fn delta(&self, cp: &Checkpoint) -> BTreeMap<Fact, Id> {
         self.trail[cp.trail..]
@@ -335,11 +451,18 @@ pub struct Limits {
     pub deadline: Option<Instant>,
     pub cancel: Arc<AtomicBool>,
     pub interrupted: Arc<AtomicBool>,
+    /// A speculative root job's index and the batch's earliest productive
+    /// job. A later job can never be committed, so it stops early.
+    pub horizon: Option<(Arc<AtomicUsize>, usize)>,
 }
 impl Limits {
     pub fn stopped(&self) -> bool {
         self.cancel.load(Ordering::Acquire)
             || self.interrupted.load(Ordering::Acquire)
+            || self
+                .horizon
+                .as_ref()
+                .is_some_and(|(first, job)| first.load(Ordering::Relaxed) < *job)
             || self.deadline.is_some_and(|d| Instant::now() >= d)
     }
 }
@@ -360,6 +483,31 @@ pub(super) struct Probe {
     pub scope: usize,
     pub conflict: Option<Id>,
     pub delta: BTreeMap<Fact, Id>,
+}
+/// Reusable visitation arrays for per-candidate prime-chain searches.
+pub(super) struct ChainSearch {
+    seen: Vec<u32>,
+    parent: Vec<usize>,
+    generation: u32,
+    queue: VecDeque<usize>,
+}
+impl ChainSearch {
+    pub(super) fn new(p: &Problem) -> Self {
+        Self {
+            seen: vec![0; p.limit + 1],
+            parent: vec![0; p.limit + 1],
+            generation: 0,
+            queue: VecDeque::new(),
+        }
+    }
+    fn next_generation(&mut self) {
+        if self.generation == u32::MAX {
+            self.seen.fill(0);
+            self.generation = 0;
+        }
+        self.generation += 1;
+        self.queue.clear();
+    }
 }
 pub struct Engine {
     pub p: Arc<Problem>,
@@ -451,6 +599,8 @@ impl Engine {
             s.member_words.push(word);
         }
         s.member_bits[word] |= 1u64 << (v % 64);
+        let reversed = self.p.n - v;
+        s.reversed_member_bits[reversed / 64] |= 1u64 << (reversed % 64);
         if v < self.p.n {
             let complement = self.p.n - v;
             if s.member[complement].is_some() {
@@ -471,7 +621,8 @@ impl Engine {
             let w = self.p.witness[id];
             self.metrics.endpoint_occ_visits += 1;
             if let (Some(a), Some(b)) = (s.member[w.d], s.member[w.e]) {
-                if let Some(dead) = s.dead[id] {
+                if s.dead[id].is_some() {
+                    let dead = s.dead_proof(&self.p, id);
                     return Err(s.conflict(vec![a, b, dead]));
                 }
                 if let Some(bad) = s.bad[w.s] {
@@ -504,6 +655,7 @@ impl Engine {
         }
         if s.banned[v].is_none() {
             s.banned[v] = Some(r);
+            s.closed_bits[v / 64] |= 1u64 << (v % 64);
             s.trail.push(Undo::Ban(v));
             s.high.push_back(Event::Ban(v));
             s.revision += 1;
@@ -512,6 +664,9 @@ impl Engine {
         }
         Ok(())
     }
+    /// Delete witness `id`. `r` either proves `Dead(d,e)` or is a premise of
+    /// the `Delete` rule: a ban of an endpoint, `Pair(d,e)`, `Bad(d*e)`, or
+    /// `Bad(d+e)`. The `Dead` proof node itself is materialized on demand.
     pub fn kill(&mut self, s: &mut State, id: usize, r: Id) -> Result<(), Id> {
         if s.dead[id].is_some() {
             self.metrics.repeated_kill_attempts += 1;
@@ -519,7 +674,12 @@ impl Engine {
         }
         let w = self.p.witness[id];
         if let (Some(a), Some(b)) = (s.member[w.d], s.member[w.e]) {
-            return Err(s.conflict(vec![a, b, r]));
+            let dead = if s.proof.get(r).fact == Fact::Dead(w.d, w.e) {
+                r
+            } else {
+                s.node(Fact::Dead(w.d, w.e), Rule::Delete, vec![r])
+            };
+            return Err(s.conflict(vec![a, b, dead]));
         }
         s.dead[id] = Some(r);
         s.trail.push(Undo::Kill(id));
@@ -529,15 +689,6 @@ impl Engine {
         s.revision += 1;
         self.metrics.witness_kills += 1;
         Ok(())
-    }
-    fn delete(&mut self, s: &mut State, id: usize, reason: Id) -> Result<(), Id> {
-        if s.dead[id].is_some() {
-            self.metrics.repeated_kill_attempts += 1;
-            return Ok(());
-        }
-        let w = self.p.witness[id];
-        let r = s.node(Fact::Dead(w.d, w.e), Rule::Delete, vec![reason]);
-        self.kill(s, id, r)
     }
     pub fn bad(&mut self, s: &mut State, sum: usize, r: Id) -> Result<(), Id> {
         if s.bad[sum].is_some() {
@@ -555,10 +706,10 @@ impl Engine {
                     s.member[w.d].is_some() && s.member[w.e].is_some()
                 })
                 .unwrap();
-            return self.delete(s, id, r);
+            return self.kill(s, id, r);
         }
         s.bad[sum] = Some(r);
-        s.bad_values.push(sum);
+        s.bad_bits[sum / 64] |= 1u64 << (sum % 64);
         s.trail.push(Undo::Bad(sum));
         s.high.push_back(Event::Bad(sum));
         s.revision += 1;
@@ -591,7 +742,7 @@ impl Engine {
             self.ban(s, d, b)?;
         }
         if let Some(id) = self.p.pair_id(d, e) {
-            self.delete(s, id, r)?;
+            self.kill(s, id, r)?;
         }
         Ok(())
     }
@@ -613,7 +764,11 @@ impl Engine {
     fn domain(&mut self, s: &mut State, sum: usize) -> Result<(), Id> {
         self.metrics.dirty_domain_events += 1;
         if s.live_count[sum] == 0 && s.bad[sum].is_none() {
-            let reasons = self.p.domain(sum).map(|id| s.dead[id].unwrap()).collect();
+            let reasons = self
+                .p
+                .domain(sum)
+                .map(|id| s.dead_proof(&self.p, id))
+                .collect();
             let r = s.node(Fact::Bad(sum), Rule::Empty, reasons);
             self.bad(s, sum, r)?;
         }
@@ -631,7 +786,11 @@ impl Engine {
                 assert_eq!(w.s, sum);
                 assert!(s.dead[id].is_none());
                 let mut reasons = vec![active];
-                reasons.extend(self.p.domain(sum).filter_map(|id| s.dead[id]));
+                for other in self.p.domain(sum) {
+                    if s.dead[other].is_some() {
+                        reasons.push(s.dead_proof(&self.p, other));
+                    }
+                }
                 for v in [w.d, w.e] {
                     let r = s.node(Fact::Member(v), Rule::Unique(w.d, w.e), reasons.clone());
                     self.force(s, v, r)?;
@@ -645,15 +804,44 @@ impl Engine {
         }
         Ok(())
     }
-    fn bad_sum_ban(&mut self, s: &mut State, sum: usize, a: usize) -> Result<(), Id> {
-        if sum > a && sum - a <= self.p.n {
-            let v = sum - a;
-            if s.banned[v].is_none() {
-                let r = s.node(
-                    Fact::Ban(v),
-                    Rule::BadSum,
-                    vec![s.bad[sum].unwrap(), s.member[a].unwrap()],
-                );
+    /// Ban every open `v` with `a+v` an impossible product, for member `a`.
+    fn member_bad_sums(&mut self, s: &mut State, a: usize) -> Result<(), Id> {
+        for word in 0..s.closed_bits.len() {
+            let open = !s.closed_bits[word];
+            if open == 0 {
+                continue;
+            }
+            let mut hits = open & window(&s.bad_bits, (a + 64 * word) as isize);
+            while hits != 0 {
+                let v = 64 * word + hits.trailing_zeros() as usize;
+                hits &= hits - 1;
+                let premises = vec![s.bad[a + v].unwrap(), s.member[a].unwrap()];
+                let r = s.node(Fact::Ban(v), Rule::BadSum, premises);
+                self.ban(s, v, r)?;
+            }
+        }
+        Ok(())
+    }
+    /// Ban every open `v = sum-a` for a member `a`, after `sum` became bad.
+    fn bad_sum_members(&mut self, s: &mut State, sum: usize) -> Result<(), Id> {
+        let n = self.p.n;
+        if sum < 2 {
+            return Ok(());
+        }
+        let (lo, hi) = (sum.saturating_sub(n).max(1), (sum - 1).min(n));
+        for word in lo / 64..=hi / 64 {
+            let open = !s.closed_bits[word];
+            if open == 0 {
+                continue;
+            }
+            // Bit v of this window is the reversed member bit n-(sum-v).
+            let start = (64 * word + n) as isize - sum as isize;
+            let mut hits = open & window(&s.reversed_member_bits, start);
+            while hits != 0 {
+                let v = 64 * word + hits.trailing_zeros() as usize;
+                hits &= hits - 1;
+                let premises = vec![s.bad[sum].unwrap(), s.member[sum - v].unwrap()];
+                let r = s.node(Fact::Ban(v), Rule::BadSum, premises);
                 self.ban(s, v, r)?;
             }
         }
@@ -703,16 +891,13 @@ impl Engine {
                 if s.member[self.p.n].is_some() {
                     self.activate(s, self.p.n, a);
                 }
-                for i in 0..s.bad_values.len() {
-                    let sum = s.bad_values[i];
-                    self.bad_sum_ban(s, sum, a)?;
-                }
+                self.member_bad_sums(s, a)?;
             }
             Event::Ban(v) => {
                 for i in 0..self.p.endpoint.get(v).len() {
                     let id = self.p.endpoint.get(v)[i];
                     self.metrics.endpoint_occ_visits += 1;
-                    self.delete(s, id, s.banned[v].unwrap())?;
+                    self.kill(s, id, s.banned[v].unwrap())?;
                 }
                 if self.cfg.prime_clauses
                     && let Some(group) = GROUPS.iter().position(|g| g.contains(&v))
@@ -746,22 +931,19 @@ impl Engine {
             Event::Bad(sum) => {
                 let r = s.bad[sum].unwrap();
                 for id in self.p.domain(sum) {
-                    self.delete(s, id, r)?;
+                    self.kill(s, id, r)?;
                 }
                 for i in 0..self.p.endpoint_sum.get(sum).len() {
                     let id = self.p.endpoint_sum.get(sum)[i];
                     self.metrics.endpoint_sum_occ_visits += 1;
-                    self.delete(s, id, r)?;
+                    self.kill(s, id, r)?;
                 }
                 if sum.is_multiple_of(2) {
                     let v = sum / 2;
                     let b = s.node(Fact::Ban(v), Rule::BadSum, vec![r]);
                     self.ban(s, v, b)?;
                 }
-                for i in 0..s.members.len() {
-                    let a = s.members[i];
-                    self.bad_sum_ban(s, sum, a)?;
-                }
+                self.bad_sum_members(s, sum)?;
             }
         }
         Ok(())
@@ -935,13 +1117,13 @@ impl Engine {
             delta,
         }
     }
-    pub(super) fn cover_context(&mut self, s: &State, sum: usize) -> (Vec<Vec<Fact>>, Vec<Id>) {
+    pub(super) fn cover_context(&mut self, s: &mut State, sum: usize) -> (Vec<Vec<Fact>>, Vec<Id>) {
         self.metrics.full_domain_enumerations += 1;
         let mut context = vec![s.active[sum].unwrap()];
         let mut cases = vec![];
         for id in self.p.domain(sum) {
-            if let Some(r) = s.dead[id] {
-                context.push(r);
+            if s.dead[id].is_some() {
+                context.push(s.dead_proof(&self.p, id));
             } else {
                 let w = self.p.witness[id];
                 cases.push(vec![Fact::Member(w.d), Fact::Member(w.e)]);
@@ -1236,13 +1418,18 @@ impl Engine {
     }
     pub fn prime_chains(&mut self, s: &mut State) -> Propagation {
         let started = Instant::now();
+        let result = self.prime_chains_inner(s);
+        self.metrics.prime_chain_wall_time += started.elapsed().as_secs_f64();
+        result
+    }
+    /// Ban each even `e` whose assumed membership closes the odd members under
+    /// steps 2 and `e` into a prime above `n` or a banned prime.
+    fn prime_chains_inner(&mut self, s: &mut State) -> Propagation {
+        let Some(two) = s.member[2] else {
+            return self.quiesce(s);
+        };
         let mut left = self.cfg.prime_chain_steps;
-        // Each candidate starts a fresh reachability search. Reuse the large
-        // visitation array with generation stamps instead of clearing it for
-        // every candidate even value.
-        let mut known = vec![0u32; self.p.limit + 1];
-        let mut generation = 0u32;
-        let mut queue = VecDeque::new();
+        let mut search = ChainSearch::new(&self.p);
         for e in (2..=self.p.n).step_by(2) {
             if left == 0 || self.limits.stopped() {
                 break;
@@ -1250,74 +1437,119 @@ impl Engine {
             if s.banned[e].is_some() || s.member[e].is_some() {
                 continue;
             }
-            if generation == u32::MAX {
-                known.fill(0);
-                generation = 0;
+            let Some(steps) = self.prime_chain(s, &mut search, e, &mut left) else {
+                continue;
+            };
+            let (start, end) = (steps[0].0, steps[steps.len() - 1].2);
+            let mut reasons = vec![s.member[start].unwrap(), two];
+            if end <= self.p.n {
+                reasons.push(s.banned[end].unwrap());
             }
-            generation += 1;
-            queue.clear();
-            let mut reasons = vec![];
-            for &a in &s.members {
-                if a % 2 == 1 {
-                    known[a] = generation;
-                    queue.push_back(a);
-                    reasons.push(s.member[a].unwrap());
-                }
+            let r = s.node(
+                Fact::Ban(e),
+                Rule::PrimeChain {
+                    candidate: e,
+                    steps,
+                },
+                reasons,
+            );
+            if let Err(id) = self.ban(s, e, r) {
+                return Propagation::Conflict(id);
             }
-            reasons.push(s.member[2].unwrap());
-            let mut steps = vec![];
-            let mut terminal = false;
-            'chain: while let Some(a) = queue.pop_front() {
-                for h in [2, e] {
-                    if left == 0 || self.limits.stopped() {
-                        break 'chain;
-                    }
-                    left -= 1;
-                    self.metrics.prime_chain_steps += 1;
-                    let p = a + h;
-                    if !self.p.prime[p] {
-                        continue;
-                    }
-                    if known[p] == generation {
-                        continue;
-                    }
-                    steps.push((a, h, p));
-                    known[p] = generation;
-                    if p > self.p.n {
-                        terminal = true;
-                        break 'chain;
-                    }
-                    if let Some(b) = s.banned[p] {
-                        reasons.push(b);
-                        terminal = true;
-                        break 'chain;
-                    }
-                    queue.push_back(p);
-                }
-            }
-            if terminal {
-                let r = s.node(
-                    Fact::Ban(e),
-                    Rule::PrimeChain {
-                        candidate: e,
-                        steps,
-                    },
-                    reasons,
-                );
-                if let Err(id) = self.ban(s, e, r) {
-                    self.metrics.prime_chain_wall_time += started.elapsed().as_secs_f64();
-                    return Propagation::Conflict(id);
-                }
-                let r = self.quiesce(s);
-                if r != Propagation::Quiet {
-                    self.metrics.prime_chain_wall_time += started.elapsed().as_secs_f64();
-                    return r;
-                }
+            let r = self.quiesce(s);
+            if r != Propagation::Quiet {
+                return r;
             }
         }
-        let result = self.quiesce(s);
-        self.metrics.prime_chain_wall_time += started.elapsed().as_secs_f64();
-        result
+        self.quiesce(s)
+    }
+    /// Search the primes reachable from odd members by steps 2 and `e`. On
+    /// reaching a prime above `n` or a banned prime, return only the path from
+    /// its starting member. The first step from all odd members is taken
+    /// word-parallel on the prime bitset. Exhausting `left` returns `None`.
+    pub(super) fn prime_chain(
+        &mut self,
+        s: &State,
+        search: &mut ChainSearch,
+        e: usize,
+        left: &mut usize,
+    ) -> Option<Vec<(usize, usize, usize)>> {
+        const ODD: u64 = 0xAAAA_AAAA_AAAA_AAAA;
+        let n = self.p.n;
+        search.next_generation();
+        let ChainSearch {
+            seen,
+            parent,
+            generation,
+            queue,
+        } = search;
+        let generation = *generation;
+        // Reach prime p from a, a member or an already reached prime.
+        let mut reach = |a: usize, p: usize, queue: &mut VecDeque<usize>| {
+            if p <= n && (s.member[p].is_some() || seen[p] == generation) {
+                return false;
+            }
+            seen[p] = generation;
+            parent[p] = a;
+            if p > n || s.banned[p].is_some() {
+                return true;
+            }
+            queue.push_back(p);
+            false
+        };
+        let end = 'search: {
+            for &word in &s.member_words {
+                let odd = s.member_bits[word] & ODD;
+                if odd == 0 {
+                    continue;
+                }
+                let cost = 2 * odd.count_ones() as usize;
+                if *left < cost {
+                    *left = 0;
+                    return None;
+                }
+                *left -= cost;
+                self.metrics.prime_chain_steps += cost as u64;
+                for h in [2, e] {
+                    let mut hits = odd & window(&self.p.prime_bits, (64 * word + h) as isize);
+                    while hits != 0 {
+                        let a = 64 * word + hits.trailing_zeros() as usize;
+                        hits &= hits - 1;
+                        if reach(a, a + h, queue) {
+                            break 'search a + h;
+                        }
+                    }
+                }
+            }
+            let mut expanded = 0usize;
+            while let Some(a) = queue.pop_front() {
+                expanded += 1;
+                if *left < 2 || (expanded.is_multiple_of(1024) && self.limits.stopped()) {
+                    *left = 0;
+                    return None;
+                }
+                *left -= 2;
+                self.metrics.prime_chain_steps += 2;
+                for h in [2, e] {
+                    if self.p.prime[a + h] && reach(a, a + h, queue) {
+                        break 'search a + h;
+                    }
+                }
+            }
+            return None;
+        };
+        let mut steps = vec![];
+        let mut p = end;
+        loop {
+            let a = parent[p];
+            steps.push((a, p - a, p));
+            if s.member[a].is_some() {
+                break;
+            }
+            p = a;
+        }
+        steps.reverse();
+        Some(steps)
     }
     pub fn dfs(&mut self, s: &mut State) -> Outcome {
         self.metrics.nodes += 1;
@@ -1436,5 +1668,23 @@ impl Engine {
                 Outcome::Error("exhausted factor cover without contradiction".into())
             }
         }
+    }
+}
+
+/// Bits `start..start+64` of a little-endian bitset; positions outside it are 0.
+pub(super) fn window(bits: &[u64], start: isize) -> u64 {
+    let word = start.div_euclid(64);
+    let shift = start.rem_euclid(64) as u32;
+    let get = |w: isize| {
+        usize::try_from(w)
+            .ok()
+            .and_then(|w| bits.get(w))
+            .copied()
+            .unwrap_or(0)
+    };
+    if shift == 0 {
+        get(word)
+    } else {
+        (get(word) >> shift) | (get(word + 1) << (64 - shift))
     }
 }
